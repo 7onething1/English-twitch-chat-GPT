@@ -1,296 +1,231 @@
 # THE GLADNESS OF GOD
 ### *Book One of The Far Country*
 
-**Subtitle options:**
-1. *Why It's Foolish to Stay Powerless When the Throne Is Open* **(recommended)**
-2. *The Happy God, the Open Throne, and the Beauty That Ends the Striving*
-3. *How the Joy of God Dismantles Shame and Wins the Heart*
+**Subtitle (internal positioning):** *The God Occultists Are Secretly Looking For*
+**Subtitle (cover/market-facing options):**
+1. *Why the Spiritual Search Ends in a Person, Not a Power* **(recommended)**
+2. *The God Beneath Every Question You've Been Asking*
+3. *The Larger Map: Where the Spiritual Search Was Always Going*
 
-**One-line promise:** You left the New Age looking for power; this book shows
-you a God who is *glad*, a throne that is *open*, and a Christ so beautiful the
-old cravings die of starvation.
+**One-line promise:** You found real spiritual things through incomplete maps.
+This book hands you the larger map — and shows you that the treasure at its
+center was never power. It was the character of God.
 
-> **Source note.** This outline is built directly on the biblical corpus
-> (Scripture). No separate corpus file exists in this repository, so each beat
-> is anchored to specific biblical texts, cited in a readable ESV-style form.
+> **Source note.** Built directly on Scripture; no separate corpus file exists
+> in this repository. Each beat is anchored to specific passages in a readable
+> ESV-style form.
 
 ---
 
-## The shape of the book
+## The reframe that drives the whole book
 
-A single emotional and theological arc in five parts:
+The first concept opened with a Christian conclusion ("God is happy"). A
+practitioner doesn't wake up needing that. They wake up asking how to gain
+access, protection, favor, power, and destiny. **So Book 1 answers those exact
+questions** — and lets the answers lead, chapter by chapter, to the one
+discovery that reorders everything: God's own character.
 
-1. **The Broken Cistern** — name the powerlessness; diagnose the New Age.
-2. **The Torn Veil** — destroy the shame and guilt that bar the door; open the access.
-3. **The Glad God** — reveal the happiness at the center of reality, and that He is *for* you.
-4. **The Beauty of Christ** — make Him irresistible; the superior pleasure.
-5. **The Superior Identity** — live from gladness; who you now are; the door into Book 2.
-
-Diagnosis → Access → God's heart → Christ's beauty → New life.
+**Posture (every page):** *I believe you. I chased the same things. Here is the
+larger map.*
+**Guardrail (every page):** the phenomena were real; some doors were real doors
+to beings who were not for you; the way home is a Person, not a better technique
+(Acts 16:16–18; Col 2:15).
+**Heart-rule (every chapter):** resolve into desire — *"and this is more
+beautiful than what you had"* — not just a won argument.
 
 ---
 
 ## Front matter
 
 - **Title page / series note** — "Book One of *The Far Country*."
-- **Dedication** — *To everyone who did all the work and was still tired.*
-- **Author's Letter: "To the One Who Tried Everything."** Direct address to the
-  ex-manifestor. *I'm not going to shame your hunger. Your hunger was right.
-  It was just pointed at a broken cistern (Jer 2:13). Let me show you the
-  fountain.* Sets the promise: by the last page you won't be white-knuckling
-  your way out of the New Age — you'll have found something better.
+- **Dedication** — *To everyone who found something real, and kept looking.*
+- **Author's Letter: "I Was Where You Are."** First-person, credible, specific.
+  *I'm not here to tell you nothing happened. Things happened. I'm here to tell
+  you the map you were using was a fragment of a much larger one — and the
+  center of the real map is gladder than any god you ever petitioned.* Models
+  the Acts 17 posture: I honor what you've seen; let me show you the One you
+  were actually sensing.
 
 ---
 
-# PART ONE — THE BROKEN CISTERN
-### *Why the thing that promised power left you powerless*
+## The book's spine
 
-### Chapter 1 — The Promise That Couldn't Pay
-- **Hook:** "You didn't fail at manifesting. You succeeded — at a religion that
-  was always going to leave you empty."
-- **Core idea:** The New Age over-promised power and under-delivered rest. The
-  exhaustion isn't a sign you did it wrong; it's the honest receipt of a
-  counterfeit.
-- **Key texts:** Jeremiah 2:13 (broken cisterns vs. the fountain);
-  John 4:13–14 (the well that never satisfies vs. living water);
-  Isaiah 55:1–2 ("Why do you spend… for that which does not satisfy?").
-- **Beats:** the specific exhaustion of self-sourcing → the ache underneath
-  every technique → naming the longing as a *good* signal pointing somewhere
-  real → the thesis: you were made for a Person, not a practice.
+Seven chapters, each starting from a real practitioner question and resolving
+into the character of God:
 
-### Chapter 2 — The Oldest Lie
-- **Hook:** "Every New Age teaching is a remix of the first thing the serpent
-  ever said."
-- **Core idea:** "You are god / the divine is within / you are the universe" is
-  not new and not freeing. It's Genesis 3, and it makes you *smaller* by making
-  you sovereign — now everything depends on you.
-- **Key texts:** Genesis 3:4–5 ("you will be like God");
-  Romans 1:21–25 (worshiping the creation rather than the Creator);
-  Isaiah 14:13–14 ("I will ascend… I will make myself like the Most High").
-- **Beats:** trace the lie from the garden → why self-deification feels like
-  empowerment but functions like a prison → the relief of *not* having to be
-  god → setup: if you are not the source, then there is a Source worth meeting.
-
-### Chapter 3 — The Weight You Were Never Meant to Carry
-- **Hook:** "Vibration-policing is just law-keeping with a crystal."
-- **Core idea:** Being your own source breeds anxiety — frequency anxiety, fear
-  of "going low," constant self-monitoring. It is a yoke. Christ offers the
-  opposite: rest.
-- **Key texts:** Matthew 11:28–30 ("Come to me… my yoke is easy");
-  Colossians 2:8 (philosophy and empty deceit), 2:20–23 (rules "of no value in
-  stopping the indulgence of the flesh"); Galatians 5:1 (freedom, not slavery).
-- **Beats:** expose New Age striving as a heavier law than anything in church →
-  the difference between *generating* energy and *receiving* life → first taste
-  of the alternative: a God who carries the weight. End Part One on the open
-  question — *if there's a fountain, where is the door?*
+| # | The question the reader is actually asking | Where the chapter lands |
+|---|---|---|
+| 1 | Why am I so exhausted managing the spiritual? | Relationship, not management |
+| 2 | What happens when spiritual law is violated? | A Judge who becomes Savior |
+| 3 | How do I gain standing / rank / access? | Sonship, not attainment |
+| 4 | How do I get more power? | You wanted safety; He offers belonging |
+| 5 | What are the beings I keep encountering? | A real, mapped, governed unseen world |
+| 6 | What does the spiritual realm require of me? | A God who needs nothing and gives first |
+| 7 | Why Jesus, out of every path? | A door, not a ladder — and the glad God behind it |
 
 ---
 
-# PART TWO — THE TORN VEIL
-### *The access you already have — and the shame that hides it*
+# Chapter 1 — Why Spiritual People Are Exhausted
+- **The question:** *Why does the spiritual life feel like endless maintenance?*
+- **Hook:** "You are not lazy. You are exhausted because you've been holding up
+  a sky that was never yours to hold."
+- **Core idea:** The practitioner spends enormous energy *managing* reality —
+  protection rituals, cord-cutting, shadow work, cleansing, karmic balancing,
+  planetary timing, offerings, spell correction. What if the deepest spiritual
+  reality is not **management** but **relationship**?
+- **Key texts:** Matthew 11:28–30 ("Come to me… I will give you rest");
+  Luke 10:38–42 (Martha managing many things; Mary's "one thing");
+  Ecclesiastes 2:11 ("a striving after wind").
+- **Beats:** honor the discipline (this is real work, really tiring) → expose
+  self-secured spirituality as a yoke heavier than anything in church → the
+  first whisper of the alternative: a Person who carries it. **Resolve:** rest
+  is more beautiful than control.
 
-### Chapter 4 — The God Who Tore the Curtain
-- **Hook:** "The most expensive piece of fabric in history was destroyed so you
-  could walk in."
-- **Core idea:** Access to God isn't earned by ascension practices; it was
-  *purchased* and the curtain is already torn.
-- **Key texts:** Matthew 27:51 (the veil torn top to bottom at the cross);
-  Hebrews 10:19–22 (confidence to enter by the blood of Jesus);
-  Ephesians 2:18 (access to the Father by one Spirit).
-- **Beats:** the Holy of Holies and why it was closed → who tore it and from
-  which direction (top down: God's move, not ours) → access as a finished
-  fact, not a frequency to reach.
+# Chapter 2 — The Cosmic Courtroom
+- **The question:** *What happens when spiritual laws are violated? Who settles
+  the account?*
+- **Hook:** "Every system you've studied agrees on one thing: there is a ledger.
+  None of them told you the ledger could be paid."
+- **Core idea:** Most occult systems arrive at some version of spiritual law —
+  karma, threefold return, energetic exchange, ancestral debt, soul contracts.
+  The Bible affirms spiritual law too — and then does the thing no system does:
+  introduces a **Judge who becomes the Savior.** The practitioner lives under
+  cosmic accounting; the Christian stands under atonement.
+- **Key texts:** Colossians 2:13–15 (the record of debt cancelled, nailed to the
+  cross; the powers disarmed); Romans 8:1, 33–34 ("Who shall bring a charge?…
+  God justifies"); Zechariah 3:1–5 (the accused priest re-robed);
+  1 John 2:1–2 (an Advocate, and the propitiation).
+- **Beats:** validate the intuition of law (you weren't wrong that it's real) →
+  the unpayable ledger of karmic systems → the cross as the books being closed →
+  the accuser silenced. **Resolve:** grace is more beautiful than balance.
 
-### Chapter 5 — No Condemnation
-- **Hook:** "The voice telling you you're too dirty to come near is real — but
-  it isn't God's."
-- **Core idea:** Shame and guilt are the locked door. They're also a lie with a
-  named author. The verdict has already been handed down, and it's *not guilty*.
-- **Key texts:** Romans 8:1 ("no condemnation for those in Christ");
-  Revelation 12:10 (the accuser); Zechariah 3:1–5 (Joshua the priest in filthy
-  garments, re-clothed in rich robes while the accuser is silenced);
-  1 John 3:19–20 ("God is greater than our heart").
-- **Beats:** distinguish conviction (draws you in) from condemnation (drives you
-  out) → the courtroom of Zechariah 3 as the reader's own story → the silencing
-  of the accuser → permission to stop performing your worthiness.
+# Chapter 3 — Spiritual Standing
+- **The question:** *How do I gain standing — rank, access, advancement — in the
+  spiritual realm?*
+- **Hook:** "You've been trying to be initiated. He's trying to adopt you."
+- **Core idea:** Practitioners seek standing through knowledge, initiation,
+  attainment, lineage, rank, spirit relationships, secret wisdom. Christianity
+  answers with **sonship**: not advancement but adoption; not earning access but
+  receiving it.
+- **Key texts:** Galatians 4:1–7 (no longer a slave but a son and heir);
+  Ephesians 1:5 (adoption); John 1:12 (the right to become children);
+  1 Corinthians 1:26–2:2 (the "secret wisdom" is Christ crucified, freely
+  given, not reserved for an elite).
+- **Beats:** honor the longing for standing (it's a true instinct — you *are*
+  meant for high place) → the treadmill of initiation and rank → access as a
+  gift signed in blood, the same access for the newest believer as the oldest.
+  **Resolve:** being a son is more beautiful than being an adept.
 
-### Chapter 6 — Clothed in the Righteousness of God
-- **Hook:** "You don't raise your vibration to become acceptable. You're given
-  a robe you could never weave."
-- **Core idea:** Righteousness is not a level you climb to; it's a garment you
-  receive. To be "close by the righteousness of God" is to wear Christ.
-- **Key texts:** 2 Corinthians 5:21 ("that we might become the righteousness of
-  God"); Isaiah 61:10 (garments of salvation, robe of righteousness);
-  Philippians 3:9 (a righteousness "not my own").
-- **Beats:** the great exchange → why this ends striving at the root (you can't
-  improve on a perfect gift) → the difference between approaching to *become*
-  accepted and approaching *because* you already are.
+# Chapter 4 — The Hidden Hunger Beneath Power
+- **The question:** *How do I get more power?*
+- **Hook:** "You never actually wanted power. You wanted to stop being afraid."
+- **Core idea:** Underneath the pursuit of power is the pursuit of **safety.**
+  Power feels like safety; knowledge feels like safety; control feels like
+  safety. Jesus offers something power can't: **belonging** — and belonging is a
+  deeper safety than control could ever buy.
+- **Key texts:** Psalm 91 (the refuge); Romans 8:38–39 (nothing can separate
+  you); John 10:28–29 (no one snatches them from his hand);
+  1 John 4:18 ("perfect love casts out fear").
+- **Beats:** trace the power-hunger down to the fear-floor → why control can
+  never produce rest (you can always lose your grip) → security that doesn't
+  depend on your vigilance because it depends on His grip. **Resolve:**
+  belonging is more beautiful than power.
 
-### Chapter 7 — Come Boldly
-- **Hook:** "The universe never knew your name. The Father has been waiting for
-  you to use His."
-- **Core idea:** Access plus righteousness produces *boldness*. Not groveling,
-  not begging the cosmos — sons walking up to a throne of grace.
-- **Key texts:** Hebrews 4:16 ("with confidence draw near to the throne of
-  grace"); Ephesians 3:12 (access with boldness and confidence);
-  Romans 8:15 / Galatians 4:6 ("Abba, Father").
-- **Beats:** the throne is a throne *of grace* → the spirit of sonship vs. the
-  spirit of slavery → what it actually feels like to pray as a child, not a
-  petitioner to an impersonal force. End Part Two: the door is open — now meet
-  who's inside.
+# Chapter 5 — The Spirits Behind the Curtain
+- **The question:** *What are the beings I keep encountering — and why does every
+  culture report them?*
+- **Hook:** "You weren't imagining them. That's exactly why this chapter matters."
+- **Core idea:** A sober, non-sensational map of the unseen world: angels,
+  demons, the divine council, false gods, spiritual intermediaries. Here the
+  **guardrail** does its work — the phenomena are real, the beings may be real,
+  and *not all of them are for you.*
+- **Key texts:** Deuteronomy 32:8 + Psalm 82:1 (the divine council; the nations
+  allotted to lesser powers); Ephesians 6:12 (rulers, authorities, cosmic
+  powers); **Acts 16:16–18** (a *real* divination spirit speaking *true* words,
+  and Paul still sets the girl free); Acts 19:13–20 (the sons of Sceva; the
+  Ephesians burn their scrolls); Colossians 2:15 (the powers disarmed).
+- **Beats:** affirm the encounters across cultures → the divine-council
+  worldview that makes sense of a populated heavens → the Acts 16 hinge: real,
+  true, and still not safe → and the one with authority over all of it.
+  **Resolve:** being *protected* by the Most High is more beautiful than
+  negotiating with powers.
 
----
+# Chapter 6 — The God Who Needs Nothing
+- **The question:** *What does the spiritual realm require of me — what offering,
+  vow, exchange, reciprocity?*
+- **Hook:** "Every deity you've served wanted something from you. This One came
+  to wash feet."
+- **Core idea:** Occult systems run on **exchange** — offerings, petitions,
+  contracts, vows, energetic reciprocity. Scripture introduces a God who
+  possesses everything, needs nothing, and therefore is free to **give first,
+  serve first, love first.** The whole economy inverts.
+- **Key texts:** Acts 17:24–25 (God "is not served by human hands, as though he
+  needed anything, since he himself gives to all… life and breath");
+  Psalm 50:9–12 ("if I were hungry, I would not tell you, for the world and its
+  fullness are mine"); John 13:3–5 (the One with all things in his hands kneels
+  to wash feet); Romans 5:8 ("while we were still sinners, Christ died").
+- **Beats:** name the exhaustion of reciprocity-based spirituality → a God with
+  no needs can have no agenda against you → grace as the only economy where you
+  don't have to pay in. **Resolve:** being *given to* is more beautiful than
+  bargaining.
 
-# PART THREE — THE GLAD GOD
-### *The happiness at the center of reality, and it is aimed at you*
-
-### Chapter 8 — The Blessed (Happy) God
-- **Hook:** "At the center of all reality is not a force. It's a joy."
-- **Core idea:** God is not the stern disappointed deity the reader feared, nor
-  the impersonal "source." He is the *blessed* — literally *happy* — God, glad
-  in Himself before the world began.
-- **Key texts:** 1 Timothy 1:11 ("the gospel of the glory of the blessed
-  [happy] God"), 6:15; John 17:13, 17:24 (the Son shares a joy and a love the
-  Father had "before the foundation of the world").
-- **Beats:** God's joy is original, self-existent, infinite — He didn't need you
-  to be happy, which is exactly why His joy is unshakable → and He chose to
-  *invite you into it* → the universe has no joy to share; the Trinity is
-  overflowing with it.
-
-### Chapter 9 — He Rejoices Over You
-- **Hook:** "You spent years trying to be a high enough vibration to attract
-  what you wanted. He's been singing over you the whole time."
-- **Core idea:** God's posture toward His own is not reluctant tolerance. It's
-  gladness, celebration, *running*.
-- **Key texts:** Zephaniah 3:17 ("he will rejoice over you with gladness… he
-  will exult over you with loud singing"); Isaiah 62:5 (as a bridegroom
-  rejoices over the bride); Luke 15:20 (the father runs), 15:7,10 (joy in
-  heaven over one who comes home).
-- **Beats:** walk the prodigal home — the far country (the New Age) behind him,
-  the father sprinting toward him *while he still smells like the pigs* →
-  heaven's measurable joy over one returning → the reader *is* the one being
-  run toward.
-
-### Chapter 10 — The Oil of Gladness
-- **Hook:** "Joy isn't the reward at the end of the road. It's the climate of
-  the room you've just walked into."
-- **Core idea:** Gladness is the *atmosphere of the throne*. Christ Himself was
-  anointed with it; in God's presence there is fullness of joy — now, not only
-  later.
-- **Key texts:** Psalm 45:7 / Hebrews 1:9 ("anointed… with the oil of
-  gladness"); Psalm 16:11 ("fullness of joy… pleasures forevermore");
-  Nehemiah 8:10 ("the joy of the LORD is your strength").
-- **Beats:** the throne room smells like joy → gladness as *strength* (the
-  reverse of New Age fragility) → this is the power the reader was looking for —
-  it just comes as joy, not effort. End Part Three on the pivot: this glad God
-  has a face, and His name is Jesus.
-
----
-
-# PART FOUR — THE BEAUTY OF CHRIST
-### *The superior pleasure that ends the striving for good*
-
-### Chapter 11 — The Brilliance of Christ
-- **Hook:** "You don't need more discipline to leave the New Age. You need a
-  better Beauty."
-- **Core idea:** Reveal Christ as He actually is — the radiance of God, the one
-  in whom all fullness dwells — so glorious that everything else recalibrates.
-- **Key texts:** Colossians 1:15–20 (image of the invisible God, all things
-  hold together in Him); Hebrews 1:3 (the radiance of the glory of God);
-  Revelation 1:12–18 (the unveiled, blazing Christ); Philippians 3:8 (the
-  surpassing worth of knowing Him).
-- **Beats:** paint Him in full color → "all things hold together in Him" — the
-  real unity the New Age gestured at → beauty that re-orders desire on contact.
-
-### Chapter 12 — The Expulsive Power of a New Affection
-- **Hook:** "You will never *willpower* your way out of an old love. You can
-  only fall for a better one."
-- **Core idea:** The mechanism of real freedom: a superior pleasure expels the
-  inferior. You don't empty the heart of the New Age; you give it something
-  better to hold (Chalmers' principle, straight from Scripture).
-- **Key texts:** Psalm 34:8 ("Taste and see that the LORD is good");
-  Psalm 27:4 ("one thing… to gaze upon the beauty of the LORD");
-  Matthew 13:44 (the treasure for which he joyfully sells all).
-- **Beats:** why renunciation alone fails → "taste and see" as the actual method
-  → the man who sells everything *with joy* because he found something worth
-  more → reframe leaving the New Age not as loss but as trading up.
-
-### Chapter 13 — Falling in Love
-- **Hook:** "You tried to date the universe. He's offering a marriage."
-- **Core idea:** What the New Age counterfeited with "connection to source" is
-  real — but it's *love between persons*: a Bridegroom and a bride, abiding
-  union, not energy exchange.
-- **Key texts:** John 15:4–5 (abide in me); Song of Songs 2:4 ("his banner over
-  me was love"); Revelation 19:7 (the marriage of the Lamb);
-  1 John 4:18–19 ("perfect love casts out fear… we love because he first loved
-  us").
-- **Beats:** intimacy with a Person vs. alignment with a force → love that casts
-  out the fear the New Age ran on → falling for Christ as the superior pleasure.
-  End Part Four: a heart this captured needs a new name for itself.
-
----
-
-# PART FIVE — THE SUPERIOR IDENTITY
-### *Living from gladness — and the road ahead*
-
-### Chapter 14 — Who You Are Now
-- **Hook:** "You can stop manifesting an identity. Yours was given to you,
-  signed in blood, and seated on a throne."
-- **Core idea:** Identity is *received*, not constructed or manifested. And from
-  that union flows the real power the New Age only mimicked.
-- **Key texts:** Ephesians 2:4–6 (made alive, raised, **seated with Him**);
-  Galatians 4:7 (no longer a slave but a son and heir);
-  Colossians 3:3 (your life hidden with Christ in God);
-  John 15:5 ("apart from me you can do nothing");
-  Ephesians 1:19–20 (the same power that raised Christ, at work in you).
-- **Beats:** identity as gift vs. achievement → "seated" already (rest, not
-  climb) → power that flows *from* union, not effort → the superior identity:
-  beloved, righteous, glad, seated.
-
-### Chapter 15 — The Far Country Behind You
-- **Hook:** "The pigpen is behind you. The robe is on. The music has already
-  started."
-- **Core idea:** Invitation and turning point. Come all the way home. Then a
-  door swung open to the rest of the series.
-- **Key texts:** Luke 15:22–24 (the robe, the ring, the feast — "this my son
-  was dead, and is alive again"); 2 Corinthians 5:17 (new creation);
-  Revelation 22:17 ("let the one who is thirsty come… take the water of life
-  without price").
-- **Beats:** a clear, warm response — repent (turn from the far country) and
-  receive → what changes when gladness, not striving, becomes the engine →
-  **tease Book 2, *The Authority You Forfeited*:** now that you know the Father
-  is glad and the throne is open, it's time to discover the authority you traded
-  away — and take it back.
+# Chapter 7 — Why Jesus Is Different
+- **The question:** *Out of every spiritual path — why this one?*
+- **Hook:** "Every path you've walked was a ladder. Jesus is the only one who
+  came down it carrying a door."
+- **Core idea:** The emotional center of the book. Every system is a ladder you
+  climb — ascension, attainment, higher self, levels. Jesus is a **door** that
+  opens *to* you (John 10:9). And behind the door is the surprise the whole
+  book has been building toward: the God who answers every question is **glad** —
+  happier, warmer, and more self-giving than any deity the reader ever
+  petitioned. This is where *The Gladness of God* earns its title.
+- **Key texts:** John 10:9 ("I am the door"); John 14:6 (the way);
+  Colossians 2:9–10, 17 (the fullness; shadow vs. substance);
+  Philippians 3:8 (the surpassing worth of knowing him); **and the gladness
+  payoff** — 1 Timothy 1:11 (the gospel of the glory of the *happy* God);
+  Zephaniah 3:17 (he rejoices over you with singing); Psalm 16:11 (fullness of
+  joy, pleasures forevermore); John 17:13 (his own joy, given to you).
+- **Beats:** ladder vs. door (the entire difference of Christianity in one
+  image) → the descent — the God who came down → opening the door to find a face,
+  and the face is glad → the thesis lands: the greatest discovery was never
+  power, rank, or hidden knowledge. It is that **God is better than you dared
+  imagine.** **Resolve:** *He* is more beautiful than everything you were
+  reaching for — and the rest of the map is waiting.
 
 ---
 
 ## Back matter
 
-- **"How to Read This Book"** — invitation to read with Scripture open; this is
-  a book meant to provoke desire, not just deliver information.
-- **A reader's prayer / first conversation with the Father** — a simple,
-  un-churchy way to actually come home.
-- **The Far Country series map** — the five-book arc and what each reclaims.
-- **Scripture index** — every passage used, by chapter, so the reader can verify
-  that none of this was invented — it's all in the corpus.
+- **"How to Read This Book"** — read it with Scripture open and your guard down;
+  this is meant to provoke desire, not win a debate.
+- **A first, honest conversation with God** — not a formula; a way to come home
+  (Luke 15:20–24).
+- **The Far Country series map** — the six-book arc and what each book reclaims.
+- **Scripture index** — every passage by chapter, so the reader can verify that
+  none of this was invented — it's all in the corpus.
 
 ---
 
-## Marketing appendix (for the launch)
+## Marketing appendix
 
-**Core hook lines / ad angles**
-- "It's not humble to stay powerless. It's foolish — the throne is open."
-- "You didn't fail at manifesting. You succeeded at a counterfeit."
-- "Vibration-policing is just law-keeping with a crystal."
-- "You tried to date the universe. He's offering a marriage."
-- "At the center of all reality is not a force. It's a joy."
+**Hook lines / ad angles**
+- "You weren't imagining it. You were reading a fragment of a much larger map."
+- "Every path is a ladder. Jesus is the only one who came down carrying a door."
+- "You never wanted power. You wanted to stop being afraid."
+- "Every deity you served wanted something from you. This One came to wash feet."
+- "The ledger is real. Nobody told you it could be paid."
 
-**The promise (back-cover):** *You left the New Age because the power ran out.
-This book introduces you to a God who never has to recharge — a God who is
-glad, a throne that is open, and a Christ so beautiful the old cravings simply
-starve. Not by willpower. By a superior pleasure.*
+**Back-cover promise:** *You found real spiritual things — protection that
+worked, manifestations that landed, beings that were actually there. You also
+found exhaustion, because you were holding up a sky that was never yours to
+hold. This book doesn't tell you nothing happened. It hands you the larger map:
+the cosmic court answered by a cross, standing given instead of earned, the
+unseen world charted and governed, and at the center of all of it a God who
+needs nothing from you and is gladder than any power you ever pursued. The
+spiritual search doesn't end in a technique. It ends in a Person — and He has
+been running toward you the whole time.*
 
-**Why it converts the niche:** it never asks the reader to become *less*
-ambitious or *less* hungry for power and beauty. It tells them they were aiming
-too low — and then out-delivers the New Age on its own promises, from the one
-Source that doesn't run dry.
+**Why it converts the niche:** it never asks the reader to become less
+spiritually serious or less hungry. It tells them their instruments were
+reading something real, hands them a bigger instrument, and lets them discover
+that the destination was never power. It was the gladness of God.

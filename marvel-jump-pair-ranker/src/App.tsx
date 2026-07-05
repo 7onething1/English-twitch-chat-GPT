@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import packetsData from './data/packets.json'
 import sourcesData from './data/sources.json'
+import synergyTags from './data/synergyTags.json'
 import type { Packet, Color, RankedPair, CardRating, PairResult } from './lib/types'
-import { packetScore, pairScore, seedFor } from './lib/scoring'
+import { packetScore, pairScore, seedFor, seedIndex, SEED_PAIRS } from './lib/scoring'
 import {
   loadCardRatings, saveCardRatings, loadPairResults, savePairResults,
   loadOwned, saveOwned, parseCardRatings, parsePairResults,
@@ -139,6 +140,28 @@ function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned
   )
 }
 
+/* ------------------------------ CATEGORY WINNERS -------------------------- */
+function CategoryWinners({ ratings, resultFor, onOpen }: { ratings: CardRating[]; resultFor: any; onOpen: (p: RankedPair) => void }) {
+  const winners = useMemo(() => SEED_PAIRS.map(s => {
+    const a = PACKETS.find(p => p.id === s.a)!, b = PACKETS.find(p => p.id === s.b)!
+    return { a, b, isMirror: false, breakdown: pairScore(a, b, ratings, resultFor(s.a, s.b)) } as RankedPair
+  }), [ratings, resultFor])
+  return (
+    <div className="section" style={{ margin: '18px 0' }}>
+      <h2 style={{ fontSize: 15, marginBottom: 8 }}>Category winners <span className="hint">(researched seed picks · Estimated)</span></h2>
+      <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(230px,1fr))' }}>
+        {winners.map(w => (
+          <div className="card" key={w.a.id + w.b.id} style={{ cursor: 'pointer' }} onClick={() => onOpen(w)}>
+            <div className="chip" style={{ borderColor: '#3a4b8a', color: '#a9bcff', margin: 0 }}>{w.breakdown.tag}</div>
+            <div className="namecell" style={{ margin: '6px 0 4px' }}><Pips p={w.a} /> {w.a.name} + <Pips p={w.b} /> {w.b.name}</div>
+            <div className="statrow"><div>Syn <b style={{ color: heat(w.breakdown.synergyScore) }}>{w.breakdown.synergyScore}</b></div><div>Pow <b style={{ color: heat(w.breakdown.powerScore) }}>{w.breakdown.powerScore}</b></div><div>Total <b style={{ color: heat(w.breakdown.final) }}>{w.breakdown.final}</b></div></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 /* ------------------------------ PAIR RANKINGS ----------------------------- */
 function buildPairs(ratings: CardRating[], resultFor: (a: string, b: string) => PairResult | undefined, includeMirror: boolean): RankedPair[] {
   const out: RankedPair[] = []
@@ -156,13 +179,17 @@ function Pairs({ scores, ratings, resultFor, onOpen }: { scores: Map<string, any
   const [color, setColor] = useState('')
   const [limit, setLimit] = useState(50)
   const [mirror, setMirror] = useState(false)
-  const [rankBy, setRankBy] = useState<'synergy' | 'overall' | 'mana'>('synergy')
+  const [rankBy, setRankBy] = useState<'synergy' | 'overall' | 'power'>('synergy')
   const pairs = useMemo(() => buildPairs(ratings, resultFor, mirror), [ratings, resultFor, mirror])
   let rows = pairs.filter(p => (!q || p.a.name.toLowerCase().includes(q.toLowerCase()) || p.b.name.toLowerCase().includes(q.toLowerCase())) && (!color || p.a.colors.includes(color as Color) || p.b.colors.includes(color as Color)))
-  // Box mode default: rank by pure shared-plan synergy (tie-break by overall score).
+  // Box mode default: researched seed pairs pinned on top in order, then by shared-plan synergy.
   rows = rows.slice().sort((x, y) => {
-    if (rankBy === 'synergy') return (y.breakdown.synergyBonus - x.breakdown.synergyBonus) || (y.breakdown.final - x.breakdown.final)
-    if (rankBy === 'mana') return (y.breakdown.fixingBonus - x.breakdown.fixingBonus) || (y.breakdown.final - x.breakdown.final)
+    if (rankBy === 'synergy') {
+      const si = seedIndex(x.a.id, x.b.id) - seedIndex(y.a.id, y.b.id)
+      if (si !== 0) return si
+      return (y.breakdown.synergyScore - x.breakdown.synergyScore) || (y.breakdown.final - x.breakdown.final)
+    }
+    if (rankBy === 'power') return (y.breakdown.powerScore - x.breakdown.powerScore) || (y.breakdown.final - x.breakdown.final)
     return y.breakdown.final - x.breakdown.final
   })
   const total = rows.length
@@ -171,13 +198,14 @@ function Pairs({ scores, ratings, resultFor, onOpen }: { scores: Map<string, any
     <>
       <div className="hero"><h1>Box Mode · <span className="g">Best Two-Pack Decks</span></h1>
         <p>You own the whole box, so any two of the {META.themeCount} packets are fair game. This ranks all {mirror ? '1,326' : '1,275'} two-pack combos by <b>shared plan / synergy</b> first — the strongest decks are the ones where both halves push the same engine. Click a row for the full math.</p></div>
+      <CategoryWinners ratings={ratings} resultFor={resultFor} onOpen={onOpen} />
       <EstimatedBanner />
       <div className="toolbar">
         <input type="search" placeholder="Filter by packet name…" value={q} onChange={e => setQ(e.target.value)} />
         <select value={rankBy} onChange={e => setRankBy(e.target.value as any)} title="Rank by">
           <option value="synergy">Rank by: Synergy (shared plan)</option>
-          <option value="overall">Rank by: Overall score</option>
-          <option value="mana">Rank by: Mana simplicity</option>
+          <option value="overall">Rank by: Total score</option>
+          <option value="power">Rank by: Card power</option>
         </select>
         <select value={color} onChange={e => setColor(e.target.value)}><option value="">Any colour</option>{COLORS.map(c => <option key={c} value={c}>{COLOR_NAME[c]}</option>)}</select>
         <select value={limit} onChange={e => setLimit(+e.target.value)}>{[25, 50, 100, 250, 99999].map(n => <option key={n} value={n}>{n >= 99999 ? `All ${total}` : `Top ${n}`}</option>)}</select>
@@ -185,18 +213,19 @@ function Pairs({ scores, ratings, resultFor, onOpen }: { scores: Map<string, any
       </div>
       <div className="panel tablewrap">
         <table>
-          <thead><tr><th>#</th><th>Pair</th><th>Score</th><th>Colours</th><th>Mana</th><th>Synergy</th><th>Conf</th></tr></thead>
+          <thead><tr><th>#</th><th>Pair</th><th>Tag</th><th>Synergy</th><th>Power</th><th>Total</th><th>Mana</th><th>Conf</th></tr></thead>
           <tbody>
             {rows.map((p, i) => {
               const b = p.breakdown
               return (
                 <tr key={p.a.id + p.b.id} onClick={() => onOpen(p)}>
                   <td className="rank">{medal(i + 1) && <span className="medal">{medal(i + 1)}</span>}{i + 1}</td>
-                  <td className="namecell"><Pips p={p.a} /> {p.a.name} <span style={{ color: 'var(--muted)' }}>+</span> <Pips p={p.b} /> {p.b.name}{seedFor(p.a.id, p.b.id) && <span className="tag-est" title="Editor seed pick">★ seed</span>}</td>
-                  <td><span className="score" style={{ color: heat(b.final) }}>{b.final}</span> <span className="tag-est">est</span><Bar v={b.final} /></td>
-                  <td>{b.metrics.combinedColors}</td>
-                  <td><span className={`chip`} style={{ color: b.metrics.manaRisk === 'Low' ? 'var(--good)' : b.metrics.manaRisk === 'High' ? 'var(--bad)' : 'var(--accent2)' }}>{b.metrics.manaRisk}</span></td>
-                  <td><Bar v={Math.min(100, b.synergyBonus * 4)} color="var(--good)" /></td>
+                  <td className="namecell"><Pips p={p.a} /> {p.a.name} <span style={{ color: 'var(--muted)' }}>+</span> <Pips p={p.b} /> {p.b.name}{seedFor(p.a.id, p.b.id) && <span className="tag-est" title="Researched seed pick">★ seed</span>}</td>
+                  <td><span className="chip" style={{ borderColor: '#3a4b8a', color: '#a9bcff' }}>{b.tag}</span></td>
+                  <td><span className="score" style={{ color: heat(b.synergyScore) }}>{b.synergyScore}</span><Bar v={b.synergyScore} color="var(--good)" /></td>
+                  <td><span className="score" style={{ color: heat(b.powerScore) }}>{b.powerScore}</span><Bar v={b.powerScore} color="var(--accent2)" /></td>
+                  <td><span className="score" style={{ color: heat(b.final) }}>{b.final}</span> <span className="tag-est">est</span></td>
+                  <td><span className="chip" style={{ color: b.metrics.manaRisk === 'Low' ? 'var(--good)' : b.metrics.manaRisk === 'High' ? 'var(--bad)' : 'var(--accent2)' }}>{b.metrics.combinedColors} · {b.metrics.manaRisk}</span></td>
                   <td><Conf c={b.confidence} /></td>
                 </tr>
               )
@@ -253,7 +282,8 @@ function Picker({ ratings, resultFor, onOpen }: { ratings: CardRating[]; resultF
             <div className="card"><div className="hint">Best second pick (with {result.anchor.name})</div><div className="namecell" style={{ margin: '4px 0' }}>{result.secondPacket ? <><Pips p={result.secondPacket} /> {result.secondPacket.name}</> : '—'}</div><div className="hint">Pairs best with your anchor among what's offered.</div></div>
           </div>
           <div className="panel" style={{ padding: 16 }}>
-            <b>Why this pair</b>
+            <b>Why this pair works</b>
+            <p style={{ margin: '8px 0', lineHeight: 1.6 }}>{result.bestPair.breakdown.whyThisPairWorks}</p>
             <div style={{ marginTop: 8 }}>{result.bestPair.breakdown.reasons.map((r, i) => <span key={i} className={`reason ${r.type}`}>{r.text}</span>)}</div>
           </div>
         </>
@@ -328,14 +358,34 @@ function Methodology() {
         <h3>Packet score (0–100)</h3>
         <p><code>power + consistency + interaction + value</code>, each 0–25. Power = rarity + finisher/evasion/go-wide signals (+ optional card ratings). Consistency = colour simplicity + plan clarity − combo risk. Interaction = removal-type tags. Value = rarity + rares + <code>value</code> tag + ownership.</p>
 
-        <h3>Pair score (0–100)</h3>
-        <p><code>avg(packet scores) + synergy + fixing + curveBalance + interaction − conflicts</code>. Synergy rewards shared capabilities (blink, equipment, artifacts, graveyard, spells, sacrifice, counters, lifegain, power-four, go-wide, flyers, ramp, draw) and matching plans. Fixing rewards mono/two-colour mana and penalises 3+ colours (Fantastic is five-colour, fixing-risk). Conflicts penalise creatures-vs-spells clashes, sacrifice without fodder, Equipment without holders, power-four without big creatures, and weak removal.</p>
+        <h3>Pair score — six components (total 0–100)</h3>
+        <p>Shared plan first, raw power as a tiebreaker:</p>
+        <ul>
+          <li><b>Shared mechanic (0–30)</b> — both halves want the same action (blink+enters, Equipment+Equipment, artifacts+Vehicles, spells+flashback, tokens+attack-wide, recursion+self-mill, draw+draw payoffs, Robots+artifacts), plus shared creature type and shared behaviour.</li>
+          <li><b>Payoff density (0–20)</b> — one half supplies support for the other's best cards (Armed→Equipped, Vehicles→Iron Man, Kang→Scarlet, Tenacious→Returned, Geniuses→Atlantis).</li>
+          <li><b>Consistency (0–15)</b> — simple colours, early plays, enough creatures, mana stability, fewer narrow one-draw cards.</li>
+          <li><b>Interaction (0–15)</b> — removal, bounce, tap, counters, tricks, ways to answer bombs.</li>
+          <li><b>Curve (0–10)</b> — can act early and still have late-game plays.</li>
+          <li><b>Raw card power (0–10)</b> — strong rares/mythics. Capped so it can't overpower weak synergy.</li>
+        </ul>
+        <h3>Two ratings per pair</h3>
+        <p><b>Synergy score</b> = shared mechanic + payoff density (do the halves help each other). <b>Card power</b> = the two packets' individual strength. This is why <b>Marvelous + Blink</b> wins the synergy crown while high-power packets (DOOM, Scarlet, Kang, Iron Man) still show a strong-cards / weak-synergy note. The default Box Mode ranking pins the ten researched seed pairs on top, then ranks the rest by synergy.</p>
 
         <h3>Blending your results (Bayesian)</h3>
         <p>Smoothed win rate = <code>(wins + 3) / (games + 6)</code> (a 50% prior over 6 virtual games) so one 2-0 run can't top a large sample. It maps 35%→0 and 75%→100, then blends with the heuristic at weight <code>games / (games + 8)</code>. Confidence rises with sample size.</p>
 
         <h3>Community buzz</h3>
         <p>The 🔥 buzz flag is <b>editorial hype</b> (e.g. Doctor Doom Unrivaled, Unbeatable Squirrel Girl) with citations — it is display-only and does <b>not</b> change scores. It is not aggregated sentiment or win rates (Reddit is blocked to crawlers and X posts aren't machine-readable here).</p>
+
+        <h3>Synergy dictionary — each packet as a machine</h3>
+        <p>Pairs score high when one half <b>produces what the other half spends</b>. These are the eight machines the engine looks for:</p>
+        {(synergyTags as any).tags.map((t: any) => (
+          <div className="src" key={t.id}>
+            <div className="r"><b>{t.label}</b> <span className="chip">{t.id}</span></div>
+            <div className="hint"><b>Inputs:</b> {t.inputCards.join(', ')} · <b>Payoffs:</b> {t.payoffCards.join(', ')}</div>
+            <div className="hint" style={{ marginTop: 3 }}><b>Risk:</b> {t.failureRisk} · <b>Scoring:</b> {t.scoringNotes}</div>
+          </div>
+        ))}
       </div>
     </>
   )
@@ -352,22 +402,27 @@ function Drawer({ pair, onClose }: { pair: RankedPair | null; onClose: () => voi
         {pair && b && (
           <>
             <span className="close" onClick={onClose}>✕</span>
-            <div className="hint">Pair · <Conf c={b.confidence} /> <span className="tag-est">estimated</span></div>
+            <div className="hint"><span className="chip" style={{ borderColor: '#3a4b8a', color: '#a9bcff' }}>{b.tag}</span> <Conf c={b.confidence} /> <span className="tag-est">estimated</span></div>
             <h2><Pips p={pair.a} /> {pair.a.name} + <Pips p={pair.b} /> {pair.b.name}</h2>
-            <div className="big" style={{ color: heat(b.final) }}>{b.final}<span style={{ fontSize: 13, color: 'var(--muted)' }}> / 100</span></div>
-            {seed && <div className="banner" style={{ marginTop: 10 }}>★ <div><b>Editor seed pick.</b> {seed.note} {seed.warn && <span style={{ color: 'var(--bad)' }}>{seed.warn}</span>}</div></div>}
+            <div style={{ display: 'flex', gap: 18, margin: '8px 0' }}>
+              <div><div className="hint">Synergy</div><div className="big" style={{ color: heat(b.synergyScore) }}>{b.synergyScore}</div></div>
+              <div><div className="hint">Card power</div><div className="big" style={{ color: heat(b.powerScore) }}>{b.powerScore}</div></div>
+              <div><div className="hint">Total</div><div className="big" style={{ color: heat(b.final) }}>{b.final}</div></div>
+            </div>
+            <p style={{ background: 'var(--panel2)', border: '1px solid var(--line)', borderRadius: 10, padding: '11px 13px', fontSize: 13.5, lineHeight: 1.6, margin: '10px 0' }}>{b.whyThisPairWorks}</p>
+            {seed && <div className="banner" style={{ marginTop: 6 }}>★ <div><b>Researched seed pick.</b> {seed.note}</div></div>}
+            <div className="hint" style={{ marginTop: 8 }}>Total = the six components below (each shown out of its budget):</div>
             <ul className="breakdown">
-              <li><span>Base (avg packet score)</span><b>{b.base}</b></li>
-              <li><span>Synergy bonus</span><b style={{ color: 'var(--good)' }}>+{b.synergyBonus}</b></li>
-              <li><span>Fixing bonus</span><b style={{ color: b.fixingBonus >= 0 ? 'var(--good)' : 'var(--bad)' }}>{b.fixingBonus >= 0 ? '+' : ''}{b.fixingBonus}</b></li>
-              <li><span>Curve balance</span><b style={{ color: 'var(--good)' }}>+{b.curveBalanceBonus}</b></li>
-              <li><span>Interaction bonus</span><b style={{ color: 'var(--good)' }}>+{b.interactionBonus}</b></li>
-              <li><span>Conflict penalty</span><b style={{ color: 'var(--bad)' }}>−{b.conflictPenalty}</b></li>
-              <li><span>Heuristic subtotal</span><b>{b.heuristic}</b></li>
+              <li><span>Shared mechanic</span><b style={{ color: 'var(--good)' }}>{b.sharedMechanic} / 30</b></li>
+              <li><span>Payoff density (support)</span><b style={{ color: 'var(--good)' }}>{b.payoffDensity} / 20</b></li>
+              <li><span>Consistency</span><b>{b.consistency} / 15</b></li>
+              <li><span>Interaction</span><b>{b.interaction} / 15</b></li>
+              <li><span>Curve</span><b>{b.curve} / 10</b></li>
+              <li><span>Raw card power</span><b>{b.rawPower} / 10</b></li>
               {b.evidenceScore != null && <li><span>Your data ({Math.round(b.evidenceWeight * 100)}% weight)</span><b>{b.evidenceScore}</b></li>}
-              <li><span><b>Final</b></span><b style={{ color: heat(b.final) }}>{b.final}</b></li>
+              <li><span><b>Total</b></span><b style={{ color: heat(b.final) }}>{b.final} / 100</b></li>
             </ul>
-            <div className="hint">Colours {b.metrics.combinedColors} · mana {b.metrics.manaRisk} · synergy overlaps {b.metrics.planOverlap} · speed {b.metrics.speed}/2 · late-game {b.metrics.lateGame}/2</div>
+            <div className="hint">Colours {b.metrics.combinedColors} · mana {b.metrics.manaRisk}</div>
             <div style={{ marginTop: 12 }}>{b.reasons.map((r, i) => <span key={i} className={`reason ${r.type}`}>{r.text}</span>)}</div>
             {[pair.a, pair.b].map(p => (
               <p key={p.id} style={{ marginTop: 10, color: 'var(--muted)', fontSize: 13 }}><Pips p={p} /> <b style={{ color: 'var(--ink)' }}>{p.name}</b> — {p.theme}{p.buzz && <span className="chip" style={{ borderColor: '#c8702a', color: '#ffb164', marginLeft: 6 }} title={p.buzz.source}>🔥 {p.buzz.note}</span>}</p>

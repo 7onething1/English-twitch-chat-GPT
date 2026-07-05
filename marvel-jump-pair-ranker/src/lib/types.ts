@@ -60,28 +60,25 @@ export interface PacketScore {
 }
 
 export interface PairBreakdown {
-  base: number
-  synergyBonus: number
-  fixingBonus: number
-  curveBalanceBonus: number
-  interactionBonus: number
-  conflictPenalty: number
-  heuristic: number
+  // six components with fixed point budgets (sum = totalPairScore, 0-100)
+  sharedMechanic: number // 0-30
+  payoffDensity: number  // 0-20
+  consistency: number    // 0-15
+  interaction: number    // 0-15
+  curve: number          // 0-10
+  rawPower: number       // 0-10
+  total: number          // 0-100 (sum of the six)
+  // two headline ratings shown to the player
+  synergyScore: number   // 0-100 — do these two halves help each other
+  powerScore: number     // 0-100 — are the individual cards strong
   evidenceScore: number | null
   evidenceWeight: number
-  final: number
+  final: number          // total blended with imported results
   confidence: Confidence
+  tag: string            // display tag, e.g. "Best Shared Engine"
+  whyThisPairWorks: string // one plain paragraph, fixed sentence structure
   reasons: { type: 'good' | 'bad' | 'info'; text: string }[]
-  metrics: {
-    combinedColors: string
-    manaRisk: 'Low' | 'Medium' | 'High'
-    planOverlap: number
-    removalDensity: number
-    cardAdvantage: number
-    speed: number
-    lateGame: number
-    rareValue: number
-  }
+  metrics: { combinedColors: string; manaRisk: 'Low' | 'Medium' | 'High' }
 }
 
 export interface RankedPair {

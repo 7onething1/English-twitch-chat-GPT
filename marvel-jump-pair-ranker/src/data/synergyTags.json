@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "purpose": "Each packet is a little machine with inputs (things it produces) and payoffs (things it spends). Pairs score high when one half creates what the other half consumes. This dictionary defines those machines and how to score them.",
+    "sources": [
+      "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes",
+      "https://magic.wizards.com/en/news/announcements/marvel-super-heroes-jumpstart-booster-themes",
+      "https://draftsim.com/mtg-marvel-super-heroes-jumpstart/",
+      "https://blog.cardkingdom.com/20-coolest-cards-in-marvel-super-heroes-jumpstart/"
+    ]
+  },
+  "tags": [
+    {
+      "id": "blink_enter_value",
+      "label": "Blink and enters value",
+      "inputCards": ["flicker effects", "blink spells", "temporary exile effects", "creatures with enters triggers"],
+      "payoffCards": ["creatures and permanents that create value when they enter or leave"],
+      "supportCards": ["cheap creatures with strong enters abilities", "repeatable blink outlets"],
+      "failureRisk": "drawing blink support without enough good enters targets",
+      "pairsWellWith": ["Marvelous", "Blink", "Squadron", "Tricksters"],
+      "conflictsWith": ["low-creature packets", "pure combat packets", "packets with few enters triggers"],
+      "scoringNotes": "Score very high when both packets contain creatures with enters abilities and at least one contains repeatable blink/flicker support."
+    },
+    {
+      "id": "equipment_combat",
+      "label": "Equipment combat",
+      "inputCards": ["Equipment", "weapons", "cards that create Equipment", "cards that attach Equipment"],
+      "payoffCards": ["creatures that reward being equipped", "cards that draw from Equipment", "cards that improve equipped creatures"],
+      "supportCards": ["cheap resilient creatures to carry gear"],
+      "failureRisk": "removal on the equipped creature costing heavy tempo",
+      "pairsWellWith": ["Equipped", "Armed", "Precise", "Heroes for Hire"],
+      "conflictsWith": ["low-creature packets", "spell-only packets", "sacrifice packets with few lasting bodies"],
+      "scoringNotes": "Score very high when both packets include Equipment and enough creatures to hold it."
+    },
+    {
+      "id": "artifact_board",
+      "label": "Artifact board",
+      "inputCards": ["artifacts", "artifact creatures", "Vehicles", "Treasures", "Cases", "artifact tokens"],
+      "payoffCards": ["cards that copy artifacts", "crew Vehicles", "recur artifacts", "reward artifact density"],
+      "supportCards": ["cheap artifacts and Treasure makers"],
+      "failureRisk": "artifact removal or a slow start with no early board",
+      "pairsWellWith": ["Iron Man", "Vehicles", "Ultron", "Geniuses", "Analyzed"],
+      "conflictsWith": ["packets with few artifacts and no artifact payoffs"],
+      "scoringNotes": "Score high when the combined deck has artifact density and multiple ways to turn artifacts into pressure."
+    },
+    {
+      "id": "spells_chain",
+      "label": "Noncreature spell chain",
+      "inputCards": ["cheap instants", "sorceries", "flashback cards", "card draw", "spell copying"],
+      "payoffCards": ["storm-style cards", "spell-count payoffs", "noncreature spell rewards"],
+      "supportCards": ["rituals and cost reducers", "early blockers to survive"],
+      "failureRisk": "a weak early board and drawing the wrong half at the wrong time",
+      "pairsWellWith": ["Scarlet", "Kang Dynasty", "Analyzed", "Spider-Verse", "Thor"],
+      "conflictsWith": ["creature-heavy packets with few instants and sorceries"],
+      "scoringNotes": "Give a ceiling bonus for spell density and a consistency penalty when early board presence is low."
+    },
+    {
+      "id": "wide_attack",
+      "label": "Wide combat",
+      "inputCards": ["tokens", "cheap creatures", "teamwork cards", "attack-three rewards"],
+      "payoffCards": ["team buffs", "cards that reward multiple attackers", "cards that punish stalled boards"],
+      "supportCards": ["anthem effects", "evasion granters"],
+      "failureRisk": "stalling into sweepers or oversized blockers",
+      "pairsWellWith": ["Battalion", "Wakanda", "Great Lakes Avengers", "Young Avengers"],
+      "conflictsWith": ["slow control packets", "low creature-count packets"],
+      "scoringNotes": "Score high when both packets produce multiple bodies and reward attacking with several creatures."
+    },
+    {
+      "id": "graveyard_value",
+      "label": "Graveyard value",
+      "inputCards": ["self-mill", "discard", "sacrifice", "creatures that trade well", "artifacts that enter the graveyard"],
+      "payoffCards": ["recursion", "reanimation", "graveyard-size rewards", "death triggers"],
+      "supportCards": ["cheap sacrifice outlets", "mill enablers"],
+      "failureRisk": "graveyard hate and clunky early turns",
+      "pairsWellWith": ["Returned", "Tenacious", "Mayhem", "Ultron", "Street Level Villains"],
+      "conflictsWith": ["exile-heavy packets", "packets with few graveyard payoffs"],
+      "scoringNotes": "Score high when one packet fills the graveyard and the other converts it into cards, creatures, or damage."
+    },
+    {
+      "id": "draw_two",
+      "label": "Draw and card-flow payoffs",
+      "inputCards": ["cantrips", "looting", "connive", "draw spells", "card selection"],
+      "payoffCards": ["cards that reward drawing extra cards", "Merfolk pressure", "Genius effects"],
+      "supportCards": ["cheap interaction to buy time"],
+      "failureRisk": "durdling and drawing cards without affecting the board",
+      "pairsWellWith": ["Geniuses", "Atlantis", "Conniving", "Thunderbolts"],
+      "conflictsWith": ["very low-curve aggro packets with no card flow"],
+      "scoringNotes": "Score high when the combined deck can draw extra cards without losing the board."
+    },
+    {
+      "id": "lifegain_creatures",
+      "label": "Life-gain creature stability",
+      "inputCards": ["lifelink creatures", "life-gain triggers", "defensive bodies"],
+      "payoffCards": ["cards that reward life gain", "drain effects", "larger bodies from life gain"],
+      "supportCards": ["cheap blockers", "incidental lifegain"],
+      "failureRisk": "a lower ceiling than combo, artifact, or spell pairs",
+      "pairsWellWith": ["Caretakers", "Animal", "Thunderbolts"],
+      "conflictsWith": ["all-in spell packets that barely attack or block"],
+      "scoringNotes": "Score high for durability, creature count, and repeated life gain."
+    }
+  ]
+}

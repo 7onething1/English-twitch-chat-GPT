@@ -41,6 +41,29 @@ function cardQualityBoost(p: Packet, ratings: CardRating[]): number {
   return (vals.reduce((a, b) => a + b, 0) / vals.length / 5) * 5
 }
 
+/** Derived count ESTIMATES from a packet's archetype tags — NOT scraped from
+ *  MTGABuddy (which is unreachable here). Uses a packet's real fields when present. */
+export function estCounts(p: Packet): { creatures: number; removal: number; cardDraw: number; payoffs: number; derived: boolean } {
+  const t = (arr: string[]) => p.tags.some(x => arr.includes(x))
+  let creatures = 12
+  if (t(['go-wide', 'creatures', 'attack-three', 'team', 'aggro', 'haste'])) creatures = 14
+  else if (t(['big-creatures', 'power-four', 'trample', 'dinosaurs'])) creatures = 13
+  else if (t(['spells', 'noncreature-spells', 'storm', 'control', 'combo', 'flashback'])) creatures = 8
+  if (t(['artifacts', 'vehicles'])) creatures = Math.min(creatures, 11)
+  if (p.colors.length >= 3) creatures = Math.max(6, creatures - 2)
+  let removal = t(['removal', 'burn', 'deathtouch', 'tapdown', 'shrink', 'control', 'tricks']) ? 4 : 2
+  let cardDraw = t(['card-draw', 'connive', 'value', 'draw']) ? 3 : 1
+  if (t(['spells', 'flashback', 'noncreature-spells'])) cardDraw = Math.max(cardDraw, 2)
+  const payoffs = Math.max(1, packetMachines(p).length)
+  return {
+    creatures: p.creatures ?? creatures,
+    removal: p.removal ?? removal,
+    cardDraw: p.cardDraw ?? cardDraw,
+    payoffs,
+    derived: p.creatures == null,
+  }
+}
+
 export function packetScore(p: Packet, ratings: CardRating[] = []): PacketScore {
   let power = RARITY_POWER[p.rarity] ?? 5
   if (has(p, 'bigCreature')) power += 3

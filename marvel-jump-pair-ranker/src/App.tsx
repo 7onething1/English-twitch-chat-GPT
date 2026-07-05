@@ -3,7 +3,7 @@ import packetsData from './data/packets.json'
 import sourcesData from './data/sources.json'
 import synergyTags from './data/synergyTags.json'
 import type { Packet, Color, RankedPair, CardRating, PairResult } from './lib/types'
-import { packetScore, pairScore, seedFor, seedIndex, SEED_PAIRS } from './lib/scoring'
+import { packetScore, pairScore, seedFor, seedIndex, SEED_PAIRS, estCounts } from './lib/scoring'
 import {
   loadCardRatings, saveCardRatings, loadPairResults, savePairResults,
   loadOwned, saveOwned, parseCardRatings, parsePairResults,
@@ -115,7 +115,7 @@ function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned
       </div>
       <div className="panel tablewrap">
         <table>
-          <thead><tr>{th('name', 'Packet')}{th('colors', 'Colour')}<th>Theme</th>{th('total', 'Strength')}{th('interaction', 'Interact')}{th('value', 'Value')}<th>Cards</th><th>Own</th><th>Src</th></tr></thead>
+          <thead><tr>{th('name', 'Packet')}{th('colors', 'Colour')}<th>Theme</th>{th('total', 'Strength')}{th('interaction', 'Interact')}{th('value', 'Value')}<th>Creat/Rem/Draw</th><th>Box</th><th>Src</th></tr></thead>
           <tbody>
             {rows.map(p => {
               const s = scores.get(p.id)!
@@ -127,7 +127,7 @@ function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned
                   <td><span className="score" style={{ color: heat(s.total) }}>{s.total}</span> <span className="tag-est">est</span><Bar v={s.total} /></td>
                   <td><Bar v={s.interaction * 4} color="var(--info)" /></td>
                   <td><Bar v={s.value * 4} color="var(--accent2)" /></td>
-                  <td>{p.cards ?? '—'}{p.creatures == null && <span className="hint"> ?</span>}</td>
+                  <td>{(() => { const c = estCounts(p); return <span className="hint">~{c.creatures}/{c.removal}/{c.cardDraw}</span> })()}</td>
                   <td><input type="checkbox" checked={owned.has(p.id)} onChange={e => { const n = new Set(owned); e.target.checked ? n.add(p.id) : n.delete(p.id); setOwned(n) }} /></td>
                   <td><Conf c={p.sourceConfidence} /></td>
                 </tr>
@@ -385,7 +385,7 @@ function Methodology() {
       <div className="hero"><h1><span className="g">Methodology</span></h1><p>No hidden tiers. Here is exactly how every number is made.</p></div>
       <div className="prose">
         <h3>What is source-backed vs estimated</h3>
-        <p>Packet <b>names, colours, rarities, theme text, and synergy tags</b> come from Wizards + MTGABuddy — <Conf c="high" />. Per-packet <b>card counts and rare-card lists</b> are not yet imported, so they show “—”. All <b>packet strength and pair scores are estimates</b> — <Conf c="low" /> until you import match data. There is no public Jump In pair win-rate dataset.</p>
+        <p>Packet <b>names, colours, rarities, theme text, and synergy tags</b> come from Wizards + MTGABuddy — <Conf c="high" />. Per-packet <b>creature / removal / draw counts</b> are <b>derived estimates</b> from each packet's archetype tags (shown with a “derived est” badge), not scraped from MTGABuddy — its site is unreachable from this environment. Import real contents to replace them. All <b>packet strength and pair scores are estimates</b> — <Conf c="low" /> until you import match data. There is no public Jump In pair win-rate dataset.</p>
 
         <h3>Packet score (0–100)</h3>
         <p><code>power + consistency + interaction + value</code>, each 0–25. Power = rarity + finisher/evasion/go-wide signals (+ optional card ratings). Consistency = colour simplicity + plan clarity − combo risk. Interaction = removal-type tags. Value = rarity + rares + <code>value</code> tag + ownership.</p>
@@ -459,7 +459,9 @@ function Drawer({ pair, onClose }: { pair: RankedPair | null; onClose: () => voi
                   <div className="hint">{p.colors.map(c => COLOR_NAME[c]).join('/')}{p.buzz && <span title={p.buzz.note}> · 🔥 buzz</span>}</div>
                   {p.rareCards.length > 0 && <div className="hint" style={{ marginTop: 4 }}><b>Rares:</b> {p.rareCards.join(', ')}</div>}
                   <div style={{ marginTop: 5 }}>{p.tags.map(t => <span key={t} className="chip">{t}</span>)}</div>
-                  <div className="hint" style={{ marginTop: 5 }}>Creatures {p.creatures ?? '—'} · Removal {p.removal ?? '—'} · Draw {p.cardDraw ?? '—'} <span className="tag-est">counts est</span></div>
+                  {(() => { const c = estCounts(p); return (
+                    <div className="hint" style={{ marginTop: 5 }}>Creatures ~{c.creatures} · Removal ~{c.removal} · Draw ~{c.cardDraw} · Payoffs {c.payoffs} {c.derived && <span className="tag-est" title="Derived from archetype tags, not scraped from MTGABuddy">derived est</span>}</div>
+                  ) })()}
                 </div>
               ))}
             </div>

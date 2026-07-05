@@ -9,15 +9,24 @@ export interface Packet {
   rarity: Rarity
   theme: string
   rareCards: string[]
+  rareCount?: number
   /** Notable creature types in the packet (for shared-tribe synergy), e.g. Robot, Merfolk. */
   types?: string[]
   cards: number | null
   creatures: number | null
   removal: number | null
   cardDraw: number | null
+  /** Real card-count breakdown (Arena Jump In packet data) when imported. */
+  counts?: { creatures: number; instants: number; sorceries: number; enchantments: number; artifacts: number; lands: number }
+  inputs?: string[]
+  payoffs?: string[]
+  risks?: string[]
   tags: string[]
   sourceUrls: string[]
   sourceConfidence: Confidence
+  sourceType?: string
+  verificationStatus?: string
+  sourceWarnings?: string[]
   notes: string
   /** Editorial/community buzz — hype signal only, NOT match data or aggregated sentiment. */
   buzz?: { level: 'high' | 'notable'; note: string; source: string }

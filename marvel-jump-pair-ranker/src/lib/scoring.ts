@@ -45,6 +45,13 @@ function cardQualityBoost(p: Packet, ratings: CardRating[]): number {
  *  MTGABuddy (which is unreachable here). Uses a packet's real fields when present. */
 export function estCounts(p: Packet): { creatures: number; removal: number; cardDraw: number; payoffs: number; derived: boolean } {
   const t = (arr: string[]) => p.tags.some(x => arr.includes(x))
+  const payoffsReal = Math.max(1, packetMachines(p).length)
+  if (p.counts) {
+    // real Arena counts: removal/draw still approximated from spell counts + tags
+    const removal = t(['removal', 'burn', 'deathtouch', 'tapdown', 'shrink', 'control', 'tricks']) ? Math.max(2, Math.round((p.counts.instants + p.counts.sorceries) / 2)) : 2
+    const cardDraw = t(['card-draw', 'connive', 'value', 'draw']) ? 3 : Math.max(1, Math.round((p.counts.instants + p.counts.sorceries) / 3))
+    return { creatures: p.counts.creatures, removal, cardDraw, payoffs: payoffsReal, derived: false }
+  }
   let creatures = 12
   if (t(['go-wide', 'creatures', 'attack-three', 'team', 'aggro', 'haste'])) creatures = 14
   else if (t(['big-creatures', 'power-four', 'trample', 'dinosaurs'])) creatures = 13
@@ -226,6 +233,7 @@ export function pairScore(a: Packet, b: Packet, ratings: CardRating[] = [], resu
   // --- six components with fixed point budgets ---
   const sm = sharedMechanic(a, b)                 // 0-30
   const sharedMechanicScore = sm.score
+  const dom = dominantMachine(a, b)
   const payoffDensity = payoffSupport(a, b)        // 0-20
   const interaction = clamp((sa.interaction + sb.interaction) * 0.3, 0, 15) // 0-15
 
@@ -255,6 +263,17 @@ export function pairScore(a: Packet, b: Packet, ratings: CardRating[] = [], resu
   sm.reasons.forEach(r => reasons.push({ type: 'good', text: `Shared plan: ${r}` }))
   payoffDensity.reasons.forEach(r => reasons.push({ type: 'good', text: `Support: ${r}` }))
   reasons.push({ type: nColors <= 2 ? 'good' : 'bad', text: `Mana: ${colors || '—'} (${manaRisk} risk)` })
+  // real Arena count evidence for the shared plan
+  const ca = a.counts, cb = b.counts
+  if (ca && cb) {
+    const arts = ca.artifacts + cb.artifacts
+    const crts = ca.creatures + cb.creatures
+    const spls = ca.instants + ca.sorceries + cb.instants + cb.sorceries
+    if (dom === 'artifact_board' && arts >= 6) reasons.push({ type: 'good', text: `Arena data: ${arts} artifacts across the deck` })
+    if ((dom === 'equipment_combat' || dom === 'wide_attack') && crts >= 14) reasons.push({ type: 'good', text: `Arena data: ${crts} creatures to carry the plan` })
+    if (dom === 'spells_chain' && spls >= 8) reasons.push({ type: 'good', text: `Arena data: ${spls} instants & sorceries` })
+    if (ca.lands >= 9 || cb.lands >= 9) reasons.push({ type: 'info', text: 'One half is mana-heavy (9 mana cards) — leans ramp / fixing' })
+  }
   if (interaction < 6) reasons.push({ type: 'bad', text: 'Light on removal / interaction' })
   if (narrow) reasons.push({ type: 'info', text: 'High-variance: needs the right half at the right time' })
   if (powerScore >= 70 && synergyScore < 45) reasons.push({ type: 'info', text: 'Strong cards, but the halves pull in different directions' })
@@ -278,7 +297,6 @@ export function pairScore(a: Packet, b: Packet, ratings: CardRating[] = [], resu
   const whyThisPairWorks = whyPairWorks(a, b, seed?.warn)
 
   // --- pair explainer (table coach) ---
-  const dom = dominantMachine(a, b)
   const ex = dom ? EXPLAIN[dom] : undefined
   const synergyType = (seed as any)?.synergyType ?? ex?.synergyType ?? (earlyP && !lateP ? 'Fast combat' : interaction >= 9 ? 'Removal control' : 'Mixed')
   const bestUseCase = ex?.bestUseCase ?? (synergyScore >= 60 ? 'Pick this when the shared plan matters more than raw card power.' : 'Pick this when you just want the two strongest individual halves available.')

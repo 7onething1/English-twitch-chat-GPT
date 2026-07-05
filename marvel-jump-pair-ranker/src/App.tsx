@@ -41,6 +41,13 @@ export function App() {
   const [detail, setDetail] = useState<RankedPair | null>(null)
 
   useEffect(() => { const h = () => setTab((location.hash.replace('#', '') as Tab) || 'explorer'); addEventListener('hashchange', h); return () => removeEventListener('hashchange', h) }, [])
+  useEffect(() => {
+    const expected = PACKETS.length * (PACKETS.length - 1) / 2
+    let n = 0
+    for (let i = 0; i < PACKETS.length; i++) for (let j = i + 1; j < PACKETS.length; j++) n++
+    if (n !== 1275 || expected !== 1275) console.error(`Pair count check failed: got ${n}, expected 1275 (packets=${PACKETS.length})`)
+    else console.info(`Pair engine OK: ${PACKETS.length} packets → ${n} non-duplicate pairs.`)
+  }, [])
   const go = (t: Tab) => { location.hash = t; setTab(t) }
 
   const scores = useMemo(() => new Map(PACKETS.map(p => [p.id, packetScore(p, ratings)])), [ratings])
@@ -72,7 +79,7 @@ export function App() {
 }
 
 const EstimatedBanner = () => (
-  <div className="banner">⚠️ <div><b>Pair rankings are ESTIMATED.</b> Packet identity & themes are source-backed (high confidence), but no public Jump In pair win-rate data exists. Rankings come from the heuristic model. Import your tracked results on <a href="#sources" onClick={() => (location.hash = 'sources')}>Data Sources</a> to upgrade confidence.</div></div>
+  <div className="banner">⚠️ <div><b>Pair rankings are ESTIMATED.</b> Packet <b>card counts are MTGA Jump Into Marvel data</b> (Arena packet data, medium confidence) — not verified card-for-card against physical mini packs. No public Jump In pair win-rate data exists, so rankings come from the count + synergy model. Import your tracked results on <a href="#sources" onClick={() => (location.hash = 'sources')}>Data Sources</a> to upgrade confidence.</div></div>
 )
 
 /* ------------------------------ PACK EXPLORER ----------------------------- */
@@ -127,7 +134,7 @@ function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned
                   <td><span className="score" style={{ color: heat(s.total) }}>{s.total}</span> <span className="tag-est">est</span><Bar v={s.total} /></td>
                   <td><Bar v={s.interaction * 4} color="var(--info)" /></td>
                   <td><Bar v={s.value * 4} color="var(--accent2)" /></td>
-                  <td>{(() => { const c = estCounts(p); return <span className="hint">~{c.creatures}/{c.removal}/{c.cardDraw}</span> })()}</td>
+                  <td>{p.counts ? <span className="hint" title="Arena data: creatures / instants+sorceries / artifacts">{p.counts.creatures}/{p.counts.instants + p.counts.sorceries}/{p.counts.artifacts}</span> : (() => { const c = estCounts(p); return <span className="hint">~{c.creatures}/{c.removal}/{c.cardDraw}</span> })()}</td>
                   <td><input type="checkbox" checked={owned.has(p.id)} onChange={e => { const n = new Set(owned); e.target.checked ? n.add(p.id) : n.delete(p.id); setOwned(n) }} /></td>
                   <td><Conf c={p.sourceConfidence} /></td>
                 </tr>
@@ -385,7 +392,7 @@ function Methodology() {
       <div className="hero"><h1><span className="g">Methodology</span></h1><p>No hidden tiers. Here is exactly how every number is made.</p></div>
       <div className="prose">
         <h3>What is source-backed vs estimated</h3>
-        <p>Packet <b>names, colours, rarities, theme text, and synergy tags</b> come from Wizards + MTGABuddy — <Conf c="high" />. Per-packet <b>creature / removal / draw counts</b> are <b>derived estimates</b> from each packet's archetype tags (shown with a “derived est” badge), not scraped from MTGABuddy — its site is unreachable from this environment. Import real contents to replace them. All <b>packet strength and pair scores are estimates</b> — <Conf c="low" /> until you import match data. There is no public Jump In pair win-rate dataset.</p>
+        <p>Packet <b>names, colours, rarities and theme text</b> are Wizards-confirmed. Per-packet <b>card counts</b> (creatures / instants / sorceries / enchantments / artifacts / mana) are <b>MTGA Jump Into Marvel packet data</b> from MTGABuddy — treated as <Conf c="medium" /> “Arena packet data”, <b>not</b> verified card-for-card against physical mini packs (some Arena slots are random). All 51 packets sum to 20 cards. <b>Pair scores remain estimates</b> — <Conf c="low" /> — until you import real table results. There is no public Jump In pair win-rate dataset.</p>
 
         <h3>Packet score (0–100)</h3>
         <p><code>power + consistency + interaction + value</code>, each 0–25. Power = rarity + finisher/evasion/go-wide signals (+ optional card ratings). Consistency = colour simplicity + plan clarity − combo risk. Interaction = removal-type tags. Value = rarity + rares + <code>value</code> tag + ownership.</p>
@@ -459,9 +466,10 @@ function Drawer({ pair, onClose }: { pair: RankedPair | null; onClose: () => voi
                   <div className="hint">{p.colors.map(c => COLOR_NAME[c]).join('/')}{p.buzz && <span title={p.buzz.note}> · 🔥 buzz</span>}</div>
                   {p.rareCards.length > 0 && <div className="hint" style={{ marginTop: 4 }}><b>Rares:</b> {p.rareCards.join(', ')}</div>}
                   <div style={{ marginTop: 5 }}>{p.tags.map(t => <span key={t} className="chip">{t}</span>)}</div>
-                  {(() => { const c = estCounts(p); return (
-                    <div className="hint" style={{ marginTop: 5 }}>Creatures ~{c.creatures} · Removal ~{c.removal} · Draw ~{c.cardDraw} · Payoffs {c.payoffs} {c.derived && <span className="tag-est" title="Derived from archetype tags, not scraped from MTGABuddy">derived est</span>}</div>
-                  ) })()}
+                  {p.counts
+                    ? <div className="hint" style={{ marginTop: 5 }}>Creat {p.counts.creatures} · Inst {p.counts.instants} · Sorc {p.counts.sorceries} · Ench {p.counts.enchantments} · Art {p.counts.artifacts} · Mana {p.counts.lands} <span className="conf medium" title="MTGA Jump Into Marvel packet data — not verified against physical packs">Arena data</span></div>
+                    : (() => { const c = estCounts(p); return <div className="hint" style={{ marginTop: 5 }}>Creatures ~{c.creatures} · Removal ~{c.removal} · Draw ~{c.cardDraw} <span className="tag-est">derived est</span></div> })()}
+                  {p.inputs && <div className="hint" style={{ marginTop: 4 }}><b>In:</b> {p.inputs.join(', ')} · <b>Out:</b> {p.payoffs?.join(', ')}</div>}
                 </div>
               ))}
             </div>

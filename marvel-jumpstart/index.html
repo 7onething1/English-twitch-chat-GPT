@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Marvel Jumpstart — Mini Pack Rankings & Best Pairs</title>
+<style>
+  :root{
+    --bg:#0b0d17;
+    --bg-soft:#131627;
+    --panel:#181c30;
+    --panel-2:#1f2440;
+    --line:#2a3050;
+    --ink:#eef1ff;
+    --muted:#9aa3c7;
+    --accent:#e23636;      /* Marvel red */
+    --accent-2:#f0a500;    /* gold */
+    --blue:#3b6fe0;
+    --good:#28c76f;
+    --shadow:0 10px 30px rgba(0,0,0,.45);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(226,54,54,.18), transparent 60%),
+      radial-gradient(900px 500px at 0% 0%, rgba(59,111,224,.16), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font:16px/1.5 "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:64px;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  header.hero{
+    padding:56px 20px 34px;
+    text-align:center;
+    position:relative;
+  }
+  .badge{
+    display:inline-block;letter-spacing:.28em;text-transform:uppercase;
+    font-size:12px;font-weight:800;color:#fff;
+    background:linear-gradient(90deg,var(--accent),#b71c1c);
+    padding:7px 16px;border-radius:999px;box-shadow:var(--shadow);
+  }
+  h1{
+    font-size:clamp(30px,5vw,52px);margin:18px 0 8px;line-height:1.05;
+    font-weight:900;letter-spacing:-.5px;
+  }
+  h1 .g{background:linear-gradient(90deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);max-width:660px;margin:0 auto;font-size:16px}
+
+  .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:26px 0 6px}
+  .tab{
+    background:var(--panel);border:1px solid var(--line);color:var(--muted);
+    padding:10px 18px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px;
+    transition:.15s;
+  }
+  .tab:hover{color:var(--ink);border-color:#3a416a}
+  .tab.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--shadow)}
+
+  section{display:none;animation:fade .25s ease}
+  section.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .panel{
+    background:linear-gradient(180deg,var(--panel),var(--bg-soft));
+    border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0 18px}
+  .toolbar input,.toolbar select{
+    background:var(--panel);border:1px solid var(--line);color:var(--ink);
+    padding:10px 14px;border-radius:10px;font-size:14px;outline:none;
+  }
+  .toolbar input{flex:1;min-width:200px}
+  .toolbar .hint{color:var(--muted);font-size:13px}
+
+  /* ---- Pack cards / tier list ---- */
+  .tier-row{display:flex;gap:14px;align-items:stretch;margin-bottom:14px}
+  .tier-label{
+    width:66px;flex:none;display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:26px;border-radius:12px;color:#0b0d17;
+  }
+  .tier-S{background:linear-gradient(180deg,#ff5f6d,#e23636)}
+  .tier-A{background:linear-gradient(180deg,#ffb457,#f0a500)}
+  .tier-B{background:linear-gradient(180deg,#7dd3fc,#3b6fe0);color:#08122b}
+  .tier-C{background:linear-gradient(180deg,#a7f3d0,#28c76f)}
+  .tier-cards{display:flex;gap:12px;flex-wrap:wrap;flex:1}
+
+  .pack{
+    background:var(--panel-2);border:1px solid var(--line);border-radius:12px;
+    padding:14px;width:230px;position:relative;cursor:default;transition:.15s;
+  }
+  .pack:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .pack .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .dot{width:12px;height:12px;border-radius:50%;flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.06)}
+  .pack h3{margin:0;font-size:16px;font-weight:800}
+  .pack .arch{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .pack .desc{font-size:12.5px;color:var(--muted);margin:6px 0 10px;min-height:34px}
+  .rating{display:flex;align-items:center;gap:8px}
+  .bar{height:8px;border-radius:6px;background:#0c0f1e;flex:1;overflow:hidden}
+  .bar>i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+  .rating b{font-variant-numeric:tabular-nums;font-size:14px}
+
+  /* ---- Pairs table ---- */
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;user-select:none;white-space:nowrap}
+  th:hover{color:var(--ink)}
+  tbody tr{transition:.12s}
+  tbody tr:hover{background:rgba(255,255,255,.03)}
+  .rank{font-weight:900;color:var(--accent-2);font-variant-numeric:tabular-nums;width:52px}
+  .pairnames{font-weight:700}
+  .chip{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-left:6px}
+  .score{font-weight:900;font-variant-numeric:tabular-nums}
+  .syn-pos{color:var(--good)}
+  .syn-neg{color:#ff7a7a}
+  .syn-zero{color:var(--muted)}
+  .medal{margin-right:6px}
+
+  /* ---- Heatmap ---- */
+  .heat-wrap{overflow-x:auto;padding:22px}
+  table.heat{border-collapse:separate;border-spacing:3px;min-width:640px}
+  table.heat th,table.heat td{border:none;padding:0}
+  table.heat th.col{writing-mode:vertical-rl;transform:rotate(180deg);height:120px;font-size:11px;color:var(--muted);text-align:left;padding-bottom:6px}
+  table.heat th.row{font-size:12px;color:var(--muted);text-align:right;padding-right:8px;white-space:nowrap;font-weight:700}
+  .cell{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#08122b;cursor:pointer;transition:.12s}
+  .cell:hover{outline:2px solid #fff;outline-offset:1px}
+  .cell.diag{background:#0c0f1e!important;color:var(--muted);cursor:default}
+  .legend{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:14px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+  .legend .scale{height:12px;width:220px;border-radius:6px;background:linear-gradient(90deg,#3b6fe0,#7dd3fc,#a7f3d0,#ffb457,#e23636)}
+
+  /* ---- Detail popover ---- */
+  #detail{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120%);
+    background:var(--panel);border:1px solid var(--accent);border-radius:14px;
+    padding:16px 20px;box-shadow:var(--shadow);max-width:520px;width:calc(100% - 40px);
+    transition:.25s;z-index:50;
+  }
+  #detail.show{transform:translateX(-50%) translateY(0)}
+  #detail h4{margin:0 0 6px;font-size:17px}
+  #detail p{margin:4px 0;color:var(--muted);font-size:13.5px}
+  #detail .close{position:absolute;top:10px;right:14px;cursor:pointer;color:var(--muted);font-weight:900}
+  #detail .statline{display:flex;gap:18px;margin-top:8px;flex-wrap:wrap}
+  #detail .statline b{color:var(--ink)}
+
+  footer{color:var(--muted);text-align:center;font-size:13px;margin-top:40px;padding:0 20px}
+  a{color:var(--accent-2)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="badge">Marvel Jumpstart · Draft Helper</span>
+  <h1>Mini Pack Rankings &amp; <span class="g">Best Pairs</span></h1>
+  <p class="sub">You get to pick <b>two</b> mini packs. This shows how each pack ranks on its own, and the pairwise synergy data for every combination — so you know which two go best together.</p>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab active" data-tab="pairs">🏆 Best Pairs</button>
+    <button class="tab" data-tab="packs">🎴 Pack Tier List</button>
+    <button class="tab" data-tab="heat">🔥 Synergy Grid</button>
+  </div>
+
+  <!-- BEST PAIRS -->
+  <section id="pairs" class="active">
+    <div class="toolbar">
+      <input id="pairSearch" placeholder="Filter pairs by pack name (e.g. X-Men)…" />
+      <select id="pairArch">
+        <option value="">All archetypes</option>
+      </select>
+      <span class="hint">Click any row for details</span>
+    </div>
+    <div class="panel" style="overflow:hidden">
+      <table id="pairTable">
+        <thead>
+          <tr>
+            <th data-k="rank">#</th>
+            <th data-k="name">Pair</th>
+            <th data-k="a">Pack A</th>
+            <th data-k="b">Pack B</th>
+            <th data-k="syn">Synergy</th>
+            <th data-k="score">Pair Score ▼</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PACK TIER LIST -->
+  <section id="packs">
+    <div class="toolbar">
+      <input id="packSearch" placeholder="Search a pack…" />
+      <span class="hint">Ranked by solo power rating (0–100)</span>
+    </div>
+    <div id="tierList"></div>
+  </section>
+
+  <!-- HEATMAP -->
+  <section id="heat">
+    <div class="panel heat-wrap">
+      <table class="heat" id="heatTable"></table>
+      <div class="legend">
+        <span>weaker pair</span>
+        <span class="scale"></span>
+        <span>stronger pair</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="detail"><span class="close" onclick="hideDetail()">✕</span><div id="detailBody"></div></div>
+
+<footer>
+  <p>Pack ratings and synergy values are an editable data model — tweak the <code>PACKS</code> and <code>SYNERGY</code> tables at the top of the source to match the current meta.</p>
+</footer>
+
+<script>
+/* ============================================================
+   DATA MODEL  — edit these two tables to update the site
+   ============================================================
+   Each pack: solo power rating (0-100) + archetype + color id.
+   SYNERGY: bonus/penalty (roughly -8..+15) applied to a pair on
+   top of the average of the two solo ratings. Only list pairs
+   that deviate from neutral; everything else defaults to 0.
+*/
+const PACKS = [
+  {id:"avengers", name:"Avengers Assemble", arch:"Midrange", color:"#e23636", rating:88,
+   desc:"Go-wide team buffs and reliable removal. Almost never a bad half of a pair."},
+  {id:"xmen", name:"X-Men", arch:"Midrange", color:"#f0a500", rating:90,
+   desc:"Mutant tribal value engine. Highest solo ceiling in the set."},
+  {id:"symbiotes", name:"Symbiotes", arch:"Aggro", color:"#111111", rating:84,
+   desc:"Fast, sticky threats that snowball. Punishes slow openings."},
+  {id:"spiderverse", name:"Spider-Verse", arch:"Tempo", color:"#c0392b", rating:82,
+   desc:"Cheap web-slingers and bounce tricks for flexible tempo swings."},
+  {id:"guardians", name:"Guardians of the Galaxy", arch:"Midrange", color:"#8e44ad", rating:79,
+   desc:"Ramp into big cosmic payoffs. Rewards reaching the late game."},
+  {id:"asgard", name:"Asgard", arch:"Control", color:"#3b6fe0", rating:81,
+   desc:"Thunder-god top end and board wipes. The premier control shell."},
+  {id:"wakanda", name:"Wakanda", arch:"Midrange", color:"#1abc9c", rating:77,
+   desc:"Vibranium armor and defensive value. Grinds attrition matchups."},
+  {id:"sinister", name:"Sinister Six", arch:"Aggro", color:"#27ae60", rating:80,
+   desc:"Villain aggro with reach. Closes games the tempo packs open."},
+  {id:"midnight", name:"Midnight Sons", arch:"Combo", color:"#6c5ce7", rating:76,
+   desc:"Mystic sacrifice engine. Explosive with the right enablers."},
+  {id:"fantastic", name:"Fantastic Four", arch:"Control", color:"#2980b9", rating:74,
+   desc:"Family value + stall. Needs a proactive partner to close."},
+  {id:"inhumans", name:"Inhumans", arch:"Combo", color:"#00cec9", rating:72,
+   desc:"Terrigen payoffs that swing hard once online, clunky if not."},
+  {id:"weaponx", name:"Weapon X", arch:"Aggro", color:"#95a5a6", rating:83,
+   desc:"Regenerating berserkers. Low floor, extremely high aggression."},
+];
+
+/* symmetric synergy — key "a|b" (order-independent, use ids) */
+const SYNERGY = {
+  "avengers|xmen": 12,      // two value engines, overwhelming card advantage
+  "symbiotes|spiderverse": 15, // signature rivalry, bounce fuels symbiote hosts
+  "symbiotes|sinister": 13, // relentless aggro, best clock in the set
+  "spiderverse|sinister": 10,
+  "guardians|asgard": 11,   // ramp + cosmic top end, dream control curve
+  "asgard|fantastic": 9,    // double control, near-unbeatable in attrition
+  "avengers|symbiotes": 8,
+  "xmen|wakanda": 9,        // mutant value shielded by vibranium
+  "weaponx|xmen": 10,       // Weapon X program IS X-Men lore, tribal overlap
+  "weaponx|symbiotes": 7,
+  "midnight|inhumans": 12,  // combo enablers + combo payoffs
+  "midnight|guardians": 6,
+  "inhumans|fantastic": 5,
+  "avengers|asgard": 7,
+  "wakanda|fantastic": 6,   // fortress deck, great defense, weak clock
+  "avengers|sinister": 4,
+  "xmen|guardians": 5,
+  /* anti-synergies — two packs that want the same slots / clash */
+  "asgard|symbiotes": -6,   // slow control hates being the aggro's tempo
+  "fantastic|sinister": -5,
+  "midnight|asgard": -4,
+  "inhumans|weaponx": -3,
+  "fantastic|weaponx": -4,
+};
+
+/* ============================================================
+   Derived data + rendering
+   ============================================================ */
+const byId = Object.fromEntries(PACKS.map(p=>[p.id,p]));
+const synKey = (a,b)=> [a,b].sort().join("|");
+function synOf(a,b){ return SYNERGY[synKey(a,b)] || 0; }
+
+const PAIRS = [];
+for(let i=0;i<PACKS.length;i++){
+  for(let j=i+1;j<PACKS.length;j++){
+    const a=PACKS[i], b=PACKS[j];
+    const syn=synOf(a.id,b.id);
+    const base=(a.rating+b.rating)/2;
+    const score=Math.round(base+syn);
+    PAIRS.push({a,b,syn,base:Math.round(base),score,
+      name:a.name+" + "+b.name});
+  }
+}
+PAIRS.sort((x,y)=> y.score-x.score);
+PAIRS.forEach((p,i)=> p.rank=i+1);
+const MAXSCORE=Math.max(...PAIRS.map(p=>p.score));
+const MINSCORE=Math.min(...PAIRS.map(p=>p.score));
+
+/* ---- tabs ---- */
+document.querySelectorAll(".tab").forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    document.getElementById(t.dataset.tab).classList.add("active");
+  };
+});
+
+/* ---- archetype filter options ---- */
+const archs=[...new Set(PACKS.map(p=>p.arch))].sort();
+const archSel=document.getElementById("pairArch");
+archs.forEach(a=>{const o=document.createElement("option");o.value=a;o.textContent=a;archSel.appendChild(o);});
+
+/* ---- heat color ---- */
+function heatColor(score){
+  const t=(score-MINSCORE)/(MAXSCORE-MINSCORE||1); // 0..1
+  // blue -> cyan -> green -> gold -> red
+  const stops=[[59,111,224],[125,211,252],[167,243,208],[255,180,87],[226,54,54]];
+  const seg=t*(stops.length-1); const i=Math.min(stops.length-2,Math.floor(seg)); const f=seg-i;
+  const c=stops[i].map((v,k)=>Math.round(v+(stops[i+1][k]-v)*f));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+/* ---- render pairs table ---- */
+let pairSort={k:"score",dir:-1};
+function synClass(s){return s>0?"syn-pos":s<0?"syn-neg":"syn-zero";}
+function synText(s){return (s>0?"+":"")+s;}
+function medal(r){return r===1?"🥇":r===2?"🥈":r===3?"🥉":"";}
+
+function renderPairs(){
+  const q=document.getElementById("pairSearch").value.trim().toLowerCase();
+  const af=archSel.value;
+  let rows=PAIRS.filter(p=>{
+    const matchQ=!q || p.a.name.toLowerCase().includes(q) || p.b.name.toLowerCase().includes(q);
+    const matchA=!af || p.a.arch===af || p.b.arch===af;
+    return matchQ && matchA;
+  });
+  const k=pairSort.k, dir=pairSort.dir;
+  rows=rows.slice().sort((x,y)=>{
+    let xv,yv;
+    if(k==="name"){xv=x.name;yv=y.name;return dir*xv.localeCompare(yv);}
+    if(k==="a"){return dir*x.a.name.localeCompare(y.a.name);}
+    if(k==="b"){return dir*x.b.name.localeCompare(y.b.name);}
+    if(k==="syn"){xv=x.syn;yv=y.syn;}
+    else if(k==="rank"){xv=x.rank;yv=y.rank;}
+    else {xv=x.score;yv=y.score;}
+    return dir*(xv-yv);
+  });
+  const tb=document.querySelector("#pairTable tbody");
+  tb.innerHTML="";
+  rows.forEach(p=>{
+    const tr=document.createElement("tr");
+    tr.style.cursor="pointer";
+    tr.onclick=()=>showPairDetail(p);
+    tr.innerHTML=`
+      <td class="rank">${medal(p.rank)?`<span class="medal">${medal(p.rank)}</span>`:""}${p.rank}</td>
+      <td class="pairnames">${p.a.name} <span style="color:var(--muted)">+</span> ${p.b.name}</td>
+      <td>${dotSpan(p.a)}<span class="chip">${p.a.arch}</span></td>
+      <td>${dotSpan(p.b)}<span class="chip">${p.b.arch}</span></td>
+      <td class="${synClass(p.syn)}" style="font-weight:800">${synText(p.syn)}</td>
+      <td class="score" style="color:${heatColor(p.score)}">${p.score}</td>`;
+    tb.appendChild(tr);
+  });
+  if(!rows.length){tb.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:26px">No pairs match that filter.</td></tr>`;}
+}
+function dotSpan(p){return `<span class="dot" style="display:inline-block;vertical-align:middle;background:${p.color};margin-right:8px"></span>${p.name}`;}
+
+document.querySelectorAll("#pairTable th").forEach(th=>{
+  th.onclick=()=>{
+    const k=th.dataset.k;
+    pairSort.dir = pairSort.k===k ? -pairSort.dir : (k==="rank"?1:-1);
+    pairSort.k=k;
+    document.querySelectorAll("#pairTable th").forEach(h=>h.textContent=h.textContent.replace(/[ ▲▼]+$/,""));
+    th.textContent=th.textContent+(pairSort.dir<0?" ▼":" ▲");
+    renderPairs();
+  };
+});
+document.getElementById("pairSearch").oninput=renderPairs;
+archSel.onchange=renderPairs;
+
+/* ---- pair detail popover ---- */
+function showPairDetail(p){
+  const best = p.syn>0 ? "These two actively reinforce each other." :
+               p.syn<0 ? "These two compete for the same role — pick only if the raw power is worth it." :
+               "No special interaction; the pair is just the sum of its parts.";
+  document.getElementById("detailBody").innerHTML=`
+    <h4>#${p.rank} · ${p.a.name} + ${p.b.name}</h4>
+    <p>${best}</p>
+    <div class="statline">
+      <span>Solo avg: <b>${p.base}</b></span>
+      <span>Synergy: <b class="${synClass(p.syn)}">${synText(p.syn)}</b></span>
+      <span>Pair score: <b style="color:${heatColor(p.score)}">${p.score}</b></span>
+      <span>Ranked <b>${p.rank}</b> / ${PAIRS.length}</span>
+    </div>
+    <p style="margin-top:10px">${p.a.name}: ${p.a.desc}</p>
+    <p>${p.b.name}: ${p.b.desc}</p>`;
+  document.getElementById("detail").classList.add("show");
+}
+function hideDetail(){document.getElementById("detail").classList.remove("show");}
+
+/* ---- render tier list ---- */
+function tierOf(r){return r>=86?"S":r>=80?"A":r>=75?"B":"C";}
+function renderPacks(){
+  const q=document.getElementById("packSearch").value.trim().toLowerCase();
+  const sorted=PACKS.slice().sort((a,b)=>b.rating-a.rating)
+    .filter(p=>!q||p.name.toLowerCase().includes(q)||p.arch.toLowerCase().includes(q));
+  const tiers={S:[],A:[],B:[],C:[]};
+  sorted.forEach(p=>tiers[tierOf(p.rating)].push(p));
+  const host=document.getElementById("tierList");
+  host.innerHTML="";
+  ["S","A","B","C"].forEach(t=>{
+    if(!tiers[t].length) return;
+    const row=document.createElement("div");
+    row.className="tier-row";
+    row.innerHTML=`<div class="tier-label tier-${t}">${t}</div><div class="tier-cards"></div>`;
+    const cards=row.querySelector(".tier-cards");
+    tiers[t].forEach(p=>{
+      const c=document.createElement("div");
+      c.className="pack";
+      c.innerHTML=`
+        <div class="top"><span class="dot" style="background:${p.color}"></span>
+          <div><h3>${p.name}</h3><div class="arch">${p.arch}</div></div></div>
+        <div class="desc">${p.desc}</div>
+        <div class="rating"><div class="bar"><i style="width:${p.rating}%"></i></div><b>${p.rating}</b></div>`;
+      cards.appendChild(c);
+    });
+    host.appendChild(row);
+  });
+  if(!sorted.length) host.innerHTML=`<div class="panel" style="padding:26px;text-align:center;color:var(--muted)">No packs match “${q}”.</div>`;
+}
+document.getElementById("packSearch").oninput=renderPacks;
+
+/* ---- render heatmap ---- */
+function renderHeat(){
+  const order=PACKS.slice().sort((a,b)=>b.rating-a.rating);
+  const t=document.getElementById("heatTable");
+  let html="<tr><th></th>";
+  order.forEach(p=>html+=`<th class="col">${p.name}</th>`);
+  html+="</tr>";
+  order.forEach(rp=>{
+    html+=`<tr><th class="row">${rp.name}</th>`;
+    order.forEach(cp=>{
+      if(rp.id===cp.id){html+=`<td><div class="cell diag">—</div></td>`;return;}
+      const p=PAIRS.find(x=>(x.a.id===rp.id&&x.b.id===cp.id)||(x.a.id===cp.id&&x.b.id===rp.id));
+      html+=`<td><div class="cell" style="background:${heatColor(p.score)}" title="${rp.name} + ${cp.name}">${p.score}</div></td>`;
+    });
+    html+="</tr>";
+  });
+  t.innerHTML=html;
+  t.querySelectorAll(".cell:not(.diag)").forEach(cell=>{
+    cell.onclick=()=>{
+      const [an,bn]=cell.title.split(" + ");
+      const p=PAIRS.find(x=>x.name===an+" + "+bn||x.name===bn+" + "+an);
+      if(p) showPairDetail(p);
+    };
+  });
+}
+
+/* init */
+renderPairs();
+renderPacks();
+renderHeat();
+</script>
+</body>
+</html>

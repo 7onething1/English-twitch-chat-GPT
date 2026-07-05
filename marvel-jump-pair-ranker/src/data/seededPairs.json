@@ -1,0 +1,22 @@
+{
+  "_meta": {
+    "note": "Researched seed pairs with table-facing fields. All ESTIMATED until real match results are imported. scoreSeed is a rough 0-100 anchor; the live engine computes the shown scores.",
+    "sources": [
+      "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes",
+      "https://magic.wizards.com/en/news/announcements/marvel-super-heroes-jumpstart-booster-themes",
+      "https://blog.cardkingdom.com/20-coolest-cards-in-marvel-super-heroes-jumpstart/"
+    ]
+  },
+  "seededPairs": [
+    { "pair": ["Marvelous", "Blink"], "synergyType": "Shared engine", "scoreSeed": 94, "pilotDifficulty": "Medium", "tablePower": "Dangerous", "deckThesis": "This deck wants to reuse enters triggers by using Marvelous flicker effects with Blink value creatures.", "mainRisk": "The deck can draw support without enough strong targets." },
+    { "pair": ["Equipped", "Armed"], "synergyType": "Equipment combat", "scoreSeed": 92, "pilotDifficulty": "Easy", "tablePower": "Dangerous", "deckThesis": "This deck wants to win creature combat by using Equipped payoffs with Armed weapon density.", "mainRisk": "The deck can stumble if it draws gear without enough creatures." },
+    { "pair": ["Iron Man", "Vehicles"], "synergyType": "Artifact board", "scoreSeed": 90, "pilotDifficulty": "Medium", "tablePower": "Strong", "deckThesis": "This deck wants to build an artifact board by using Iron Man artifact support with Vehicles pressure.", "mainRisk": "The deck needs enough creatures to crew Vehicles and defend early." },
+    { "pair": ["Scarlet", "Kang Dynasty"], "synergyType": "Spell chain", "scoreSeed": 89, "pilotDifficulty": "Hard", "tablePower": "Dangerous", "deckThesis": "This deck wants to chain spells by using Scarlet storm pressure with Kang Dynasty flashback and time-magic support.", "mainRisk": "The deck has a higher ceiling and a higher stumble rate." },
+    { "pair": ["Analyzed", "Ultron"], "synergyType": "Artifact board", "scoreSeed": 87, "pilotDifficulty": "Medium", "tablePower": "Strong", "deckThesis": "This deck wants to use Robot bodies and artifact pressure to turn spell play into board advantage.", "mainRisk": "The two halves need enough artifact density to fully connect." },
+    { "pair": ["Battalion", "Wakanda"], "synergyType": "Wide attack", "scoreSeed": 85, "pilotDifficulty": "Easy", "tablePower": "Strong", "deckThesis": "This deck wants to go wide and attack by using Battalion mass-attack rewards with Wakanda tokens.", "mainRisk": "The deck can stall into a sweeper or oversized blockers." },
+    { "pair": ["Returned", "Tenacious"], "synergyType": "Graveyard value", "scoreSeed": 82, "pilotDifficulty": "Medium", "tablePower": "Strong", "deckThesis": "This deck wants to grind the graveyard by using Tenacious self-mill with Returned recursion.", "mainRisk": "The deck struggles against graveyard hate or a slow start." },
+    { "pair": ["Geniuses", "Atlantis"], "synergyType": "Draw engine", "scoreSeed": 80, "pilotDifficulty": "Medium", "tablePower": "Strong", "deckThesis": "This deck wants to draw extra cards by using Atlantis card draw with Geniuses draw payoffs.", "mainRisk": "The deck can durdle and fall behind fast starts." },
+    { "pair": ["Animal", "Caretakers"], "synergyType": "Life-gain stability", "scoreSeed": 76, "pilotDifficulty": "Easy", "tablePower": "Casual", "deckThesis": "This deck wants to grind a stable board by using Animal creatures with Caretakers lifegain.", "mainRisk": "The deck has a lower ceiling than combo or artifact pairs." },
+    { "pair": ["Speedy", "Boosted"], "synergyType": "Fast combat", "scoreSeed": 74, "pilotDifficulty": "Easy", "tablePower": "Spicy", "deckThesis": "This deck wants to attack fast by using Speedy haste with Boosted counters.", "mainRisk": "The deck can run out of gas if the game goes long." }
+  ]
+}

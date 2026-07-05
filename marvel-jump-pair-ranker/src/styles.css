@@ -109,6 +109,39 @@ tbody tr:hover{background:rgba(255,255,255,.03)}
 .src{display:block;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin:9px 0}
 .src .r{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:4px}
 .picker-result{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}
+.besttwo{border-color:#4a3a5f;background:linear-gradient(180deg,#1a1730,var(--bg2))}
+.besttwo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+.besttwo-grid p{font-size:13.5px;line-height:1.55}
+.profile2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.profcard{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px}
 .pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;margin:3px;cursor:pointer;font-size:13px}
 .pill.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .empty{color:var(--muted);text-align:center;padding:26px}
+
+/* ---------------- mobile ---------------- */
+@media (max-width:720px){
+  .wrap{padding:0 12px 60px}
+  .topbar .inner{padding:10px 12px;gap:8px}
+  .brand{font-size:15px;width:100%}
+  .nav{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+  .nav button{padding:7px 11px;font-size:12.5px;white-space:nowrap}
+  .hero{padding:18px 0 4px}
+  .hero h1{font-size:26px}
+  .hero p{font-size:14px}
+  .besttwo-grid{grid-template-columns:1fr;gap:12px}
+  .profile2{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr!important}
+  .picker-result{grid-template-columns:1fr}
+  .toolbar{gap:8px}
+  .toolbar input,.toolbar select{flex:1 1 100%;min-width:0}
+  .drawer{width:100vw;border-left:none;padding:16px}
+  th,td{padding:8px 8px;font-size:12.5px}
+  th{top:0}
+  /* let wide tables scroll horizontally instead of breaking the page */
+  .tablewrap table{min-width:640px}
+  .big{font-size:20px}
+}
+@media (max-width:420px){
+  .hero h1{font-size:22px}
+  .brand .mark{font-size:11px}
+}

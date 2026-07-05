@@ -77,6 +77,15 @@ export interface PairBreakdown {
   confidence: Confidence
   tag: string            // display tag, e.g. "Best Shared Engine"
   whyThisPairWorks: string // one plain paragraph, fixed sentence structure
+  // pair explainer (table coach)
+  synergyType: string
+  bestUseCase: string
+  deckThesis: string
+  whyItWorks: string       // 4 sentences
+  whatCanGoWrong: string   // 2 sentences
+  howToPlay: string        // 3 sentences
+  pilotDifficulty: 'Easy' | 'Medium' | 'Hard'
+  tablePower: 'Casual' | 'Strong' | 'Spicy' | 'Dangerous'
   reasons: { type: 'good' | 'bad' | 'info'; text: string }[]
   metrics: { combinedColors: string; manaRisk: 'Low' | 'Medium' | 'High' }
 }

@@ -155,8 +155,25 @@ const DICT_PHRASE: Record<string, { inputs: string; payoffs: string; action: str
   draw_two: { inputs: 'cantrips, looting and connive', payoffs: 'draw-two and card-flow payoffs', action: 'draw extra cards and convert them into pressure', strength: 'steady card flow and tempo', risk: 'durdling without affecting the board' },
   lifegain_creatures: { inputs: 'lifelink and defensive creatures', payoffs: 'cards that reward gaining life', action: 'build a stable creature board backed by lifegain', strength: 'durability and hard-to-punish boards', risk: 'a lower ceiling than combo or artifact pairs' },
 }
+// table-coach copy per machine
+const EXPLAIN: Record<string, { synergyType: string; bestUseCase: string; combined: string; win: string; howToPlay: string }> = {
+  blink_enter_value: { synergyType: 'Shared engine', bestUseCase: 'Pick this when you want the strongest shared engine from two visible themes.', combined: 'turns ordinary creatures into repeated value', win: 'getting paid for the same board actions across several turns', howToPlay: 'Protect your early creatures and trade only when needed. Spend the middle turns reusing enters triggers instead of racing blindly. Win by letting repeated value snowball into a larger board.' },
+  equipment_combat: { synergyType: 'Equipment combat', bestUseCase: 'Pick this when you want a straightforward combat deck that wins the ground.', combined: 'suits up creatures and pushes damage through combat', win: 'turning a couple of resilient bodies into oversized threats', howToPlay: 'Play a creature early and hold up nothing fancy. Attach gear once you have a body that survives a turn. Win by forcing bad blocks with an equipped threat.' },
+  artifact_board: { synergyType: 'Artifact board', bestUseCase: 'Pick this when you want a wide artifact board that snowballs.', combined: 'floods the board with artifacts and converts them into pressure', win: 'out-massing the table with cheap artifacts and payoffs', howToPlay: 'Deploy cheap artifacts and Treasures early. Keep a blocker back so you are not run over before the payoffs land. Win by crewing Vehicles and cashing in artifact density.' },
+  spells_chain: { synergyType: 'Spell chain', bestUseCase: 'Pick this when you want the highest ceiling and can accept some stumbles.', combined: 'chains cheap noncreature spells into an explosive turn', win: 'assembling a single big spell turn the opponent cannot answer', howToPlay: 'Survive early with cheap interaction and blockers. Bank cards and cheap spells rather than casting on curve. Win by unloading a chained turn once the payoff is in play.' },
+  wide_attack: { synergyType: 'Wide attack', bestUseCase: 'Pick this when you want fewer moving parts and direct pressure.', combined: 'goes wide and attacks with several creatures at once', win: 'flooding the board faster than the opponent can trade', howToPlay: 'Curve out cheap creatures every turn. Attack early and force the opponent onto the back foot. Win before they stabilise with a sweeper or a big blocker.' },
+  graveyard_value: { synergyType: 'Graveyard value', bestUseCase: 'Pick this when you want to grind long games and out-card the table.', combined: 'fills the graveyard and cashes it back in for value', win: 'refusing to run out of resources over a long game', howToPlay: 'Trade freely and fill your graveyard early. Do not over-commit into a board wipe. Win by reanimating and recurring threats the opponent already answered.' },
+  draw_two: { synergyType: 'Draw engine', bestUseCase: 'Pick this when you want a card-flow deck that grinds tempo.', combined: 'draws extra cards and converts them into pressure', win: 'burying the opponent in card advantage while holding the board', howToPlay: 'Trade early and lean on cheap interaction. Draw extra cards once you are stable, not while under pressure. Win by outdrawing the opponent into a dominant board.' },
+  lifegain_creatures: { synergyType: 'Life-gain stability', bestUseCase: 'Pick this when consistency matters more than clever machinery.', combined: 'builds a durable creature board backed by lifegain', win: 'stabilising the board and grinding out slower threats', howToPlay: 'Block and gain life early against aggression. Build a stable board rather than racing. Win the long game with bigger, life-backed threats.' },
+}
+const DIFF_ORDER = { Easy: 0, Medium: 1, Hard: 2 } as const
+
 export function packetMachines(p: Packet): string[] {
   return Object.entries(DICT_MAP).filter(([, tags]) => p.tags.some(t => tags.includes(t))).map(([id]) => id)
+}
+export function dominantMachine(a: Packet, b: Packet): string | undefined {
+  const ma = packetMachines(a), mb = packetMachines(b)
+  return DICT_PRIORITY.find(id => ma.includes(id) && mb.includes(id))
 }
 function whyPairWorks(a: Packet, b: Packet, warn?: string): string {
   const ma = packetMachines(a), mb = packetMachines(b)
@@ -237,27 +254,54 @@ export function pairScore(a: Packet, b: Packet, ratings: CardRating[] = [], resu
   const final = evidenceScore == null ? total : clamp(total * (1 - evidenceWeight) + evidenceScore * evidenceWeight)
   const whyThisPairWorks = whyPairWorks(a, b, seed?.warn)
 
+  // --- pair explainer (table coach) ---
+  const dom = dominantMachine(a, b)
+  const ex = dom ? EXPLAIN[dom] : undefined
+  const synergyType = (seed as any)?.synergyType ?? ex?.synergyType ?? (earlyP && !lateP ? 'Fast combat' : interaction >= 9 ? 'Removal control' : 'Mixed')
+  const bestUseCase = ex?.bestUseCase ?? (synergyScore >= 60 ? 'Pick this when the shared plan matters more than raw card power.' : 'Pick this when you just want the two strongest individual halves available.')
+  const dph = dom ? DICT_PHRASE[dom] : null
+  const deckThesis = (seed as any)?.deckThesis ??
+    (dph ? `This deck wants to ${dph.action} by using ${a.name} ${dph.inputs} with ${b.name} ${dph.payoffs}.`
+         : `This deck wants to play the best cards from each half by using ${a.name} and ${b.name} together.`)
+  const whyItWorks = dph && ex
+    ? `${a.name} supplies ${dph.inputs}. ${b.name} supplies ${dph.payoffs}. The combined deck ${ex.combined}. It wins by ${ex.win}.`
+    : `${a.name} and ${b.name} do not share one engine, so this deck leans on raw card quality. It plays the strongest cards from each half. Its plan is to out-value or out-tempo the opponent. It wins when its individually strong cards line up.`
+  const mainRisk = (seed as any)?.mainRisk
+  const whatCanGoWrong = mainRisk
+    ? `${mainRisk} It can also fall behind if the opponent opens with faster pressure.`
+    : `${dph ? 'The deck can draw one half without the other and stall.' : 'The two halves can pull in different directions and clog your draws.'} It can also fall behind if the opponent opens with faster pressure.`
+  const howToPlay = ex?.howToPlay ?? 'Deploy threats on curve and trade efficiently. Keep some interaction for the opponent’s best card. Win with your strongest individual cards rather than a combo.'
+
+  // derive difficulty / table power for non-seed pairs
+  const pilotDifficulty: 'Easy' | 'Medium' | 'Hard' = (seed as any)?.pilotDifficulty
+    ?? (narrow ? 'Hard' : (synergyScore >= 55 && nColors <= 2 && !narrow ? 'Easy' : 'Medium'))
+  const tablePower: 'Casual' | 'Strong' | 'Spicy' | 'Dangerous' = (seed as any)?.tablePower
+    ?? (final >= 58 ? 'Dangerous' : final >= 48 ? 'Spicy' : final >= 38 ? 'Strong' : 'Casual')
+
   return {
     sharedMechanic: Math.round(sharedMechanicScore), payoffDensity: Math.round(payoffDensity.score),
     consistency: Math.round(consistency), interaction: Math.round(interaction), curve: Math.round(curve),
     rawPower: Math.round(rawPower), total: Math.round(total), synergyScore, powerScore,
     evidenceScore: evidenceScore == null ? null : Math.round(evidenceScore), evidenceWeight,
-    final: Math.round(final), confidence, tag, whyThisPairWorks, reasons, metrics: { combinedColors: colors || '—', manaRisk },
+    final: Math.round(final), confidence, tag, whyThisPairWorks,
+    synergyType, bestUseCase, deckThesis, whyItWorks, whatCanGoWrong, howToPlay, pilotDifficulty, tablePower,
+    reasons, metrics: { combinedColors: colors || '—', manaRisk },
   }
 }
 
 /* -------- researched seed ranking (all ESTIMATED) -------- */
-export const SEED_PAIRS: { a: string; b: string; note: string; tag: string; warn?: string }[] = [
-  { a: 'marvelous', b: 'blink', tag: 'Best Shared Engine', note: 'Marvelous flickers Marvels for enters effects; Blink triggers enters/leaves. The clearest repeated-value engine.' },
-  { a: 'equipped', b: 'armed', tag: 'Best Equipment Pair', note: 'Equipped brings Captain America Equipment payoffs; Armed adds Swordsman’s Steel and more gear. Cleanest combat-Equipment build.' },
-  { a: 'iron-man', b: 'vehicles', tag: 'Best Artifact Pair', note: 'Iron Man creates and rewards artifacts; Vehicles supplies a dense artifact board. Cleanest artifact-board pair.' },
-  { a: 'scarlet', b: 'kang-dynasty', tag: 'Highest Ceiling', note: 'Scarlet wants a storm of spells; Kang casts and flashes back noncreature spells. Highest ceiling spell pair.', warn: 'Consistency risk: can draw the wrong half at the wrong time.' },
-  { a: 'analyzed', b: 'ultron', tag: 'Robot Artifact Pair', note: 'Analyzed plays Robots and noncreature spells; Ultron turns graveyard artifacts into a Robot army. Strong artifact-Robot attrition.' },
-  { a: 'battalion', b: 'wakanda', tag: 'Best Wide Combat Pair', note: 'Battalion wants three attackers; Wakanda floods the board with tokens. Cleanest wide-combat pair, fewest moving parts.' },
-  { a: 'returned', b: 'tenacious', tag: 'Best Graveyard Pair', note: 'Returned reanimates; Tenacious fills and uses the graveyard. Graveyard-value pair.' },
-  { a: 'geniuses', b: 'atlantis', tag: 'Best Draw Pair', note: 'Geniuses rewards drawing two cards a turn; Atlantis turns card draw into Merfolk pressure. Card-flow / tempo pair.' },
-  { a: 'animal', b: 'caretakers', tag: 'Most Stable Life-Gain Pair', note: 'Both reward creature-based lifegain and board presence. Consistent, friendly kitchen-table pick.' },
-  { a: 'speedy', b: 'boosted', tag: 'Best Aggro Pair', note: 'Speedy rewards fast attacks; Boosted adds combat counters. Fast creature deck, least thinking between shuffle and attack.' },
+type Seed = { a: string; b: string; tag: string; note: string; warn?: string; synergyType: string; pilotDifficulty: 'Easy' | 'Medium' | 'Hard'; tablePower: 'Casual' | 'Strong' | 'Spicy' | 'Dangerous'; deckThesis: string; mainRisk: string }
+export const SEED_PAIRS: Seed[] = [
+  { a: 'marvelous', b: 'blink', tag: 'Best Shared Engine', synergyType: 'Shared engine', pilotDifficulty: 'Medium', tablePower: 'Dangerous', deckThesis: 'This deck wants to reuse enters triggers by using Marvelous flicker effects with Blink value creatures.', mainRisk: 'The deck can draw support without enough strong targets.', note: 'Marvelous flickers Marvels for enters effects; Blink triggers enters/leaves. The clearest repeated-value engine.' },
+  { a: 'equipped', b: 'armed', tag: 'Best Equipment Pair', synergyType: 'Equipment combat', pilotDifficulty: 'Easy', tablePower: 'Dangerous', deckThesis: 'This deck wants to win creature combat by using Equipped payoffs with Armed weapon density.', mainRisk: 'The deck can stumble if it draws gear without enough creatures.', note: 'Equipped brings Captain America Equipment payoffs; Armed adds Swordsman’s Steel and more gear. Cleanest combat-Equipment build.' },
+  { a: 'iron-man', b: 'vehicles', tag: 'Best Artifact Pair', synergyType: 'Artifact board', pilotDifficulty: 'Medium', tablePower: 'Strong', deckThesis: 'This deck wants to build an artifact board by using Iron Man artifact support with Vehicles pressure.', mainRisk: 'The deck needs enough creatures to crew Vehicles and defend early.', note: 'Iron Man creates and rewards artifacts; Vehicles supplies a dense artifact board. Cleanest artifact-board pair.' },
+  { a: 'scarlet', b: 'kang-dynasty', tag: 'Highest Ceiling', synergyType: 'Spell chain', pilotDifficulty: 'Hard', tablePower: 'Dangerous', deckThesis: 'This deck wants to chain spells by using Scarlet storm pressure with Kang Dynasty flashback and time-magic support.', mainRisk: 'The deck has a higher ceiling and a higher stumble rate.', note: 'Scarlet wants a storm of spells; Kang casts and flashes back noncreature spells. Highest ceiling spell pair.', warn: 'Consistency risk: can draw the wrong half at the wrong time.' },
+  { a: 'analyzed', b: 'ultron', tag: 'Robot Artifact Pair', synergyType: 'Artifact board', pilotDifficulty: 'Medium', tablePower: 'Strong', deckThesis: 'This deck wants to use Robot bodies and artifact pressure to turn spell play into board advantage.', mainRisk: 'The two halves need enough artifact density to fully connect.', note: 'Analyzed plays Robots and noncreature spells; Ultron turns graveyard artifacts into a Robot army. Strong artifact-Robot attrition.' },
+  { a: 'battalion', b: 'wakanda', tag: 'Best Wide Combat Pair', synergyType: 'Wide attack', pilotDifficulty: 'Easy', tablePower: 'Strong', deckThesis: 'This deck wants to go wide and attack by using Battalion mass-attack rewards with Wakanda tokens.', mainRisk: 'The deck can stall into a sweeper or oversized blockers.', note: 'Battalion wants three attackers; Wakanda floods the board with tokens. Cleanest wide-combat pair, fewest moving parts.' },
+  { a: 'returned', b: 'tenacious', tag: 'Best Graveyard Pair', synergyType: 'Graveyard value', pilotDifficulty: 'Medium', tablePower: 'Strong', deckThesis: 'This deck wants to grind the graveyard by using Tenacious self-mill with Returned recursion.', mainRisk: 'The deck struggles against graveyard hate or a slow start.', note: 'Returned reanimates; Tenacious fills and uses the graveyard. Graveyard-value pair.' },
+  { a: 'geniuses', b: 'atlantis', tag: 'Best Draw Pair', synergyType: 'Draw engine', pilotDifficulty: 'Medium', tablePower: 'Strong', deckThesis: 'This deck wants to draw extra cards by using Atlantis card draw with Geniuses draw payoffs.', mainRisk: 'The deck can durdle and fall behind fast starts.', note: 'Geniuses rewards drawing two cards a turn; Atlantis turns card draw into Merfolk pressure. Card-flow / tempo pair.' },
+  { a: 'animal', b: 'caretakers', tag: 'Most Stable Life-Gain Pair', synergyType: 'Life-gain stability', pilotDifficulty: 'Easy', tablePower: 'Casual', deckThesis: 'This deck wants to grind a stable board by using Animal creatures with Caretakers lifegain.', mainRisk: 'The deck has a lower ceiling than combo or artifact pairs.', note: 'Both reward creature-based lifegain and board presence. Consistent, friendly kitchen-table pick.' },
+  { a: 'speedy', b: 'boosted', tag: 'Best Aggro Pair', synergyType: 'Fast combat', pilotDifficulty: 'Easy', tablePower: 'Spicy', deckThesis: 'This deck wants to attack fast by using Speedy haste with Boosted counters.', mainRisk: 'The deck can run out of gas if the game goes long.', note: 'Speedy rewards fast attacks; Boosted adds combat counters. Fast creature deck, least thinking between shuffle and attack.' },
 ]
 export function seedFor(aId: string, bId: string) {
   return SEED_PAIRS.find(s => (s.a === aId && s.b === bId) || (s.a === bId && s.b === aId))

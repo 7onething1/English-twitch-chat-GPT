@@ -140,6 +140,36 @@ function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned
   )
 }
 
+/* ------------------------------ BEST TWO NOW ------------------------------ */
+const Diff = ({ d }: { d: string }) => <span className="chip" style={{ borderColor: d === 'Hard' ? '#c0392b' : d === 'Easy' ? '#28794a' : '#b8912f', color: d === 'Hard' ? '#ff9a9a' : d === 'Easy' ? '#7de6ab' : '#f0d27a' }}>Pilot: {d}</span>
+const Power = ({ p }: { p: string }) => <span className="chip" style={{ borderColor: '#8a3ad0', color: '#d3a9ff' }}>Table: {p}</span>
+
+function BestTwoNow({ pair, onOpen }: { pair: RankedPair; onOpen: (p: RankedPair) => void }) {
+  const b = pair.breakdown
+  return (
+    <div className="panel besttwo" style={{ padding: 18, margin: '18px 0' }}>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: 6 }}>
+        <span className="chip" style={{ borderColor: 'var(--accent)', color: '#ff9a8f', margin: 0, fontWeight: 800 }}>★ Best two to pick right now</span>
+        <span className="chip" style={{ borderColor: '#3a4b8a', color: '#a9bcff', margin: 0 }}>{b.tag}</span>
+        <Diff d={b.pilotDifficulty} /><Power p={b.tablePower} /><span className="tag-est">estimated</span>
+      </div>
+      <h2 style={{ margin: '4px 0 8px', fontSize: 22 }}><Pips p={pair.a} /> {pair.a.name} <span style={{ color: 'var(--muted)' }}>+</span> <Pips p={pair.b} /> {pair.b.name}</h2>
+      <div className="besttwo-grid">
+        <div><div className="hint">Deck thesis</div><p style={{ margin: '3px 0' }}>{b.deckThesis}</p>
+          <div className="hint" style={{ marginTop: 8 }}>Why it works</div><p style={{ margin: '3px 0' }}>{b.whyItWorks}</p></div>
+        <div><div className="hint">What can go wrong</div><p style={{ margin: '3px 0' }}>{b.whatCanGoWrong}</p>
+          <div className="hint" style={{ marginTop: 8 }}>How to play it (turns 1–4)</div><p style={{ margin: '3px 0' }}>{b.howToPlay}</p></div>
+      </div>
+      <div style={{ display: 'flex', gap: 16, marginTop: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+        <span>Synergy <b style={{ color: heat(b.synergyScore) }}>{b.synergyScore}</b></span>
+        <span>Card power <b style={{ color: heat(b.powerScore) }}>{b.powerScore}</b></span>
+        <span>Total <b style={{ color: heat(b.final) }}>{b.final}</b></span>
+        <button className="btn ghost" onClick={() => onOpen(pair)}>Full pair profile →</button>
+      </div>
+    </div>
+  )
+}
+
 /* ------------------------------ CATEGORY WINNERS -------------------------- */
 function CategoryWinners({ ratings, resultFor, onOpen }: { ratings: CardRating[]; resultFor: any; onOpen: (p: RankedPair) => void }) {
   const winners = useMemo(() => SEED_PAIRS.map(s => {
@@ -192,12 +222,14 @@ function Pairs({ scores, ratings, resultFor, onOpen }: { scores: Map<string, any
     if (rankBy === 'power') return (y.breakdown.powerScore - x.breakdown.powerScore) || (y.breakdown.final - x.breakdown.final)
     return y.breakdown.final - x.breakdown.final
   })
+  const topPair = rows[0]
   const total = rows.length
   rows = rows.slice(0, limit)
   return (
     <>
       <div className="hero"><h1>Box Mode · <span className="g">Best Two-Pack Decks</span></h1>
         <p>You own the whole box, so any two of the {META.themeCount} packets are fair game. This ranks all {mirror ? '1,326' : '1,275'} two-pack combos by <b>shared plan / synergy</b> first — the strongest decks are the ones where both halves push the same engine. Click a row for the full math.</p></div>
+      {topPair && <BestTwoNow pair={topPair} onOpen={onOpen} />}
       <CategoryWinners ratings={ratings} resultFor={resultFor} onOpen={onOpen} />
       <EstimatedBanner />
       <div className="toolbar">
@@ -409,7 +441,36 @@ function Drawer({ pair, onClose }: { pair: RankedPair | null; onClose: () => voi
               <div><div className="hint">Card power</div><div className="big" style={{ color: heat(b.powerScore) }}>{b.powerScore}</div></div>
               <div><div className="hint">Total</div><div className="big" style={{ color: heat(b.final) }}>{b.final}</div></div>
             </div>
-            <p style={{ background: 'var(--panel2)', border: '1px solid var(--line)', borderRadius: 10, padding: '11px 13px', fontSize: 13.5, lineHeight: 1.6, margin: '10px 0' }}>{b.whyThisPairWorks}</p>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', margin: '6px 0' }}>
+              <span className="chip" style={{ borderColor: '#3a4b8a', color: '#a9bcff', margin: 0 }}>{b.synergyType}</span>
+              <Diff d={b.pilotDifficulty} /><Power p={b.tablePower} />
+            </div>
+            <p style={{ fontSize: 14, fontStyle: 'italic', color: 'var(--ink)', margin: '8px 0' }}>{b.deckThesis}</p>
+
+            <div className="hint">Shared-plan meter <span style={{ float: 'right' }}>{b.synergyScore}/100</span></div>
+            <Bar v={b.synergyScore} color="var(--good)" />
+            <p className="hint" style={{ marginTop: 4 }}>Two individually strong packets can still make a clunky deck — this meter is how much the halves actually reinforce each other.</p>
+
+            {/* side-by-side packet profiles */}
+            <div className="profile2">
+              {[pair.a, pair.b].map(p => (
+                <div className="profcard" key={p.id}>
+                  <div className="namecell" style={{ marginBottom: 4 }}><Pips p={p} /> {p.name} <span className={`chip rar-${p.rarity}`}>{p.rarity}</span></div>
+                  <div className="hint">{p.colors.map(c => COLOR_NAME[c]).join('/')}{p.buzz && <span title={p.buzz.note}> · 🔥 buzz</span>}</div>
+                  {p.rareCards.length > 0 && <div className="hint" style={{ marginTop: 4 }}><b>Rares:</b> {p.rareCards.join(', ')}</div>}
+                  <div style={{ marginTop: 5 }}>{p.tags.map(t => <span key={t} className="chip">{t}</span>)}</div>
+                  <div className="hint" style={{ marginTop: 5 }}>Creatures {p.creatures ?? '—'} · Removal {p.removal ?? '—'} · Draw {p.cardDraw ?? '—'} <span className="tag-est">counts est</span></div>
+                </div>
+              ))}
+            </div>
+
+            <div className="section" style={{ margin: '12px 0' }}>
+              <div className="hint">Best use case</div><p style={{ margin: '2px 0 8px' }}>{b.bestUseCase}</p>
+              <div className="hint">Why it works</div><p style={{ margin: '2px 0 8px' }}>{b.whyItWorks}</p>
+              <div className="hint">What can go wrong</div><p style={{ margin: '2px 0 8px', color: '#ffb3b3' }}>{b.whatCanGoWrong}</p>
+              <div className="hint">How to play it (turns 1–4)</div><p style={{ margin: '2px 0' }}>{b.howToPlay}</p>
+            </div>
+
             {seed && <div className="banner" style={{ marginTop: 6 }}>★ <div><b>Researched seed pick.</b> {seed.note}</div></div>}
             <div className="hint" style={{ marginTop: 8 }}>Total = the six components below (each shown out of its budget):</div>
             <ul className="breakdown">

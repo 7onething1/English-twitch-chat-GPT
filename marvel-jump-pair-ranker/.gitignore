@@ -2,3 +2,7 @@ node_modules
 dist
 *.local
 .DS_Store
+
+# generated standalone bundles
+artifact.html
+marvel-jump-pair-ranker.html

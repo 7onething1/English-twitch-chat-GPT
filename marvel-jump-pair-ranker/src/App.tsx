@@ -6,8 +6,12 @@ import type { Packet, Color, RankedPair, CardRating, PairResult } from './lib/ty
 import { packetScore, pairScore, seedFor, seedIndex, SEED_PAIRS, estCounts } from './lib/scoring'
 import {
   loadCardRatings, saveCardRatings, loadPairResults, savePairResults,
-  loadOwned, saveOwned, parseCardRatings, parsePairResults,
+  loadOwned, saveOwned, parseCardRatings, parsePairResults, parseCSV,
 } from './lib/storage'
+import {
+  loadChecks, saveChecks, packetVerification, pairConfidence, CONFIDENCE_BLURB,
+  type PhysicalCheck, type PhysicalStatus,
+} from './lib/verification'
 
 const PACKETS = (packetsData as any).packets as Packet[]
 const META = (packetsData as any)._meta
@@ -30,7 +34,7 @@ const Bar = ({ v, color }: { v: number; color?: string }) => (
 )
 const Conf = ({ c }: { c: string }) => <span className={`conf ${c}`}>{c}</span>
 
-type Tab = 'explorer' | 'pairs' | 'picker' | 'sources' | 'methodology'
+type Tab = 'explorer' | 'pairs' | 'picker' | 'verify' | 'table' | 'print' | 'sources' | 'methodology'
 
 export function App() {
   const [tab, setTab] = useState<Tab>((location.hash.replace('#', '') as Tab) || 'pairs')
@@ -38,6 +42,8 @@ export function App() {
   const [results, setResults] = useState<PairResult[]>(loadPairResults())
   // Box mode: you own the whole box. Default every packet to owned.
   const [owned, setOwned] = useState<Set<string>>(() => { const o = loadOwned(); return o.size ? o : new Set(PACKETS.map(p => p.id)) })
+  const [checks, setChecksState] = useState<Record<string, PhysicalCheck>>(loadChecks())
+  const setChecks = (c: Record<string, PhysicalCheck>) => { setChecksState({ ...c }); saveChecks(c) }
   const [detail, setDetail] = useState<RankedPair | null>(null)
 
   useEffect(() => { const h = () => setTab((location.hash.replace('#', '') as Tab) || 'explorer'); addEventListener('hashchange', h); return () => removeEventListener('hashchange', h) }, [])
@@ -55,7 +61,7 @@ export function App() {
 
   const nav = (
     <div className="nav">
-      {([['pairs', 'Box Mode · Best Pairs'], ['explorer', 'Pack Explorer'], ['picker', 'Subset Picker'], ['sources', 'Data Sources'], ['methodology', 'Methodology']] as [Tab, string][]).map(([t, label]) =>
+      {([['pairs', 'Box Mode · Best Pairs'], ['explorer', 'Pack Explorer'], ['picker', 'Subset Picker'], ['verify', 'Verify Box'], ['table', 'Table Results'], ['print', 'Print Sheet'], ['sources', 'Data Sources'], ['methodology', 'Methodology']] as [Tab, string][]).map(([t, label]) =>
         <button key={t} className={tab === t ? 'active' : ''} onClick={() => go(t)}>{label}</button>)}
     </div>
   )
@@ -67,13 +73,16 @@ export function App() {
         {nav}
       </div></div>
       <div className="wrap">
-        {tab === 'explorer' && <Explorer scores={scores} owned={owned} setOwned={(s) => { setOwned(new Set(s)); saveOwned(s) }} />}
-        {tab === 'pairs' && <Pairs scores={scores} ratings={ratings} resultFor={resultFor} onOpen={setDetail} />}
+        {tab === 'explorer' && <Explorer scores={scores} owned={owned} setOwned={(s) => { setOwned(new Set(s)); saveOwned(s) }} checks={checks} />}
+        {tab === 'pairs' && <Pairs scores={scores} ratings={ratings} resultFor={resultFor} onOpen={setDetail} checks={checks} />}
         {tab === 'picker' && <Picker ratings={ratings} resultFor={resultFor} onOpen={setDetail} />}
-        {tab === 'sources' && <Sources ratings={ratings} setRatings={(r) => { setRatings(r); saveCardRatings(r) }} results={results} setResults={(r) => { setResults(r); savePairResults(r) }} />}
+        {tab === 'verify' && <VerifyBox checks={checks} setChecks={setChecks} />}
+        {tab === 'table' && <TableResults ratings={ratings} results={results} setResults={(r) => { setResults(r); savePairResults(r) }} checks={checks} />}
+        {tab === 'print' && <PrintSheet ratings={ratings} resultFor={resultFor} checks={checks} />}
+        {tab === 'sources' && <Sources ratings={ratings} setRatings={(r) => { setRatings(r); saveCardRatings(r) }} results={results} setResults={(r) => { setResults(r); savePairResults(r) }} checks={checks} />}
         {tab === 'methodology' && <Methodology />}
       </div>
-      <Drawer pair={detail} onClose={() => setDetail(null)} />
+      <Drawer pair={detail} onClose={() => setDetail(null)} checks={checks} />
     </>
   )
 }
@@ -83,7 +92,11 @@ const EstimatedBanner = () => (
 )
 
 /* ------------------------------ PACK EXPLORER ----------------------------- */
-function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned: Set<string>; setOwned: (s: Set<string>) => void }) {
+const VBadge = ({ badge }: { badge: string }) => {
+  const cls = badge === 'Checked' ? 'high' : badge === 'Variant' || badge === 'Unknown' ? 'low' : 'medium'
+  return <span className={`conf ${cls}`}>{badge}</span>
+}
+function Explorer({ scores, owned, setOwned, checks }: { scores: Map<string, any>; owned: Set<string>; setOwned: (s: Set<string>) => void; checks: Record<string, PhysicalCheck> }) {
   const [q, setQ] = useState('')
   const [color, setColor] = useState('')
   const [tag, setTag] = useState('')
@@ -122,7 +135,7 @@ function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned
       </div>
       <div className="panel tablewrap">
         <table>
-          <thead><tr>{th('name', 'Packet')}{th('colors', 'Colour')}<th>Theme</th>{th('total', 'Strength')}{th('interaction', 'Interact')}{th('value', 'Value')}<th>Creat/Rem/Draw</th><th>Box</th><th>Src</th></tr></thead>
+          <thead><tr>{th('name', 'Packet')}{th('colors', 'Colour')}<th>Theme</th>{th('total', 'Strength')}{th('interaction', 'Interact')}{th('value', 'Value')}<th>Creat/Rem/Draw</th><th>Box</th><th>Verify</th></tr></thead>
           <tbody>
             {rows.map(p => {
               const s = scores.get(p.id)!
@@ -136,7 +149,7 @@ function Explorer({ scores, owned, setOwned }: { scores: Map<string, any>; owned
                   <td><Bar v={s.value * 4} color="var(--accent2)" /></td>
                   <td>{p.counts ? <span className="hint" title="Arena data: creatures / instants+sorceries / artifacts">{p.counts.creatures}/{p.counts.instants + p.counts.sorceries}/{p.counts.artifacts}</span> : (() => { const c = estCounts(p); return <span className="hint">~{c.creatures}/{c.removal}/{c.cardDraw}</span> })()}</td>
                   <td><input type="checkbox" checked={owned.has(p.id)} onChange={e => { const n = new Set(owned); e.target.checked ? n.add(p.id) : n.delete(p.id); setOwned(n) }} /></td>
-                  <td><Conf c={p.sourceConfidence} /></td>
+                  <td><VBadge badge={packetVerification(p, checks).badge} /></td>
                 </tr>
               )
             })}
@@ -211,14 +224,26 @@ function buildPairs(ratings: CardRating[], resultFor: (a: string, b: string) => 
   return out.sort((x, y) => y.breakdown.final - x.breakdown.final)
 }
 
-function Pairs({ scores, ratings, resultFor, onOpen }: { scores: Map<string, any>; ratings: CardRating[]; resultFor: any; onOpen: (p: RankedPair) => void }) {
+function Pairs({ scores, ratings, resultFor, onOpen, checks }: { scores: Map<string, any>; ratings: CardRating[]; resultFor: any; onOpen: (p: RankedPair) => void; checks: Record<string, PhysicalCheck> }) {
   const [q, setQ] = useState('')
   const [color, setColor] = useState('')
   const [limit, setLimit] = useState(50)
   const [mirror, setMirror] = useState(false)
   const [rankBy, setRankBy] = useState<'synergy' | 'overall' | 'power'>('synergy')
+  const [vfilter, setVfilter] = useState<'any' | 'both' | 'one' | 'arena' | 'warning'>('any')
   const pairs = useMemo(() => buildPairs(ratings, resultFor, mirror), [ratings, resultFor, mirror])
-  let rows = pairs.filter(p => (!q || p.a.name.toLowerCase().includes(q.toLowerCase()) || p.b.name.toLowerCase().includes(q.toLowerCase())) && (!color || p.a.colors.includes(color as Color) || p.b.colors.includes(color as Color)))
+  const vf = (p: RankedPair) => {
+    if (vfilter === 'any') return true
+    const a = packetVerification(p.a, checks).status, b = packetVerification(p.b, checks).status
+    const aC = a === 'physical-contents-confirmed', bC = b === 'physical-contents-confirmed'
+    const warn = a === 'physical-variant-warning' || b === 'physical-variant-warning'
+    if (vfilter === 'both') return aC && bC
+    if (vfilter === 'one') return aC || bC
+    if (vfilter === 'arena') return !aC && !bC && !warn
+    if (vfilter === 'warning') return warn
+    return true
+  }
+  let rows = pairs.filter(p => (!q || p.a.name.toLowerCase().includes(q.toLowerCase()) || p.b.name.toLowerCase().includes(q.toLowerCase())) && (!color || p.a.colors.includes(color as Color) || p.b.colors.includes(color as Color)) && vf(p))
   // Box mode default: researched seed pairs pinned on top in order, then by shared-plan synergy.
   rows = rows.slice().sort((x, y) => {
     if (rankBy === 'synergy') {
@@ -248,14 +273,23 @@ function Pairs({ scores, ratings, resultFor, onOpen }: { scores: Map<string, any
         </select>
         <select value={color} onChange={e => setColor(e.target.value)}><option value="">Any colour</option>{COLORS.map(c => <option key={c} value={c}>{COLOR_NAME[c]}</option>)}</select>
         <select value={limit} onChange={e => setLimit(+e.target.value)}>{[25, 50, 100, 250, 99999].map(n => <option key={n} value={n}>{n >= 99999 ? `All ${total}` : `Top ${n}`}</option>)}</select>
+        <select value={vfilter} onChange={e => setVfilter(e.target.value as any)} title="Verification filter">
+          <option value="any">Any verification</option>
+          <option value="both">Both physical-confirmed</option>
+          <option value="one">At least one confirmed</option>
+          <option value="arena">Arena data only</option>
+          <option value="warning">Has variant warning</option>
+        </select>
         <label className="pill" style={{ cursor: 'pointer' }}><input type="checkbox" checked={mirror} onChange={e => setMirror(e.target.checked)} /> duplicate-packet testing</label>
       </div>
       <div className="panel tablewrap">
         <table>
-          <thead><tr><th>#</th><th>Pair</th><th>Tag</th><th>Synergy</th><th>Power</th><th>Total</th><th>Mana</th><th>Conf</th></tr></thead>
+          <thead><tr><th>#</th><th>Pair</th><th>Tag</th><th>Synergy</th><th>Power</th><th>Total</th><th>Mana</th><th>Confidence</th></tr></thead>
           <tbody>
             {rows.map((p, i) => {
               const b = p.breakdown
+              const conf = pairConfidence(p.a, p.b, checks, resultFor(p.a.id, p.b.id))
+              const warn = conf === 'Variant Warning'
               return (
                 <tr key={p.a.id + p.b.id} onClick={() => onOpen(p)}>
                   <td className="rank">{medal(i + 1) && <span className="medal">{medal(i + 1)}</span>}{i + 1}</td>
@@ -265,7 +299,7 @@ function Pairs({ scores, ratings, resultFor, onOpen }: { scores: Map<string, any
                   <td><span className="score" style={{ color: heat(b.powerScore) }}>{b.powerScore}</span><Bar v={b.powerScore} color="var(--accent2)" /></td>
                   <td><span className="score" style={{ color: heat(b.final) }}>{b.final}</span> <span className="tag-est">est</span></td>
                   <td><span className="chip" style={{ color: b.metrics.manaRisk === 'Low' ? 'var(--good)' : b.metrics.manaRisk === 'High' ? 'var(--bad)' : 'var(--accent2)' }}>{b.metrics.combinedColors} · {b.metrics.manaRisk}</span></td>
-                  <td><Conf c={b.confidence} /></td>
+                  <td><span className={`conf ${warn ? 'low' : conf.includes('Observed') ? 'high' : conf.includes('Physical') || conf.includes('Early') ? 'medium' : 'medium'}`} title={CONFIDENCE_BLURB[conf]}>{conf}</span></td>
                 </tr>
               )
             })}
@@ -332,7 +366,15 @@ function Picker({ ratings, resultFor, onOpen }: { ratings: CardRating[]; resultF
 }
 
 /* ------------------------------ DATA SOURCES ------------------------------ */
-function Sources({ ratings, setRatings, results, setResults }: { ratings: CardRating[]; setRatings: (r: CardRating[]) => void; results: PairResult[]; setResults: (r: PairResult[]) => void }) {
+function exportBox(checks: Record<string, PhysicalCheck>, results: PairResult[]) {
+  const verified = PACKETS.map(p => { const v = packetVerification(p, checks); return { id: p.id, name: p.name, sourceType: v.status === 'physical-contents-confirmed' ? 'manual-physical-check' : p.sourceType, verificationStatus: v.status, sourceConfidence: v.confidence } })
+  const files: [string, unknown][] = [['packets.verified.json', verified], ['physicalChecks.json', Object.values(checks)], ['userResults.json', results]]
+  for (const [name, data] of files) {
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); URL.revokeObjectURL(a.href)
+  }
+}
+function Sources({ ratings, setRatings, results, setResults, checks }: { ratings: CardRating[]; setRatings: (r: CardRating[]) => void; results: PairResult[]; setResults: (r: PairResult[]) => void; checks: Record<string, PhysicalCheck> }) {
   const [msg, setMsg] = useState('')
   const onFile = (kind: 'cards' | 'results') => (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0]; if (!f) return
@@ -370,6 +412,12 @@ function Sources({ ratings, setRatings, results, setResults }: { ratings: CardRa
         </div>
         {msg && <div className="banner" style={{ borderColor: '#2f5', color: '#8f8' }}>{msg}</div>}
         <div className="hint">Packet ids: {PACKETS.map(p => p.id).join(', ')}</div>
+      </div>
+
+      <div className="section">
+        <h2>Export my box</h2>
+        <p className="hint">Save your home-box data outside the app: <code>packets.verified.json</code>, <code>physicalChecks.json</code>, <code>userResults.json</code>. Nothing leaves your browser otherwise.</p>
+        <button className="btn" onClick={() => exportBox(checks, results)}>⬇ Export My Box (3 files)</button>
       </div>
 
       <div className="section">
@@ -430,10 +478,204 @@ function Methodology() {
   )
 }
 
+/* ------------------------------ VERIFY BOX -------------------------------- */
+const STATUSES: PhysicalStatus[] = ['not-checked', 'confirmed-match', 'partial-match', 'different-variant', 'unknown']
+function nowISO() { try { return new Date().toISOString().slice(0, 10) } catch { return '' } }
+
+function VerifyBox({ checks, setChecks }: { checks: Record<string, PhysicalCheck>; setChecks: (c: Record<string, PhysicalCheck>) => void }) {
+  const [csv, setCsv] = useState('')
+  const [msg, setMsg] = useState('')
+  const setStatus = (p: Packet, st: PhysicalStatus, notes?: string) => {
+    const next = { ...checks }
+    if (st === 'not-checked' && !notes) delete next[p.id]
+    else next[p.id] = { packetId: p.id, packetName: p.name, checkedBy: 'you', checkedAt: nowISO(), expectedSource: 'MTGABuddy', expectedSourceType: 'arena-packet', physicalStatus: st, notes: notes ?? checks[p.id]?.notes ?? '' }
+    setChecks(next)
+  }
+  const applyCSV = () => {
+    try {
+      const rows = parseCSV(csv)
+      const byPacket = new Map<string, { match: number; total: number }>()
+      for (const r of rows) {
+        const name = (r.packetName || '').toLowerCase()
+        const pk = PACKETS.find(p => p.name.toLowerCase() === name)
+        if (!pk) continue
+        const g = byPacket.get(pk.id) ?? { match: 0, total: 0 }
+        g.total++; if ((r.observedStatus || '').toLowerCase().startsWith('match')) g.match++
+        byPacket.set(pk.id, g)
+      }
+      const next = { ...checks }
+      byPacket.forEach((g, id) => {
+        const pk = PACKETS.find(p => p.id === id)!
+        const st: PhysicalStatus = g.match === g.total ? 'confirmed-match' : 'partial-match'
+        next[id] = { packetId: id, packetName: pk.name, checkedBy: 'you', checkedAt: nowISO(), expectedSource: 'MTGABuddy', expectedSourceType: 'arena-packet', physicalStatus: st, notes: `${g.match}/${g.total} cards matched (CSV import)` }
+      })
+      setChecks(next)
+      setMsg(`Applied ${byPacket.size} packet checks from CSV.`)
+    } catch (e) { setMsg('CSV parse failed: ' + (e as Error).message) }
+  }
+  const count = (st: PhysicalStatus) => PACKETS.filter(p => (checks[p.id]?.physicalStatus ?? 'not-checked') === st).length
+  const confirmed = count('confirmed-match')
+  const variant = count('partial-match') + count('different-variant')
+  const pairsBoth = (() => { let n = 0; const ids = PACKETS.filter(p => checks[p.id]?.physicalStatus === 'confirmed-match').map(p => p.id); n = ids.length * (ids.length - 1) / 2; return n })()
+
+  return (
+    <>
+      <div className="hero"><h1>Verify <span className="g">Your Box</span></h1>
+        <p>The app starts on MTGA (Arena) packet data. Check your opened physical packs card-for-card and mark them — confirmed packets rank as higher-confidence, and partial matches raise a variant warning on every pair using them. <b>Verification changes the label, never the score.</b></p></div>
+
+      <div className="section">
+        <h2 style={{ fontSize: 15 }}>Confidence dashboard</h2>
+        <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill,minmax(150px,1fr))' }}>
+          {[['Total packets', PACKETS.length], ['Arena-mode', count('not-checked')], ['Physically confirmed', confirmed], ['Partial / variant', variant], ['Unknown', count('unknown')], ['Pairs both confirmed', pairsBoth]].map(([k, v]) => (
+            <div className="card" key={k as string}><div className="hint">{k}</div><div className="big">{v as number}</div></div>
+          ))}
+        </div>
+      </div>
+
+      <div className="section">
+        <h2 style={{ fontSize: 15 }}>Quick CSV import</h2>
+        <p className="hint">Paste rows: <code>packetName,cardName,quantity,category,observedStatus,notes</code>. Packets whose rows all say <code>match</code> become confirmed; otherwise partial-match.</p>
+        <textarea className="grow" style={{ width: '100%', minHeight: 90 }} placeholder="packetName,cardName,quantity,category,observedStatus,notes" value={csv} onChange={e => setCsv(e.target.value)} />
+        <div style={{ marginTop: 8 }}><button className="btn" onClick={applyCSV}>Apply CSV</button> {msg && <span className="hint" style={{ marginLeft: 10 }}>{msg}</span>}</div>
+      </div>
+
+      <div className="section">
+        <h2 style={{ fontSize: 15 }}>Packet checklist</h2>
+        <div className="panel tablewrap">
+          <table>
+            <thead><tr><th>Packet</th><th>Colour</th><th>Rares (expected)</th><th>Cards</th><th>Status</th><th>Notes</th></tr></thead>
+            <tbody>
+              {PACKETS.map(p => {
+                const v = packetVerification(p, checks)
+                return (
+                  <tr key={p.id}>
+                    <td className="namecell"><Pips p={p} /> {p.name} <VBadge badge={v.badge} /></td>
+                    <td>{p.colors.map(c => COLOR_NAME[c]).join('/')}</td>
+                    <td className="hint" style={{ maxWidth: 220 }}>{p.rareCards.length ? p.rareCards.join(', ') : `${p.rareCount ?? '?'} rare slot(s)`}</td>
+                    <td className="hint">{p.counts ? `${p.cards} (${p.counts.lands} mana)` : p.cards}</td>
+                    <td><select value={checks[p.id]?.physicalStatus ?? 'not-checked'} onChange={e => setStatus(p, e.target.value as PhysicalStatus)}>{STATUSES.map(s => <option key={s} value={s}>{s}</option>)}</select></td>
+                    <td><input style={{ width: 160 }} placeholder="notes" value={checks[p.id]?.notes ?? ''} onChange={e => setStatus(p, checks[p.id]?.physicalStatus ?? 'unknown', e.target.value)} /></td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  )
+}
+
+/* ------------------------------ TABLE RESULTS ----------------------------- */
+function TableResults({ ratings, results, setResults, checks }: { ratings: CardRating[]; results: PairResult[]; setResults: (r: PairResult[]) => void; checks: Record<string, PhysicalCheck> }) {
+  const [a, setA] = useState(PACKETS[0].id)
+  const [b, setB] = useState(PACKETS[1].id)
+  const [wins, setWins] = useState(2)
+  const [losses, setLosses] = useState(0)
+  const [notes, setNotes] = useState('')
+  const opts = PACKETS.slice().sort((x, y) => x.name.localeCompare(y.name))
+  const submit = () => {
+    if (a === b) return
+    const games = wins + losses
+    const next = results.filter(r => !((r.pairA === a && r.pairB === b) || (r.pairA === b && r.pairB === a)))
+    const prev = results.find(r => (r.pairA === a && r.pairB === b) || (r.pairA === b && r.pairB === a))
+    const W = (prev?.wins ?? 0) + wins, L = (prev?.losses ?? 0) + losses, G = W + L
+    next.push({ pairA: a, pairB: b, wins: W, losses: L, games: G, winRate: G ? W / G : undefined, notes, dateRange: nowISO(), source: 'user' })
+    setResults(next); setNotes('')
+  }
+  const withPk = (id: string) => PACKETS.find(p => p.id === id)!
+  return (
+    <>
+      <div className="hero"><h1>Table <span className="g">Results</span></h1>
+        <p>Your group's real games. The estimate and your observed record are shown side by side — never merged into one hidden number, so you can see when the table disagrees with the model.</p></div>
+      <div className="banner">📋 <div>This table reflects your group's games and may change as players learn the packets.</div></div>
+
+      <div className="panel" style={{ padding: 16 }}>
+        <b>Log a match</b>
+        <div className="toolbar">
+          <select value={a} onChange={e => setA(e.target.value)}>{opts.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select>
+          <span>+</span>
+          <select value={b} onChange={e => setB(e.target.value)}>{opts.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select>
+          <label className="hint">Wins <input type="number" min={0} style={{ width: 60 }} value={wins} onChange={e => setWins(Math.max(0, +e.target.value))} /></label>
+          <label className="hint">Losses <input type="number" min={0} style={{ width: 60 }} value={losses} onChange={e => setLosses(Math.max(0, +e.target.value))} /></label>
+          <input placeholder="notes" value={notes} onChange={e => setNotes(e.target.value)} />
+          <button className="btn" onClick={submit} disabled={a === b}>Add / update</button>
+        </div>
+        <div className="hint">Adds to any existing record for that pair. Blends into the score via Bayesian smoothing once ≥5 games.</div>
+      </div>
+
+      <div className="panel tablewrap" style={{ marginTop: 14 }}>
+        <table>
+          <thead><tr><th>Pair</th><th>Est. score</th><th>Games</th><th>W</th><th>L</th><th>Smoothed WR</th><th>Confidence</th><th>Notes</th></tr></thead>
+          <tbody>
+            {results.length === 0 && <tr><td colSpan={8} className="empty">No games logged yet.</td></tr>}
+            {results.map(r => {
+              const pa = withPk(r.pairA), pb = withPk(r.pairB)
+              const bd = pairScore(pa, pb, ratings, r)
+              const sm = (r.wins + 3) / (r.games + 6)
+              const conf = pairConfidence(pa, pb, checks, r)
+              return (
+                <tr key={r.pairA + r.pairB}>
+                  <td className="namecell"><Pips p={pa} /> {pa.name} + <Pips p={pb} /> {pb.name}</td>
+                  <td><span className="score" style={{ color: heat(bd.final) }}>{bd.final}</span> <span className="tag-est">est</span></td>
+                  <td>{r.games}</td><td>{r.wins}</td><td>{r.losses}</td>
+                  <td><b>{(sm * 100).toFixed(0)}%</b></td>
+                  <td><span className={`conf ${conf.includes('Observed') ? 'high' : conf === 'Variant Warning' ? 'low' : 'medium'}`}>{conf}</span></td>
+                  <td className="hint">{r.notes}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  )
+}
+
+/* ------------------------------ PRINT SHEET ------------------------------- */
+function PrintSheet({ ratings, resultFor, checks }: { ratings: CardRating[]; resultFor: any; checks: Record<string, PhysicalCheck> }) {
+  const rows = PACKETS.map(p => {
+    let best: RankedPair | null = null
+    for (const q of PACKETS) {
+      if (q.id === p.id) continue
+      const bd = pairScore(p, q, ratings, resultFor(p.id, q.id))
+      const rp: RankedPair = { a: p, b: q, isMirror: false, breakdown: bd }
+      if (!best || bd.final > best.breakdown.final) best = rp
+    }
+    return { p, best: best! }
+  })
+  return (
+    <>
+      <div className="hero"><h1>Print <span className="g">Sheet</span></h1>
+        <p>A one-page, colour-blind-friendly game-night reference. <button className="btn" onClick={() => window.print()}>🖨 Print</button></p></div>
+      <div className="panel tablewrap print-sheet">
+        <table>
+          <thead><tr><th>Packet</th><th>Checked</th><th>Main tag</th><th>Best partner</th><th>Pilot</th><th>Main risk</th><th>W</th><th>L</th></tr></thead>
+          <tbody>
+            {rows.map(({ p, best }) => (
+              <tr key={p.id}>
+                <td><b>{p.name}</b> ({p.colors.join('')})</td>
+                <td>{(checks[p.id]?.physicalStatus ?? 'not-checked') === 'confirmed-match' ? '✓ checked' : (checks[p.id]?.physicalStatus === 'partial-match' ? '△ variant' : 'Arena')}</td>
+                <td>{p.tags[0]}</td>
+                <td>{best.b.name} <span className="hint">({best.breakdown.synergyType})</span></td>
+                <td>{best.breakdown.pilotDifficulty}</td>
+                <td className="hint">{p.risks?.[0] ?? best.breakdown.whatCanGoWrong.split('.')[0]}</td>
+                <td style={{ minWidth: 34, borderLeft: '1px solid #999' }}>&nbsp;</td>
+                <td style={{ minWidth: 34 }}>&nbsp;</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  )
+}
+
 /* ------------------------------ DRAWER ------------------------------------ */
-function Drawer({ pair, onClose }: { pair: RankedPair | null; onClose: () => void }) {
+function Drawer({ pair, onClose, checks }: { pair: RankedPair | null; onClose: () => void; checks: Record<string, PhysicalCheck> }) {
   const b = pair?.breakdown
   const seed = pair && seedFor(pair.a.id, pair.b.id)
+  const conf = pair ? pairConfidence(pair.a, pair.b, checks) : null
   return (
     <>
       <div className={`drawer-bg ${pair ? 'show' : ''}`} onClick={onClose} />
@@ -441,7 +683,9 @@ function Drawer({ pair, onClose }: { pair: RankedPair | null; onClose: () => voi
         {pair && b && (
           <>
             <span className="close" onClick={onClose}>✕</span>
-            <div className="hint"><span className="chip" style={{ borderColor: '#3a4b8a', color: '#a9bcff' }}>{b.tag}</span> <Conf c={b.confidence} /> <span className="tag-est">estimated</span></div>
+            <div className="hint"><span className="chip" style={{ borderColor: '#3a4b8a', color: '#a9bcff' }}>{b.tag}</span> {conf && <span className={`conf ${conf === 'Variant Warning' ? 'low' : conf.includes('Observed') ? 'high' : 'medium'}`}>{conf}</span>} <span className="tag-est">estimated</span></div>
+            {conf && <p className="hint" style={{ margin: '4px 0' }}>{CONFIDENCE_BLURB[conf]}</p>}
+            {conf === 'Variant Warning' && <div className="banner" style={{ borderColor: '#c0392b', color: '#ff9a9a' }}>⚠️ <div>This packet may differ from the MTGA packet model because a physical check did not fully match.</div></div>}
             <h2><Pips p={pair.a} /> {pair.a.name} + <Pips p={pair.b} /> {pair.b.name}</h2>
             <div style={{ display: 'flex', gap: 18, margin: '8px 0' }}>
               <div><div className="hint">Synergy</div><div className="big" style={{ color: heat(b.synergyScore) }}>{b.synergyScore}</div></div>

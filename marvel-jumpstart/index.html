@@ -3,61 +3,40 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Marvel Jumpstart — Mini Pack Rankings & Best Pairs</title>
+<title>Marvel Super Heroes Jumpstart — Theme Rankings & Best Pairs</title>
 <style>
   :root{
-    --bg:#0b0d17;
-    --bg-soft:#131627;
-    --panel:#181c30;
-    --panel-2:#1f2440;
-    --line:#2a3050;
-    --ink:#eef1ff;
-    --muted:#9aa3c7;
-    --accent:#e23636;      /* Marvel red */
-    --accent-2:#f0a500;    /* gold */
-    --blue:#3b6fe0;
-    --good:#28c76f;
-    --shadow:0 10px 30px rgba(0,0,0,.45);
-    --radius:16px;
+    --bg:#0b0d17; --bg-soft:#131627; --panel:#181c30; --panel-2:#1f2440;
+    --line:#2a3050; --ink:#eef1ff; --muted:#9aa3c7;
+    --accent:#e23636; --accent-2:#f0a500; --good:#28c76f; --bad:#ff6b6b;
+    --shadow:0 10px 30px rgba(0,0,0,.45); --radius:16px;
+    /* MTG colour identity */
+    --W:#f4efc9; --U:#3f9be0; --B:#7d7178; --R:#e0563b; --G:#4faa66; --Wtext:#0b0d17;
   }
   *{box-sizing:border-box}
   html,body{margin:0}
   body{
     background:
       radial-gradient(1200px 600px at 80% -10%, rgba(226,54,54,.18), transparent 60%),
-      radial-gradient(900px 500px at 0% 0%, rgba(59,111,224,.16), transparent 55%),
+      radial-gradient(900px 500px at 0% 0%, rgba(63,155,224,.14), transparent 55%),
       var(--bg);
     color:var(--ink);
     font:16px/1.5 "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing:antialiased;
-    padding-bottom:64px;
+    -webkit-font-smoothing:antialiased; padding-bottom:64px;
   }
-  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-
-  header.hero{
-    padding:56px 20px 34px;
-    text-align:center;
-    position:relative;
-  }
-  .badge{
-    display:inline-block;letter-spacing:.28em;text-transform:uppercase;
-    font-size:12px;font-weight:800;color:#fff;
-    background:linear-gradient(90deg,var(--accent),#b71c1c);
-    padding:7px 16px;border-radius:999px;box-shadow:var(--shadow);
-  }
-  h1{
-    font-size:clamp(30px,5vw,52px);margin:18px 0 8px;line-height:1.05;
-    font-weight:900;letter-spacing:-.5px;
-  }
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+  header.hero{padding:52px 20px 26px;text-align:center}
+  .badge{display:inline-block;letter-spacing:.24em;text-transform:uppercase;font-size:12px;font-weight:800;color:#fff;
+    background:linear-gradient(90deg,var(--accent),#b71c1c);padding:7px 16px;border-radius:999px;box-shadow:var(--shadow)}
+  h1{font-size:clamp(28px,4.6vw,50px);margin:16px 0 8px;line-height:1.05;font-weight:900;letter-spacing:-.5px}
   h1 .g{background:linear-gradient(90deg,var(--accent-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{color:var(--muted);max-width:660px;margin:0 auto;font-size:16px}
+  .sub{color:var(--muted);max-width:720px;margin:0 auto;font-size:15.5px}
+  .facts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+  .fact{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:13px;color:var(--muted)}
+  .fact b{color:var(--ink)}
 
   .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:26px 0 6px}
-  .tab{
-    background:var(--panel);border:1px solid var(--line);color:var(--muted);
-    padding:10px 18px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px;
-    transition:.15s;
-  }
+  .tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);padding:10px 18px;border-radius:999px;cursor:pointer;font-weight:700;font-size:14px;transition:.15s}
   .tab:hover{color:var(--ink);border-color:#3a416a}
   .tab.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--shadow)}
 
@@ -65,412 +44,442 @@
   section.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  .panel{
-    background:linear-gradient(180deg,var(--panel),var(--bg-soft));
-    border:1px solid var(--line);border-radius:var(--radius);
-    box-shadow:var(--shadow);
-  }
-
-  .toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0 18px}
-  .toolbar input,.toolbar select{
-    background:var(--panel);border:1px solid var(--line);color:var(--ink);
-    padding:10px 14px;border-radius:10px;font-size:14px;outline:none;
-  }
+  .panel{background:linear-gradient(180deg,var(--panel),var(--bg-soft));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0 16px}
+  .toolbar input,.toolbar select{background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:10px 14px;border-radius:10px;font-size:14px;outline:none}
   .toolbar input{flex:1;min-width:200px}
   .toolbar .hint{color:var(--muted);font-size:13px}
 
-  /* ---- Pack cards / tier list ---- */
+  /* colour pip */
+  .pip{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:11px;font-weight:900;flex:none;border:1px solid rgba(0,0,0,.35);box-shadow:0 0 0 2px rgba(255,255,255,.05)}
+  .pip.W{background:var(--W);color:#3a3411}.pip.U{background:var(--U);color:#04233d}.pip.B{background:var(--B);color:#15100f}
+  .pip.R{background:var(--R);color:#3d0f07}.pip.G{background:var(--G);color:#06301a}
+  .pip.multi{background:conic-gradient(var(--W),var(--U),var(--B),var(--R),var(--G),var(--W));color:#fff}
+
+  .chip{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:2px 4px 2px 0;white-space:nowrap}
+  .chip.rar-mythic{border-color:#c8702a;color:#ffb164}
+  .chip.rar-rare{border-color:#b8912f;color:#f0d27a}
+  .chip.rar-common{border-color:#3a416a;color:#9aa3c7}
+
+  /* pairs table */
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+  th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;user-select:none;white-space:nowrap}
+  th:hover{color:var(--ink)}
+  tbody tr{transition:.12s;cursor:pointer}
+  tbody tr:hover{background:rgba(255,255,255,.03)}
+  .rank{font-weight:900;color:var(--accent-2);font-variant-numeric:tabular-nums;width:52px}
+  .pairnames{font-weight:700}
+  .medal{margin-right:6px}
+  .match{font-weight:900;font-variant-numeric:tabular-nums}
+  .barcell{min-width:120px}
+  .mini{height:8px;border-radius:6px;background:#0c0f1e;overflow:hidden}
+  .mini>i{display:block;height:100%;border-radius:6px}
+
+  /* tier list */
   .tier-row{display:flex;gap:14px;align-items:stretch;margin-bottom:14px}
-  .tier-label{
-    width:66px;flex:none;display:flex;align-items:center;justify-content:center;
-    font-weight:900;font-size:26px;border-radius:12px;color:#0b0d17;
-  }
+  .tier-label{width:60px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;border-radius:12px;color:#0b0d17}
   .tier-S{background:linear-gradient(180deg,#ff5f6d,#e23636)}
   .tier-A{background:linear-gradient(180deg,#ffb457,#f0a500)}
   .tier-B{background:linear-gradient(180deg,#7dd3fc,#3b6fe0);color:#08122b}
   .tier-C{background:linear-gradient(180deg,#a7f3d0,#28c76f)}
-  .tier-cards{display:flex;gap:12px;flex-wrap:wrap;flex:1}
+  .tier-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:12px;flex:1}
+  .theme{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:13px;transition:.15s}
+  .theme:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .theme .top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .theme h3{margin:0;font-size:15px;font-weight:800;flex:1}
+  .theme .desc{font-size:12.5px;color:var(--muted);margin:4px 0 9px;min-height:34px}
+  .statmini{display:flex;gap:10px;font-size:11px;color:var(--muted);margin-bottom:8px}
+  .statmini div{flex:1}
+  .statmini .mini{margin-top:3px}
 
-  .pack{
-    background:var(--panel-2);border:1px solid var(--line);border-radius:12px;
-    padding:14px;width:230px;position:relative;cursor:default;transition:.15s;
-  }
-  .pack:hover{transform:translateY(-3px);border-color:var(--accent)}
-  .pack .top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-  .dot{width:12px;height:12px;border-radius:50%;flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.06)}
-  .pack h3{margin:0;font-size:16px;font-weight:800}
-  .pack .arch{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .pack .desc{font-size:12.5px;color:var(--muted);margin:6px 0 10px;min-height:34px}
-  .rating{display:flex;align-items:center;gap:8px}
-  .bar{height:8px;border-radius:6px;background:#0c0f1e;flex:1;overflow:hidden}
-  .bar>i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent-2),var(--accent))}
-  .rating b{font-variant-numeric:tabular-nums;font-size:14px}
+  /* find-a-partner */
+  .partner-row{display:flex;align-items:center;gap:14px;padding:12px 14px;border-bottom:1px solid var(--line);cursor:pointer;transition:.12s}
+  .partner-row:hover{background:rgba(255,255,255,.03)}
+  .partner-row .pr-rank{font-weight:900;color:var(--accent-2);width:34px;font-variant-numeric:tabular-nums}
+  .partner-row .pr-name{font-weight:700;flex:1;min-width:150px}
+  .partner-row .pr-bar{flex:2;min-width:120px}
+  .partner-row .pr-reasons{flex:3;min-width:180px}
+  .reason{font-size:11px;padding:2px 8px;border-radius:999px;margin:2px 4px 2px 0;display:inline-block}
+  .reason.good{background:rgba(40,199,111,.12);border:1px solid rgba(40,199,111,.4);color:#7de6ab}
+  .reason.bad{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.4);color:#ff9a9a}
+  .reason.info{background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted)}
 
-  /* ---- Pairs table ---- */
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}
-  th{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;user-select:none;white-space:nowrap}
-  th:hover{color:var(--ink)}
-  tbody tr{transition:.12s}
-  tbody tr:hover{background:rgba(255,255,255,.03)}
-  .rank{font-weight:900;color:var(--accent-2);font-variant-numeric:tabular-nums;width:52px}
-  .pairnames{font-weight:700}
-  .chip{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin-left:6px}
-  .score{font-weight:900;font-variant-numeric:tabular-nums}
-  .syn-pos{color:var(--good)}
-  .syn-neg{color:#ff7a7a}
-  .syn-zero{color:var(--muted)}
-  .medal{margin-right:6px}
-
-  /* ---- Heatmap ---- */
-  .heat-wrap{overflow-x:auto;padding:22px}
-  table.heat{border-collapse:separate;border-spacing:3px;min-width:640px}
-  table.heat th,table.heat td{border:none;padding:0}
-  table.heat th.col{writing-mode:vertical-rl;transform:rotate(180deg);height:120px;font-size:11px;color:var(--muted);text-align:left;padding-bottom:6px}
-  table.heat th.row{font-size:12px;color:var(--muted);text-align:right;padding-right:8px;white-space:nowrap;font-weight:700}
-  .cell{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#08122b;cursor:pointer;transition:.12s}
-  .cell:hover{outline:2px solid #fff;outline-offset:1px}
-  .cell.diag{background:#0c0f1e!important;color:var(--muted);cursor:default}
-  .legend{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:14px;color:var(--muted);font-size:13px;flex-wrap:wrap}
-  .legend .scale{height:12px;width:220px;border-radius:6px;background:linear-gradient(90deg,#3b6fe0,#7dd3fc,#a7f3d0,#ffb457,#e23636)}
-
-  /* ---- Detail popover ---- */
-  #detail{
-    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120%);
-    background:var(--panel);border:1px solid var(--accent);border-radius:14px;
-    padding:16px 20px;box-shadow:var(--shadow);max-width:520px;width:calc(100% - 40px);
-    transition:.25s;z-index:50;
-  }
+  /* detail popover */
+  #detail{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140%);background:var(--panel);border:1px solid var(--accent);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow);max-width:560px;width:calc(100% - 40px);transition:.25s;z-index:50}
   #detail.show{transform:translateX(-50%) translateY(0)}
-  #detail h4{margin:0 0 6px;font-size:17px}
-  #detail p{margin:4px 0;color:var(--muted);font-size:13.5px}
+  #detail h4{margin:0 0 4px;font-size:17px}
   #detail .close{position:absolute;top:10px;right:14px;cursor:pointer;color:var(--muted);font-weight:900}
-  #detail .statline{display:flex;gap:18px;margin-top:8px;flex-wrap:wrap}
+  #detail .statline{display:flex;gap:16px;margin:8px 0;flex-wrap:wrap;font-size:13px}
   #detail .statline b{color:var(--ink)}
+  #detail p{margin:5px 0;color:var(--muted);font-size:13px}
 
-  footer{color:var(--muted);text-align:center;font-size:13px;margin-top:40px;padding:0 20px}
-  a{color:var(--accent-2)}
+  footer{color:var(--muted);text-align:center;font-size:12.5px;margin-top:40px;padding:0 20px;line-height:1.7}
+  footer a{color:var(--accent-2)}
+  .explain{font-size:13px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}
+  .explain b{color:var(--ink)}
 </style>
 </head>
 <body>
 
 <header class="hero">
-  <span class="badge">Marvel Jumpstart · Draft Helper</span>
-  <h1>Mini Pack Rankings &amp; <span class="g">Best Pairs</span></h1>
-  <p class="sub">You get to pick <b>two</b> mini packs. This shows how each pack ranks on its own, and the pairwise synergy data for every combination — so you know which two go best together.</p>
+  <span class="badge">MTG · Marvel Super Heroes Jumpstart</span>
+  <h1>Theme Rankings &amp; <span class="g">Best Pairs</span></h1>
+  <p class="sub">In Jumpstart you shuffle <b>two</b> 20-card theme packs into one 40-card deck. This ranks all 51 Marvel themes and — using their colours and mechanics — scores every one of the <b>1,275</b> possible two-pack combinations so you know which two shuffle together best.</p>
+  <div class="facts">
+    <span class="fact"><b>51</b> themes</span>
+    <span class="fact"><b>1,275</b> possible pairs</span>
+    <span class="fact">Released <b>June 6, 2026</b></span>
+    <span class="fact">Shuffle <b>2</b> → 40-card deck</span>
+  </div>
 </header>
 
 <div class="wrap">
   <div class="tabs">
     <button class="tab active" data-tab="pairs">🏆 Best Pairs</button>
-    <button class="tab" data-tab="packs">🎴 Pack Tier List</button>
-    <button class="tab" data-tab="heat">🔥 Synergy Grid</button>
+    <button class="tab" data-tab="partner">🧩 Find a Partner</button>
+    <button class="tab" data-tab="tiers">🎴 Theme Tiers</button>
   </div>
 
   <!-- BEST PAIRS -->
   <section id="pairs" class="active">
     <div class="toolbar">
-      <input id="pairSearch" placeholder="Filter pairs by pack name (e.g. X-Men)…" />
-      <select id="pairArch">
-        <option value="">All archetypes</option>
-      </select>
-      <span class="hint">Click any row for details</span>
+      <input id="pairSearch" placeholder="Filter by theme name (e.g. Iron Man)…" />
+      <select id="pairColor"><option value="">Any colour</option>
+        <option value="W">White</option><option value="U">Blue</option><option value="B">Black</option>
+        <option value="R">Red</option><option value="G">Green</option><option value="multi">Multicolour</option></select>
+      <select id="pairLimit">
+        <option value="50">Top 50</option><option value="100">Top 100</option>
+        <option value="250">Top 250</option><option value="9999">All 1,275</option></select>
+      <span class="hint">Click a row for the synergy breakdown</span>
     </div>
     <div class="panel" style="overflow:hidden">
       <table id="pairTable">
-        <thead>
-          <tr>
-            <th data-k="rank">#</th>
-            <th data-k="name">Pair</th>
-            <th data-k="a">Pack A</th>
-            <th data-k="b">Pack B</th>
-            <th data-k="syn">Synergy</th>
-            <th data-k="score">Pair Score ▼</th>
-          </tr>
-        </thead>
+        <thead><tr>
+          <th data-k="rank">#</th><th data-k="name">Pair</th>
+          <th data-k="match">Match ▼</th><th data-k="syn">Synergy</th><th data-k="power">Power</th>
+        </tr></thead>
         <tbody></tbody>
       </table>
     </div>
   </section>
 
-  <!-- PACK TIER LIST -->
-  <section id="packs">
+  <!-- FIND A PARTNER -->
+  <section id="partner">
+    <div class="explain">Pick a pack you opened and see which second pack pairs with it best — ranked by overall <b>Match</b>, with the reasons the two decks reinforce (or fight) each other.</div>
     <div class="toolbar">
-      <input id="packSearch" placeholder="Search a pack…" />
-      <span class="hint">Ranked by solo power rating (0–100)</span>
+      <select id="partnerPick" style="flex:1;min-width:240px"></select>
     </div>
-    <div id="tierList"></div>
+    <div id="partnerHead"></div>
+    <div class="panel" id="partnerList" style="overflow:hidden;margin-top:14px"></div>
   </section>
 
-  <!-- HEATMAP -->
-  <section id="heat">
-    <div class="panel heat-wrap">
-      <table class="heat" id="heatTable"></table>
-      <div class="legend">
-        <span>weaker pair</span>
-        <span class="scale"></span>
-        <span>stronger pair</span>
-      </div>
+  <!-- THEME TIERS -->
+  <section id="tiers">
+    <div class="explain"><b>Solo Power</b> is a transparent estimate = a deck's payoff ceiling + its consistency (both shown as bars). It rates a theme on its own; the pairing engine handles how two combine. Note: a theme's <b>rarity</b> reflects how replayable/splashy it is, <b>not</b> its power level — so it doesn't drive these scores. This is a heuristic, not an official ranking (no community tier list exists yet for this June 2026 set).</div>
+    <div class="toolbar">
+      <input id="tierSearch" placeholder="Search a theme…" />
+      <select id="tierColor"><option value="">All colours</option>
+        <option value="W">White</option><option value="U">Blue</option><option value="B">Black</option>
+        <option value="R">Red</option><option value="G">Green</option><option value="multi">Multicolour</option></select>
     </div>
+    <div id="tierList"></div>
   </section>
 </div>
 
 <div id="detail"><span class="close" onclick="hideDetail()">✕</span><div id="detailBody"></div></div>
 
 <footer>
-  <p>Pack ratings and synergy values are an editable data model — tweak the <code>PACKS</code> and <code>SYNERGY</code> tables at the top of the source to match the current meta.</p>
+  <p><b>How pairing is scored.</b> Match % = 50% mechanical synergy + 30% combined solo power + 20% mana consistency (mono-colour pairs are smoothest). Shared mechanics and complementary combos raise synergy; a few themes actively fight (e.g. "attack alone" vs "go wide").</p>
+  <p>Theme names, colours, rarities and mechanics from the official set, which adds two keywords: <b>Power-Up</b> (mana-heavy activated abilities with game-winning payoffs) and <b>Teamwork</b> (tap your creatures to help pay for big spells — rewards going wide). No competitive tier list exists yet for this June 2026 set, so Power/synergy values are an editable heuristic model — tweak the <code>THEMES</code> array and synergy rules at the top of the source.</p>
+  <p>Sources:
+    <a href="https://mtg.wiki/page/Marvel_Super_Heroes_Jumpstart">MTG Wiki</a> ·
+    <a href="https://draftsim.com/mtg-marvel-super-heroes-jumpstart/">Draftsim</a> ·
+    <a href="https://magic.wizards.com/en/news/announcements/marvel-super-heroes-jumpstart-booster-themes">Wizards booster themes</a> ·
+    <a href="https://scryfall.com/sets/fmsc">Scryfall (FMSC)</a>
+  </p>
 </footer>
 
 <script>
-/* ============================================================
-   DATA MODEL  — edit these two tables to update the site
-   ============================================================
-   Each pack: solo power rating (0-100) + archetype + color id.
-   SYNERGY: bonus/penalty (roughly -8..+15) applied to a pair on
-   top of the average of the two solo ratings. Only list pairs
-   that deviate from neutral; everything else defaults to 0.
-*/
-const PACKS = [
-  {id:"avengers", name:"Avengers Assemble", arch:"Midrange", color:"#e23636", rating:88,
-   desc:"Go-wide team buffs and reliable removal. Almost never a bad half of a pair."},
-  {id:"xmen", name:"X-Men", arch:"Midrange", color:"#f0a500", rating:90,
-   desc:"Mutant tribal value engine. Highest solo ceiling in the set."},
-  {id:"symbiotes", name:"Symbiotes", arch:"Aggro", color:"#111111", rating:84,
-   desc:"Fast, sticky threats that snowball. Punishes slow openings."},
-  {id:"spiderverse", name:"Spider-Verse", arch:"Tempo", color:"#c0392b", rating:82,
-   desc:"Cheap web-slingers and bounce tricks for flexible tempo swings."},
-  {id:"guardians", name:"Guardians of the Galaxy", arch:"Midrange", color:"#8e44ad", rating:79,
-   desc:"Ramp into big cosmic payoffs. Rewards reaching the late game."},
-  {id:"asgard", name:"Asgard", arch:"Control", color:"#3b6fe0", rating:81,
-   desc:"Thunder-god top end and board wipes. The premier control shell."},
-  {id:"wakanda", name:"Wakanda", arch:"Midrange", color:"#1abc9c", rating:77,
-   desc:"Vibranium armor and defensive value. Grinds attrition matchups."},
-  {id:"sinister", name:"Sinister Six", arch:"Aggro", color:"#27ae60", rating:80,
-   desc:"Villain aggro with reach. Closes games the tempo packs open."},
-  {id:"midnight", name:"Midnight Sons", arch:"Combo", color:"#6c5ce7", rating:76,
-   desc:"Mystic sacrifice engine. Explosive with the right enablers."},
-  {id:"fantastic", name:"Fantastic Four", arch:"Control", color:"#2980b9", rating:74,
-   desc:"Family value + stall. Needs a proactive partner to close."},
-  {id:"inhumans", name:"Inhumans", arch:"Combo", color:"#00cec9", rating:72,
-   desc:"Terrigen payoffs that swing hard once online, clunky if not."},
-  {id:"weaponx", name:"Weapon X", arch:"Aggro", color:"#95a5a6", rating:83,
-   desc:"Regenerating berserkers. Low floor, extremely high aggression."},
+/* =====================================================================
+   DATA — 51 Marvel Super Heroes Jumpstart themes.
+   color: W/U/B/R/G/multi · rar: mythic/rare/common
+   power (1-5 payoff ceiling) · cons (1-5 consistency) · tags (mechanics)
+   Descriptions use the official taglines where published.
+   ===================================================================== */
+const THEMES = [
+ // ---- WHITE ----
+ {n:"Agents of S.H.I.E.L.D.",c:"W",rar:"rare",power:3,cons:4,tags:["attack_alone"],d:"Attack alone to gain bonuses and infiltrate the enemy."},
+ {n:"Battalion",c:"W",rar:"common",power:3,cons:4,tags:["battalion","go_wide"],d:"Attack with three or more creatures for overwhelming damage."},
+ {n:"Caretakers",c:"W",rar:"common",power:2,cons:4,tags:["lifegain","counters"],d:"Gain life and add +1/+1 counters; Doctor Strange doubles your lifegain."},
+ {n:"Counterargument",c:"W",rar:"rare",power:3,cons:4,tags:["counters"],d:"Take the fight to court and dish out +1/+1 counters."},
+ {n:"Equipped",c:"W",rar:"rare",power:3,cons:4,tags:["equipment"],d:"Use Equipment to lead Cap and company to victory."},
+ {n:"Marvelous",c:"W",rar:"mythic",power:3,cons:3,tags:["flicker"],d:"Flicker your Marvels in and out of exile, triggering enters effects."},
+ {n:"Precise",c:"W",rar:"rare",power:3,cons:3,tags:["spells","removal"],d:"Target Hawkeye and allies with spells to trigger their abilities."},
+ {n:"Squadron",c:"W",rar:"common",power:3,cons:4,tags:["flyers","go_wide"],d:"Support your heroes into a true Squadron Supreme of fliers."},
+ {n:"Wakanda",c:"W",rar:"mythic",power:3,cons:4,tags:["go_wide","artifacts"],d:"Create Wakandan creature tokens backed by vibranium tech."},
+ {n:"Web-Slinging",c:"W",rar:"rare",power:3,cons:4,tags:["go_wide"],d:"Sling out small tapped creatures to power up your Spider-Heroes."},
+ // ---- BLUE ----
+ {n:"Analyzed",c:"U",rar:"common",power:3,cons:4,tags:["draw"],d:"Study your foes and draw into the perfect answer."},
+ {n:"Atlantis",c:"U",rar:"rare",power:3,cons:4,tags:["draw","go_wide"],d:"Draw extra cards to unleash the full potential of your Merfolk."},
+ {n:"Blink",c:"U",rar:"common",power:3,cons:3,tags:["flicker"],d:"Trigger enters/leaves abilities by popping in and out of play."},
+ {n:"Conniving",c:"U",rar:"common",power:3,cons:4,tags:["connive","draw"],d:"Devious rewards for drawing and discarding extra cards."},
+ {n:"Geniuses",c:"U",rar:"rare",power:3,cons:4,tags:["draw"],d:"Assist Marvel's greatest minds by drawing two cards in a turn."},
+ {n:"Iron Man",c:"U",rar:"mythic",power:4,cons:3,tags:["artifacts"],d:"Churn out artifacts with the industrial might of Stark Industries."},
+ {n:"Kang Dynasty",c:"U",rar:"mythic",power:4,cons:3,tags:["spells","graveyard"],d:"Channel time magic, casting and flashing back noncreature spells."},
+ {n:"Pym Particles",c:"U",rar:"rare",power:3,cons:4,tags:["shrink","removal"],d:"Shrink the power of opposing threats."},
+ {n:"Soaring",c:"U",rar:"common",power:3,cons:4,tags:["flyers"],d:"Take to the skies with a host of superpowered fliers."},
+ {n:"Tricksters",c:"U",rar:"rare",power:3,cons:3,tags:["clone"],d:"Clone your creatures and immerse enemies in Loki's illusions."},
+ // ---- BLACK ----
+ {n:"Armed",c:"B",rar:"rare",power:3,cons:4,tags:["equipment"],d:"Suit up your minions with Equipment for a full loadout."},
+ {n:"DOOM",c:"B",rar:"mythic",power:5,cons:2,tags:["graveyard","spells"],d:"Combine Doomsday with Doctor Doom to win in a single masterstroke."},
+ {n:"HYDRA",c:"B",rar:"common",power:3,cons:3,tags:["attack_alone","sacrifice"],d:"Attack alone to infiltrate, and dispose of expendable minions."},
+ {n:"Lethal",c:"B",rar:"rare",power:3,cons:4,tags:["removal"],d:"Maximize Black Widow's deadly skill by granting deathtouch."},
+ {n:"Masters of Evil",c:"B",rar:"common",power:3,cons:3,tags:["go_wide"],d:"Casting each member of the Masters of Evil empowers the next."},
+ {n:"Mayhem",c:"B",rar:"rare",power:3,cons:3,tags:["connive","graveyard"],d:"Discard cards to reap Mayhem rewards and cast spells from your graveyard."},
+ {n:"Returned",c:"B",rar:"common",power:4,cons:3,tags:["graveyard"],d:"Mill yourself and reanimate creatures to live beyond the grave."},
+ {n:"Street Level Villains",c:"B",rar:"common",power:3,cons:3,tags:["sacrifice","artifacts"],d:"Sacrifice minions and Treasure to find ruthless victory."},
+ {n:"Thunderbolts",c:"B",rar:"rare",power:3,cons:3,tags:["lifegain","connive"],d:"Reveal the Thunderbolts' potential as you gain life and connive."},
+ {n:"Ultron",c:"B",rar:"mythic",power:4,cons:3,tags:["artifacts","graveyard"],d:"Artifacts in your graveyard add more troops to Ultron's robot army."},
+ // ---- RED ----
+ {n:"Boosted",c:"R",rar:"common",power:3,cons:4,tags:["go_wide","counters"],d:"Pump the team and swing for lethal."},
+ {n:"Fearless",c:"R",rar:"rare",power:3,cons:4,tags:["battalion"],d:"Attack fearlessly with relentless aggression."},
+ {n:"Heroes for Hire",c:"R",rar:"rare",power:3,cons:4,tags:["go_wide"],d:"Luke Cage and Iron Fist punch above their pay grade."},
+ {n:"Runaways",c:"R",rar:"mythic",power:4,cons:3,tags:["go_wide","counters"],d:"The Runaways and Old Lace grow into a runaway board."},
+ {n:"Speedy",c:"R",rar:"common",power:3,cons:4,tags:["go_wide"],d:"Quicksilver-fast hasty attackers close games early."},
+ {n:"Spider-Verse",c:"R",rar:"rare",power:4,cons:4,tags:["go_wide"],d:"Swarm the board with Spider-Man and the whole Spider-Verse."},
+ {n:"Thor",c:"R",rar:"common",power:4,cons:3,tags:["spells","big_creatures"],d:"Call down the thunder with Thor's lightning and power."},
+ {n:"Vehicles",c:"R",rar:"rare",power:3,cons:3,tags:["vehicles","artifacts"],d:"Crew powerful Vehicles for outsized attacks."},
+ {n:"Scarlet",c:"R",rar:"mythic",power:5,cons:2,tags:["spells"],d:"Bend reality with the Scarlet Witch's chaos magic."},
+ {n:"Young Avengers",c:"R",rar:"common",power:3,cons:4,tags:["go_wide","counters"],d:"The next generation grows up fast and hits hard."},
+ // ---- GREEN ----
+ {n:"Animal",c:"G",rar:"common",power:3,cons:4,tags:["big_creatures","go_wide"],d:"Unleash a menagerie of beastly Marvel creatures."},
+ {n:"Great Lakes Avengers",c:"G",rar:"rare",power:3,cons:4,tags:["go_wide"],d:"Squirrel Girl goes nuts — swarm with the underdog Avengers."},
+ {n:"Incredible",c:"G",rar:"rare",power:4,cons:4,tags:["big_creatures"],d:"Hulk out with ever-growing, incredible bruisers."},
+ {n:"Rampaging",c:"G",rar:"common",power:3,cons:4,tags:["big_creatures"],d:"Trample over blockers with rampaging brutes."},
+ {n:"Savage Lands",c:"G",rar:"mythic",power:4,cons:3,tags:["big_creatures","ramp"],d:"Ramp into Savage Land dinosaurs and giant threats."},
+ {n:"Tenacious",c:"G",rar:"rare",power:3,cons:4,tags:["counters"],d:"Resilient heroes grind on with +1/+1 counters."},
+ {n:"Towering",c:"G",rar:"common",power:3,cons:4,tags:["big_creatures"],d:"Field towering giants that dominate the board."},
+ {n:"Trained",c:"G",rar:"rare",power:3,cons:4,tags:["counters"],d:"Train your team up with +1/+1 counters."},
+ {n:"Uncanny",c:"G",rar:"rare",power:4,cons:3,tags:["go_wide","counters"],d:"Rally the uncanny X-Men into a versatile mutant force."},
+ {n:"Wild",c:"G",rar:"common",power:3,cons:4,tags:["big_creatures"],d:"Go wild with aggressive, untamed creatures."},
+ // ---- MULTICOLOUR ----
+ {n:"Fantastic",c:"multi",rar:"mythic",power:4,cons:3,tags:["go_wide","counters"],d:"The Fantastic Four combine every colour and work as a team."},
 ];
 
-/* symmetric synergy — key "a|b" (order-independent, use ids) */
-const SYNERGY = {
-  "avengers|xmen": 12,      // two value engines, overwhelming card advantage
-  "symbiotes|spiderverse": 15, // signature rivalry, bounce fuels symbiote hosts
-  "symbiotes|sinister": 13, // relentless aggro, best clock in the set
-  "spiderverse|sinister": 10,
-  "guardians|asgard": 11,   // ramp + cosmic top end, dream control curve
-  "asgard|fantastic": 9,    // double control, near-unbeatable in attrition
-  "avengers|symbiotes": 8,
-  "xmen|wakanda": 9,        // mutant value shielded by vibranium
-  "weaponx|xmen": 10,       // Weapon X program IS X-Men lore, tribal overlap
-  "weaponx|symbiotes": 7,
-  "midnight|inhumans": 12,  // combo enablers + combo payoffs
-  "midnight|guardians": 6,
-  "inhumans|fantastic": 5,
-  "avengers|asgard": 7,
-  "wakanda|fantastic": 6,   // fortress deck, great defense, weak clock
-  "avengers|sinister": 4,
-  "xmen|guardians": 5,
-  /* anti-synergies — two packs that want the same slots / clash */
-  "asgard|symbiotes": -6,   // slow control hates being the aggro's tempo
-  "fantastic|sinister": -5,
-  "midnight|asgard": -4,
-  "inhumans|weaponx": -3,
-  "fantastic|weaponx": -4,
-};
+/* ---- synergy rules ---- */
+const TAG_LABEL={go_wide:"Go-wide tokens",attack_alone:"Attack alone",battalion:"Mass attack",
+ counters:"+1/+1 counters",lifegain:"Lifegain",connive:"Loot / connive",graveyard:"Graveyard",
+ sacrifice:"Sacrifice",artifacts:"Artifacts",equipment:"Equipment",flicker:"Blink / flicker",
+ flyers:"Flyers",spells:"Spells matter",removal:"Removal / pings",clone:"Clones",
+ big_creatures:"Big creatures",draw:"Card draw",shrink:"Shrink / tempo",vehicles:"Vehicles",ramp:"Ramp"};
+const SHARED_BONUS=10;
+const COMPLEMENTS=[ // [tagA,tagB,bonus,why]
+ ["go_wide","battalion",7,"a wide board fuels mass attacks"],
+ ["go_wide","sacrifice",7,"tokens are perfect sacrifice fodder"],
+ ["go_wide","equipment",5,"a full team to suit up"],
+ ["go_wide","flicker",4,"flicker generates extra bodies"],
+ ["graveyard","connive",7,"connive fills the graveyard"],
+ ["graveyard","sacrifice",6,"sacrifice feeds the graveyard"],
+ ["artifacts","equipment",7,"Equipment counts as artifacts"],
+ ["artifacts","vehicles",6,"Vehicles are artifacts too"],
+ ["counters","big_creatures",6,"counters push already-big threats"],
+ ["spells","removal",6,"spells enable targeted removal"],
+ ["flyers","counters",5,"counters on evasive fliers close fast"],
+ ["big_creatures","ramp",6,"ramp lands the giants sooner"],
+ ["lifegain","connive",5,"lifegain offsets connive's discard"],
+ ["draw","spells",5,"card draw finds more spells"],
+ ["go_wide","spells",5,"Teamwork lets a wide board help pay for big spells"],
+];
+const CONFLICTS=[ // [tagA,tagB,penalty,why]
+ ["attack_alone","battalion",8,"one wants to attack alone, the other wants a full battalion"],
+ ["attack_alone","go_wide",6,"attacking alone wastes a go-wide board"],
+];
 
-/* ============================================================
-   Derived data + rendering
-   ============================================================ */
-const byId = Object.fromEntries(PACKS.map(p=>[p.id,p]));
-const synKey = (a,b)=> [a,b].sort().join("|");
-function synOf(a,b){ return SYNERGY[synKey(a,b)] || 0; }
+const COLOR_NAME={W:"White",U:"Blue",B:"Black",R:"Red",G:"Green",multi:"Multicolour"};
 
-const PAIRS = [];
-for(let i=0;i<PACKS.length;i++){
-  for(let j=i+1;j<PACKS.length;j++){
-    const a=PACKS[i], b=PACKS[j];
-    const syn=synOf(a.id,b.id);
-    const base=(a.rating+b.rating)/2;
-    const score=Math.round(base+syn);
-    PAIRS.push({a,b,syn,base:Math.round(base),score,
-      name:a.name+" + "+b.name});
-  }
+/* ---- build all pairs ---- */
+function pairMech(a,b){
+  let score=0; const reasons=[];
+  const sa=new Set(a.tags), sb=new Set(b.tags);
+  a.tags.forEach(t=>{ if(sb.has(t)){ score+=SHARED_BONUS; reasons.push({type:"good",text:"Both: "+TAG_LABEL[t]}); }});
+  COMPLEMENTS.forEach(([x,y,bo,why])=>{
+    if((sa.has(x)&&sb.has(y))||(sa.has(y)&&sb.has(x))){ score+=bo; reasons.push({type:"good",text:TAG_LABEL[x]+" + "+TAG_LABEL[y]+" — "+why}); }
+  });
+  CONFLICTS.forEach(([x,y,pe,why])=>{
+    if((sa.has(x)&&sb.has(y))||(sa.has(y)&&sb.has(x))){ score-=pe; reasons.push({type:"bad",text:"Clash: "+why}); }
+  });
+  return {score,reasons};
 }
-PAIRS.sort((x,y)=> y.score-x.score);
-PAIRS.forEach((p,i)=> p.rank=i+1);
-const MAXSCORE=Math.max(...PAIRS.map(p=>p.score));
-const MINSCORE=Math.min(...PAIRS.map(p=>p.score));
+function colorInfo(a,b){
+  if(a.c==="multi"||b.c==="multi"){ const other=a.c==="multi"?b:a;
+    return {score:0.6,reason:{type:"info",text:"Fantastic splashes into "+(other.c==="multi"?"any colour":COLOR_NAME[other.c])}}; }
+  if(a.c===b.c) return {score:1,reason:{type:"good",text:"Mono-"+COLOR_NAME[a.c]+" — smoothest mana"}};
+  return {score:0.35,reason:{type:"info",text:COLOR_NAME[a.c]+" + "+COLOR_NAME[b.c]+" two-colour deck"}};
+}
+function rating(t){ return 50 + t.power*5 + t.cons*4; } // 59..95
 
-/* ---- tabs ---- */
-document.querySelectorAll(".tab").forEach(t=>{
-  t.onclick=()=>{
-    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
-    document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
-    t.classList.add("active");
-    document.getElementById(t.dataset.tab).classList.add("active");
-  };
+const PAIRS=[];
+for(let i=0;i<THEMES.length;i++)for(let j=i+1;j<THEMES.length;j++){
+  const a=THEMES[i],b=THEMES[j];
+  const m=pairMech(a,b), ci=colorInfo(a,b);
+  const powerAvg=(rating(a)+rating(b))/2;
+  PAIRS.push({a,b,mech:m.score,mechReasons:m.reasons,color:ci.score,colorReason:ci.reason,powerAvg});
+}
+// normalise
+const mechMin=Math.min(...PAIRS.map(p=>p.mech)), mechMax=Math.max(...PAIRS.map(p=>p.mech));
+const powMin=Math.min(...PAIRS.map(p=>p.powerAvg)), powMax=Math.max(...PAIRS.map(p=>p.powerAvg));
+const nz=(v,lo,hi)=> hi===lo?50:(v-lo)/(hi-lo)*100;
+PAIRS.forEach(p=>{
+  p.synN=Math.round(nz(p.mech,mechMin,mechMax));
+  p.powN=Math.round(nz(p.powerAvg,powMin,powMax));
+  p.colN=Math.round(p.color*100);
+  p.match=Math.round(0.5*p.synN+0.3*p.powN+0.2*p.colN);
+  p.name=p.a.n+" + "+p.b.n;
 });
+PAIRS.sort((x,y)=>y.match-x.match);
+PAIRS.forEach((p,i)=>p.rank=i+1);
 
-/* ---- archetype filter options ---- */
-const archs=[...new Set(PACKS.map(p=>p.arch))].sort();
-const archSel=document.getElementById("pairArch");
-archs.forEach(a=>{const o=document.createElement("option");o.value=a;o.textContent=a;archSel.appendChild(o);});
-
-/* ---- heat color ---- */
-function heatColor(score){
-  const t=(score-MINSCORE)/(MAXSCORE-MINSCORE||1); // 0..1
-  // blue -> cyan -> green -> gold -> red
-  const stops=[[59,111,224],[125,211,252],[167,243,208],[255,180,87],[226,54,54]];
-  const seg=t*(stops.length-1); const i=Math.min(stops.length-2,Math.floor(seg)); const f=seg-i;
-  const c=stops[i].map((v,k)=>Math.round(v+(stops[i+1][k]-v)*f));
-  return `rgb(${c[0]},${c[1]},${c[2]})`;
-}
-
-/* ---- render pairs table ---- */
-let pairSort={k:"score",dir:-1};
-function synClass(s){return s>0?"syn-pos":s<0?"syn-neg":"syn-zero";}
-function synText(s){return (s>0?"+":"")+s;}
+/* ---- helpers ---- */
+const pip=t=>`<span class="pip ${t.c}">${t.c==="multi"?"✦":t.c}</span>`;
+const heat=v=>{ // 0..100 -> blue..gold..red
+  const s=[[59,111,224],[125,211,252],[167,243,208],[255,180,87],[226,54,54]];
+  const t=Math.max(0,Math.min(1,v/100))*(s.length-1); const i=Math.min(s.length-2,Math.floor(t)); const f=t-i;
+  const c=s[i].map((x,k)=>Math.round(x+(s[i+1][k]-x)*f)); return `rgb(${c[0]},${c[1]},${c[2]})`;
+};
+function miniBar(v,color){return `<div class="mini"><i style="width:${v}%;background:${color||heat(v)}"></i></div>`;}
 function medal(r){return r===1?"🥇":r===2?"🥈":r===3?"🥉":"";}
 
+/* ---- tabs ---- */
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
+  t.classList.add("active"); document.getElementById(t.dataset.tab).classList.add("active");
+});
+
+/* ---- BEST PAIRS ---- */
+let pairSort={k:"match",dir:-1};
 function renderPairs(){
   const q=document.getElementById("pairSearch").value.trim().toLowerCase();
-  const af=archSel.value;
+  const cf=document.getElementById("pairColor").value;
+  const lim=+document.getElementById("pairLimit").value;
   let rows=PAIRS.filter(p=>{
-    const matchQ=!q || p.a.name.toLowerCase().includes(q) || p.b.name.toLowerCase().includes(q);
-    const matchA=!af || p.a.arch===af || p.b.arch===af;
-    return matchQ && matchA;
+    const mq=!q||p.a.n.toLowerCase().includes(q)||p.b.n.toLowerCase().includes(q);
+    const mc=!cf||p.a.c===cf||p.b.c===cf;
+    return mq&&mc;
   });
-  const k=pairSort.k, dir=pairSort.dir;
+  const k=pairSort.k,dir=pairSort.dir;
   rows=rows.slice().sort((x,y)=>{
-    let xv,yv;
-    if(k==="name"){xv=x.name;yv=y.name;return dir*xv.localeCompare(yv);}
-    if(k==="a"){return dir*x.a.name.localeCompare(y.a.name);}
-    if(k==="b"){return dir*x.b.name.localeCompare(y.b.name);}
-    if(k==="syn"){xv=x.syn;yv=y.syn;}
-    else if(k==="rank"){xv=x.rank;yv=y.rank;}
-    else {xv=x.score;yv=y.score;}
-    return dir*(xv-yv);
-  });
-  const tb=document.querySelector("#pairTable tbody");
-  tb.innerHTML="";
+    if(k==="name")return dir*x.name.localeCompare(y.name);
+    if(k==="rank")return dir*(x.rank-y.rank);
+    if(k==="syn")return dir*(x.synN-y.synN);
+    if(k==="power")return dir*(x.powN-y.powN);
+    return dir*(x.match-y.match);
+  }).slice(0,lim);
+  const tb=document.querySelector("#pairTable tbody"); tb.innerHTML="";
   rows.forEach(p=>{
-    const tr=document.createElement("tr");
-    tr.style.cursor="pointer";
-    tr.onclick=()=>showPairDetail(p);
+    const tr=document.createElement("tr"); tr.onclick=()=>showPairDetail(p);
     tr.innerHTML=`
       <td class="rank">${medal(p.rank)?`<span class="medal">${medal(p.rank)}</span>`:""}${p.rank}</td>
-      <td class="pairnames">${p.a.name} <span style="color:var(--muted)">+</span> ${p.b.name}</td>
-      <td>${dotSpan(p.a)}<span class="chip">${p.a.arch}</span></td>
-      <td>${dotSpan(p.b)}<span class="chip">${p.b.arch}</span></td>
-      <td class="${synClass(p.syn)}" style="font-weight:800">${synText(p.syn)}</td>
-      <td class="score" style="color:${heatColor(p.score)}">${p.score}</td>`;
+      <td class="pairnames">${pip(p.a)} ${p.a.n} <span style="color:var(--muted)">+</span> ${pip(p.b)} ${p.b.n}</td>
+      <td class="barcell"><span class="match" style="color:${heat(p.match)}">${p.match}</span>${miniBar(p.match)}</td>
+      <td class="barcell">${miniBar(p.synN,"var(--good)")}</td>
+      <td class="barcell">${miniBar(p.powN,"var(--accent-2)")}</td>`;
     tb.appendChild(tr);
   });
-  if(!rows.length){tb.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:26px">No pairs match that filter.</td></tr>`;}
+  if(!rows.length)tb.innerHTML=`<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:26px">No pairs match that filter.</td></tr>`;
 }
-function dotSpan(p){return `<span class="dot" style="display:inline-block;vertical-align:middle;background:${p.color};margin-right:8px"></span>${p.name}`;}
-
-document.querySelectorAll("#pairTable th").forEach(th=>{
-  th.onclick=()=>{
-    const k=th.dataset.k;
-    pairSort.dir = pairSort.k===k ? -pairSort.dir : (k==="rank"?1:-1);
-    pairSort.k=k;
-    document.querySelectorAll("#pairTable th").forEach(h=>h.textContent=h.textContent.replace(/[ ▲▼]+$/,""));
-    th.textContent=th.textContent+(pairSort.dir<0?" ▼":" ▲");
-    renderPairs();
-  };
+document.querySelectorAll("#pairTable th").forEach(th=>th.onclick=()=>{
+  const k=th.dataset.k; pairSort.dir=pairSort.k===k?-pairSort.dir:(k==="name"||k==="rank"?1:-1); pairSort.k=k;
+  document.querySelectorAll("#pairTable th").forEach(h=>h.textContent=h.textContent.replace(/[ ▲▼]+$/,""));
+  th.textContent+=pairSort.dir<0?" ▼":" ▲"; renderPairs();
 });
-document.getElementById("pairSearch").oninput=renderPairs;
-archSel.onchange=renderPairs;
+["pairSearch"].forEach(id=>document.getElementById(id).oninput=renderPairs);
+["pairColor","pairLimit"].forEach(id=>document.getElementById(id).onchange=renderPairs);
 
-/* ---- pair detail popover ---- */
+/* ---- detail popover ---- */
+function reasonHTML(list){return list.map(r=>`<span class="reason ${r.type}">${r.text}</span>`).join("");}
 function showPairDetail(p){
-  const best = p.syn>0 ? "These two actively reinforce each other." :
-               p.syn<0 ? "These two compete for the same role — pick only if the raw power is worth it." :
-               "No special interaction; the pair is just the sum of its parts.";
+  const all=[p.colorReason,...p.mechReasons];
+  const good=all.filter(r=>r.type==="good"), rest=all.filter(r=>r.type!=="good");
   document.getElementById("detailBody").innerHTML=`
-    <h4>#${p.rank} · ${p.a.name} + ${p.b.name}</h4>
-    <p>${best}</p>
+    <h4>#${p.rank} · ${p.a.n} + ${p.b.n}</h4>
     <div class="statline">
-      <span>Solo avg: <b>${p.base}</b></span>
-      <span>Synergy: <b class="${synClass(p.syn)}">${synText(p.syn)}</b></span>
-      <span>Pair score: <b style="color:${heatColor(p.score)}">${p.score}</b></span>
-      <span>Ranked <b>${p.rank}</b> / ${PAIRS.length}</span>
+      <span>Match <b style="color:${heat(p.match)}">${p.match}</b></span>
+      <span>Synergy <b>${p.synN}</b></span>
+      <span>Power <b>${p.powN}</b></span>
+      <span>Mana <b>${p.colN}</b></span>
     </div>
-    <p style="margin-top:10px">${p.a.name}: ${p.a.desc}</p>
-    <p>${p.b.name}: ${p.b.desc}</p>`;
+    <div style="margin:6px 0">${reasonHTML(good.length?good:[{type:"info",text:"No special mechanical overlap — just two good decks together."}])}${reasonHTML(rest)}</div>
+    <p>${pip(p.a)} <b>${p.a.n}</b> — ${p.a.d}</p>
+    <p>${pip(p.b)} <b>${p.b.n}</b> — ${p.b.d}</p>`;
   document.getElementById("detail").classList.add("show");
 }
 function hideDetail(){document.getElementById("detail").classList.remove("show");}
 
-/* ---- render tier list ---- */
-function tierOf(r){return r>=86?"S":r>=80?"A":r>=75?"B":"C";}
-function renderPacks(){
-  const q=document.getElementById("packSearch").value.trim().toLowerCase();
-  const sorted=PACKS.slice().sort((a,b)=>b.rating-a.rating)
-    .filter(p=>!q||p.name.toLowerCase().includes(q)||p.arch.toLowerCase().includes(q));
-  const tiers={S:[],A:[],B:[],C:[]};
-  sorted.forEach(p=>tiers[tierOf(p.rating)].push(p));
-  const host=document.getElementById("tierList");
-  host.innerHTML="";
+/* ---- FIND A PARTNER ---- */
+const pick=document.getElementById("partnerPick");
+THEMES.slice().sort((a,b)=>a.n.localeCompare(b.n)).forEach(t=>{
+  const o=document.createElement("option"); o.value=t.n; o.textContent=`${COLOR_NAME[t.c]} · ${t.n}`; pick.appendChild(o);
+});
+function renderPartner(){
+  const name=pick.value; const me=THEMES.find(t=>t.n===name);
+  const list=PAIRS.filter(p=>p.a.n===name||p.b.n===name)
+    .map(p=>({p,other:p.a.n===name?p.b:p.a})).sort((x,y)=>y.p.match-x.p.match);
+  document.getElementById("partnerHead").innerHTML=
+    `<div class="explain" style="margin:0">${pip(me)} <b>${me.n}</b> — ${me.d} <span class="chip rar-${me.rar}">${me.rar}</span> ${me.tags.map(t=>`<span class="chip">${TAG_LABEL[t]}</span>`).join("")}</div>`;
+  const host=document.getElementById("partnerList"); host.innerHTML="";
+  list.forEach((row,i)=>{
+    const {p,other}=row;
+    const reasons=[p.colorReason,...p.mechReasons];
+    const good=reasons.filter(r=>r.type==="good").slice(0,3);
+    const show=good.length?good:[reasons.find(r=>r.type==="info")||{type:"info",text:"solid generic pairing"}];
+    const div=document.createElement("div"); div.className="partner-row"; div.onclick=()=>showPairDetail(p);
+    div.innerHTML=`
+      <div class="pr-rank">${i+1}</div>
+      <div class="pr-name">${pip(other)} ${other.n}</div>
+      <div class="pr-bar"><span class="match" style="color:${heat(p.match)}">${p.match}</span>${miniBar(p.match)}</div>
+      <div class="pr-reasons">${reasonHTML(show)}</div>`;
+    host.appendChild(div);
+  });
+}
+pick.onchange=renderPartner;
+
+/* ---- THEME TIERS ---- */
+function tierOf(r){return r>=86?"S":r>=80?"A":r>=74?"B":"C";}
+function renderTiers(){
+  const q=document.getElementById("tierSearch").value.trim().toLowerCase();
+  const cf=document.getElementById("tierColor").value;
+  const rows=THEMES.map(t=>({t,r:rating(t)})).sort((a,b)=>b.r-a.r)
+    .filter(o=>(!q||o.t.n.toLowerCase().includes(q)||o.t.tags.some(x=>TAG_LABEL[x].toLowerCase().includes(q)))&&(!cf||o.t.c===cf));
+  const tiers={S:[],A:[],B:[],C:[]}; rows.forEach(o=>tiers[tierOf(o.r)].push(o));
+  const host=document.getElementById("tierList"); host.innerHTML="";
   ["S","A","B","C"].forEach(t=>{
-    if(!tiers[t].length) return;
-    const row=document.createElement("div");
-    row.className="tier-row";
+    if(!tiers[t].length)return;
+    const row=document.createElement("div"); row.className="tier-row";
     row.innerHTML=`<div class="tier-label tier-${t}">${t}</div><div class="tier-cards"></div>`;
     const cards=row.querySelector(".tier-cards");
-    tiers[t].forEach(p=>{
-      const c=document.createElement("div");
-      c.className="pack";
+    tiers[t].forEach(({t:th,r})=>{
+      const c=document.createElement("div"); c.className="theme";
       c.innerHTML=`
-        <div class="top"><span class="dot" style="background:${p.color}"></span>
-          <div><h3>${p.name}</h3><div class="arch">${p.arch}</div></div></div>
-        <div class="desc">${p.desc}</div>
-        <div class="rating"><div class="bar"><i style="width:${p.rating}%"></i></div><b>${p.rating}</b></div>`;
+        <div class="top">${pip(th)}<h3>${th.n}</h3><span class="chip rar-${th.rar}" style="margin:0">${th.rar}</span></div>
+        <div class="desc">${th.d}</div>
+        <div class="statmini">
+          <div>Payoff${miniBar(th.power*20,"var(--accent)")}</div>
+          <div>Consistency${miniBar(th.cons*20,"var(--good)")}</div>
+        </div>
+        <div>${th.tags.map(x=>`<span class="chip">${TAG_LABEL[x]}</span>`).join("")}</div>`;
       cards.appendChild(c);
     });
     host.appendChild(row);
   });
-  if(!sorted.length) host.innerHTML=`<div class="panel" style="padding:26px;text-align:center;color:var(--muted)">No packs match “${q}”.</div>`;
+  if(!rows.length)host.innerHTML=`<div class="panel" style="padding:26px;text-align:center;color:var(--muted)">No themes match.</div>`;
 }
-document.getElementById("packSearch").oninput=renderPacks;
-
-/* ---- render heatmap ---- */
-function renderHeat(){
-  const order=PACKS.slice().sort((a,b)=>b.rating-a.rating);
-  const t=document.getElementById("heatTable");
-  let html="<tr><th></th>";
-  order.forEach(p=>html+=`<th class="col">${p.name}</th>`);
-  html+="</tr>";
-  order.forEach(rp=>{
-    html+=`<tr><th class="row">${rp.name}</th>`;
-    order.forEach(cp=>{
-      if(rp.id===cp.id){html+=`<td><div class="cell diag">—</div></td>`;return;}
-      const p=PAIRS.find(x=>(x.a.id===rp.id&&x.b.id===cp.id)||(x.a.id===cp.id&&x.b.id===rp.id));
-      html+=`<td><div class="cell" style="background:${heatColor(p.score)}" title="${rp.name} + ${cp.name}">${p.score}</div></td>`;
-    });
-    html+="</tr>";
-  });
-  t.innerHTML=html;
-  t.querySelectorAll(".cell:not(.diag)").forEach(cell=>{
-    cell.onclick=()=>{
-      const [an,bn]=cell.title.split(" + ");
-      const p=PAIRS.find(x=>x.name===an+" + "+bn||x.name===bn+" + "+an);
-      if(p) showPairDetail(p);
-    };
-  });
-}
+document.getElementById("tierSearch").oninput=renderTiers;
+document.getElementById("tierColor").onchange=renderTiers;
 
 /* init */
-renderPairs();
-renderPacks();
-renderHeat();
+renderPairs(); renderPartner(); renderTiers();
 </script>
 </body>
 </html>

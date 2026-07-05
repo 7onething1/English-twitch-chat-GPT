@@ -1,0 +1,24 @@
+{
+  "name": "marvel-jump-pair-ranker",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Rank every MTG Arena Jump Into Marvel Super Heroes packet and two-packet pairing. Packet data is source-backed; pair rankings are heuristic until real Jump In match data is imported.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

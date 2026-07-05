@@ -1,0 +1,89 @@
+{
+  "sources": [
+    {
+      "name": "Wizards — Marvel Super Heroes Jumpstart Booster Themes",
+      "url": "https://magic.wizards.com/en/news/announcements/marvel-super-heroes-jumpstart-booster-themes",
+      "role": "Official cross-check",
+      "confidence": "high",
+      "provides": "Confirms the product has 51 themes, the two-pack Jumpstart structure, official theme names and taglines, and the Power-Up / Teamwork keywords.",
+      "usedFor": ["theme names", "colours", "structure", "keyword mechanics"]
+    },
+    {
+      "name": "Wizards — MTG Arena Marvel Super Heroes Event Schedule",
+      "url": "https://magic.wizards.com/en/news/mtg-arena/marvel-super-heroes-event-schedule",
+      "role": "Official event rules",
+      "confidence": "high",
+      "provides": "Arena Jump Into Marvel Super Heroes event format: choose two packets, play to 2 wins or 3 losses.",
+      "usedFor": ["event structure", "win/loss cap"]
+    },
+    {
+      "name": "MTGABuddy — Jump Into Marvel Super Heroes packet list",
+      "url": "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes",
+      "role": "Primary packet-contents source",
+      "confidence": "high",
+      "provides": "The 51 Arena packets with rare slots, card counts, theme text, and random-slot probabilities. Best source for exact packet contents.",
+      "usedFor": ["packet list", "rare slots", "card counts", "random-slot probabilities"]
+    },
+    {
+      "name": "Untapped — Marvel Super Heroes Premier Draft card data",
+      "url": "https://mtga.untapped.gg/limited/draft/marvel-super-heroes/card-data",
+      "role": "Card quality (Premier Draft)",
+      "confidence": "medium",
+      "provides": "Card-level win stats and match volume for MSH Premier Draft. Informs card quality, NOT Jump In pair win rates.",
+      "usedFor": ["card ratings", "card quality"]
+    },
+    {
+      "name": "17Lands — Marvel Super Heroes",
+      "url": "https://www.17lands.com/",
+      "role": "Card quality (Premier Draft)",
+      "confidence": "medium",
+      "provides": "Card-level Premier Draft performance (GIH WR, etc.).",
+      "usedFor": ["card ratings"]
+    },
+    {
+      "name": "Limited Grades — MSH tier list",
+      "url": "https://www.limitedgrades.com/",
+      "role": "Fast card tier view",
+      "confidence": "medium",
+      "provides": "17Lands data turned into a fast card tier list.",
+      "usedFor": ["card ratings (fast)"]
+    },
+    {
+      "name": "Scryfall — Marvel Super Heroes (MSH)",
+      "url": "https://scryfall.com/sets/msh",
+      "role": "Card identity / database",
+      "confidence": "high",
+      "provides": "Searchable card records: names, types, mana costs, images, set codes.",
+      "usedFor": ["card identity", "card database"]
+    },
+    {
+      "name": "MTGJSON",
+      "url": "https://mtgjson.com/",
+      "role": "Structured card/set data",
+      "confidence": "high",
+      "provides": "Downloadable structured JSON set/card files.",
+      "usedFor": ["bulk card data"]
+    },
+    {
+      "name": "MTG Arena Zone — MSH Limited archetypes guide",
+      "url": "https://mtgazone.com/marvel-super-heroes-msh-limited-archetypes-guide-and-example-decks/",
+      "role": "Archetype labels",
+      "confidence": "medium",
+      "provides": "The ten draft archetypes, useful for labelling packet plans.",
+      "usedFor": ["archetype tags"]
+    },
+    {
+      "name": "Draftsim — Marvel Jumpstart guide & set review",
+      "url": "https://draftsim.com/mtg-marvel-super-heroes-jumpstart/",
+      "role": "Rough packet scoring",
+      "confidence": "medium",
+      "provides": "Jumpstart guide and Limited set review for rough packet strength when no direct win-rate data exists.",
+      "usedFor": ["rough packet scoring"]
+    }
+  ],
+  "missingData": {
+    "what": "Public Jump Into Marvel PAIR win-rate data (e.g. 'Marvelous + Blink has X% win rate' inside the Arena event).",
+    "status": "Not found publicly. Packet contents, card stats, and draft archetype stats exist; event-specific pair win rates do not.",
+    "consequence": "All pair rankings in this app are ESTIMATED from heuristics until you import tracked Jump In match results on the Data Sources page."
+  }
+}

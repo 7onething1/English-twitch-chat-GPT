@@ -1,0 +1,2669 @@
+{
+  "_meta": {
+    "product": "Marvel Super Heroes Jumpstart",
+    "arenaEvent": "Jump Into Marvel Super Heroes",
+    "themeCount": 51,
+    "structure": "Choose two 20-card packets, shuffle into one 40-card deck. Play until 2 wins or 3 losses (Arena). Physical: open two 20-card Jumpstart boosters and shuffle together.",
+    "cardsPerPacket": 20,
+    "boostersPerBox": 24,
+    "contentsNote": "Theme names, colours and rarities are Wizards-confirmed. Per-packet CARD COUNTS and card lists are MTGA Jump Into Marvel packet data (from MTGABuddy) — treated as 'arena-packet' data at MEDIUM confidence. They are NOT verified card-for-card against physical mini packs, and some Arena slots are random. 26 of 51 packets have imported counts; the rest are theme-only. Pair rankings remain ESTIMATED until real table results are entered.",
+    "sourceWarning": "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card.",
+    "sources": [
+      "https://magic.wizards.com/en/news/announcements/marvel-super-heroes-jumpstart-booster-themes",
+      "https://magic.wizards.com/en/news/feature/marvel-super-heroes-buyers-guide",
+      "https://draftsim.com/mtg-marvel-super-heroes-jumpstart/",
+      "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+    ]
+  },
+  "packets": [
+    {
+      "id": "agents-of-shield",
+      "name": "Agents of S.H.I.E.L.D.",
+      "colors": [
+        "W"
+      ],
+      "rarity": "rare",
+      "theme": "Attack alone to gain bonuses and infiltrate the enemy.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 6,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "attack-alone",
+        "infiltrate",
+        "white",
+        "midrange"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 2,
+      "counts": {
+        "creatures": 6,
+        "instants": 1,
+        "sorceries": 1,
+        "enchantments": 2,
+        "artifacts": 2,
+        "lands": 8
+      },
+      "inputs": [
+        "solo attackers",
+        "infiltrate cards",
+        "support artifacts"
+      ],
+      "payoffs": [
+        "attack-alone rewards",
+        "tempo pressure"
+      ],
+      "risks": [
+        "can underuse go-wide support"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "battalion",
+      "name": "Battalion",
+      "colors": [
+        "W"
+      ],
+      "rarity": "common",
+      "theme": "Attack with three or more creatures to deal overwhelming damage.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 4,
+        "sorceries": 0,
+        "enchantments": 0,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "cheap creatures",
+        "combat tricks",
+        "multiple attackers"
+      ],
+      "payoffs": [
+        "attack-three payoffs",
+        "combat pressure"
+      ],
+      "risks": [
+        "large blockers"
+      ],
+      "tags": [
+        "go-wide",
+        "attack-three",
+        "white",
+        "aggro"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "caretakers",
+      "name": "Caretakers",
+      "colors": [
+        "W"
+      ],
+      "rarity": "common",
+      "theme": "Care for yourself and your allies by gaining life.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 0,
+        "enchantments": 1,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "life gain",
+        "protection",
+        "defensive creatures"
+      ],
+      "payoffs": [
+        "life-gain payoffs",
+        "stability"
+      ],
+      "risks": [
+        "can lack fast pressure"
+      ],
+      "tags": [
+        "lifegain",
+        "counters",
+        "white",
+        "midrange"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "counterargument",
+      "name": "Counterargument",
+      "colors": [
+        "W"
+      ],
+      "rarity": "rare",
+      "theme": "Take the fight to court and dish out +1/+1 counters!",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "control",
+        "tempo",
+        "white",
+        "removal"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 0,
+        "sorceries": 1,
+        "enchantments": 2,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "creatures",
+        "+1/+1 counters",
+        "support enchantments"
+      ],
+      "payoffs": [
+        "counter scaling",
+        "combat pressure"
+      ],
+      "risks": [
+        "needs bodies to carry counters"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "equipped",
+      "name": "Equipped",
+      "colors": [
+        "W"
+      ],
+      "rarity": "rare",
+      "theme": "Use Equipment to lead Cap and company to victory.",
+      "rareCards": [
+        "Captain America, Liberator",
+        "Captain America's Shield"
+      ],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 0,
+        "enchantments": 2,
+        "artifacts": 2,
+        "lands": 8
+      },
+      "inputs": [
+        "equipment",
+        "combat tricks",
+        "creatures"
+      ],
+      "payoffs": [
+        "equipped-creature payoffs",
+        "combat pressure"
+      ],
+      "risks": [
+        "gear without bodies"
+      ],
+      "tags": [
+        "equipment",
+        "white",
+        "combat"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "buzz": {
+        "level": "notable",
+        "note": "Home to Swordsman's Steel-style Equipment payoffs; Captain America, Liberator flagged as a strong Equipment card.",
+        "source": "Card Kingdom / EDHREC editorial buzz (not match data)"
+      },
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "marvelous",
+      "name": "Marvelous",
+      "colors": [
+        "W"
+      ],
+      "rarity": "mythic",
+      "theme": "Flicker your Marvels in and out of exile, triggering enters effects.",
+      "rareCards": [
+        "Captain Marvel",
+        "Shooting Star",
+        "Quantum Entanglement"
+      ],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 0,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "flicker effects",
+        "Marvel creatures",
+        "temporary exile"
+      ],
+      "payoffs": [
+        "enters triggers",
+        "repeatable value"
+      ],
+      "risks": [
+        "support without enough targets"
+      ],
+      "tags": [
+        "blink",
+        "exile",
+        "white",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "precise",
+      "name": "Precise",
+      "colors": [
+        "W"
+      ],
+      "rarity": "rare",
+      "theme": "Target Hawkeye and his allies with spells to trigger their abilities.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "tricks",
+        "combat",
+        "white",
+        "tempo"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 4,
+        "sorceries": 1,
+        "enchantments": 0,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "targeting spells",
+        "small creatures",
+        "combat tricks"
+      ],
+      "payoffs": [
+        "targeted ability triggers",
+        "tempo attacks"
+      ],
+      "risks": [
+        "can draw tricks without good targets"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "squadron",
+      "name": "Squadron",
+      "colors": [
+        "W"
+      ],
+      "rarity": "common",
+      "theme": "Support your Heroes into becoming a true Squadron Supreme!",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "flyers",
+        "white",
+        "tempo"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "hero creatures",
+        "support spells",
+        "combat enchantments"
+      ],
+      "payoffs": [
+        "hero scaling",
+        "board pressure"
+      ],
+      "risks": [
+        "needs enough heroes to feel special"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "wakanda",
+      "name": "Wakanda",
+      "colors": [
+        "W"
+      ],
+      "rarity": "mythic",
+      "theme": "Create creature tokens to flood the battlefield with Wakandan forces.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 6,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 6,
+        "instants": 3,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "tokens",
+        "creatures",
+        "teamwork tricks"
+      ],
+      "payoffs": [
+        "go-wide pressure",
+        "multiple attackers"
+      ],
+      "risks": [
+        "may lack finishing punch"
+      ],
+      "tags": [
+        "go-wide",
+        "artifacts",
+        "white",
+        "combat"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "web-slinging",
+      "name": "Web-Slinging",
+      "colors": [
+        "W"
+      ],
+      "rarity": "rare",
+      "theme": "Sling out your small tapped creatures for powerful Spider-Heroes.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "tempo",
+        "tapdown",
+        "white",
+        "spider"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 0,
+        "enchantments": 1,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "small tapped creatures",
+        "Spider-Heroes",
+        "combat tricks"
+      ],
+      "payoffs": [
+        "Spider upgrades",
+        "tempo swings"
+      ],
+      "risks": [
+        "needs early creatures to tap"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "analyzed",
+      "name": "Analyzed",
+      "colors": [
+        "U"
+      ],
+      "rarity": "common",
+      "theme": "Cast noncreature spells with the help of your Robot allies.",
+      "rareCards": [],
+      "rareCount": 1,
+      "types": [
+        "Robot"
+      ],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "noncreature spells",
+        "Robot creatures"
+      ],
+      "payoffs": [
+        "spell payoff",
+        "Robot pressure"
+      ],
+      "risks": [
+        "creatures and spells can split awkwardly"
+      ],
+      "tags": [
+        "noncreature-spells",
+        "robots",
+        "blue",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "atlantis",
+      "name": "Atlantis",
+      "colors": [
+        "U"
+      ],
+      "rarity": "rare",
+      "theme": "Draw extra cards to unleash the full potential of your Merfolk.",
+      "rareCards": [],
+      "rareCount": 1,
+      "types": [
+        "Merfolk"
+      ],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 1,
+        "sorceries": 1,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "extra card draw",
+        "Merfolk bodies"
+      ],
+      "payoffs": [
+        "Merfolk pressure",
+        "draw rewards"
+      ],
+      "risks": [
+        "tempo loss from slow draw turns"
+      ],
+      "tags": [
+        "card-draw",
+        "merfolk",
+        "blue",
+        "tempo"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "blink",
+      "name": "Blink",
+      "colors": [
+        "U"
+      ],
+      "rarity": "common",
+      "theme": "Trigger your enters and leaves abilities by popping in and out of the battlefield.",
+      "rareCards": [
+        "Silver Surfer",
+        "Cosmic Voyager"
+      ],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 3,
+        "sorceries": 0,
+        "enchantments": 0,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "blink effects",
+        "value creatures"
+      ],
+      "payoffs": [
+        "enters triggers",
+        "leaves triggers"
+      ],
+      "risks": [
+        "targets without enough blink support"
+      ],
+      "tags": [
+        "blink",
+        "enters",
+        "blue",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "conniving",
+      "name": "Conniving",
+      "colors": [
+        "U"
+      ],
+      "rarity": "common",
+      "theme": "Achieve devious rewards for drawing and discarding extra cards.",
+      "rareCards": [],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "draw discard",
+        "connive",
+        "card flow"
+      ],
+      "payoffs": [
+        "discard rewards",
+        "selection",
+        "tempo"
+      ],
+      "risks": [
+        "can spend turns not affecting board"
+      ],
+      "tags": [
+        "connive",
+        "discard",
+        "blue",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "geniuses",
+      "name": "Geniuses",
+      "colors": [
+        "U"
+      ],
+      "rarity": "rare",
+      "theme": "Assist Marvel's greatest minds by drawing two cards in a single turn.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 0,
+        "sorceries": 1,
+        "enchantments": 2,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "card draw",
+        "selection",
+        "value cards"
+      ],
+      "payoffs": [
+        "draw-two payoffs",
+        "steady advantage"
+      ],
+      "risks": [
+        "drawing while behind"
+      ],
+      "tags": [
+        "artifacts",
+        "card-draw",
+        "blue",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "iron-man",
+      "name": "Iron Man",
+      "colors": [
+        "U"
+      ],
+      "rarity": "mythic",
+      "theme": "Churn out artifacts with the industrial might of Stark Industries.",
+      "rareCards": [
+        "Iron Man, Bleeding Edge",
+        "Iron Suitcase",
+        "Collector's Case",
+        "Futurist Forge"
+      ],
+      "rareCount": 1,
+      "types": [
+        "Robot"
+      ],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 0,
+        "enchantments": 1,
+        "artifacts": 3,
+        "lands": 8
+      },
+      "inputs": [
+        "artifacts",
+        "artifact creatures",
+        "cases"
+      ],
+      "payoffs": [
+        "artifact-density payoffs",
+        "board utility"
+      ],
+      "risks": [
+        "needs artifact density"
+      ],
+      "tags": [
+        "artifacts",
+        "blue",
+        "equipment"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "kang-dynasty",
+      "name": "Kang Dynasty",
+      "colors": [
+        "U"
+      ],
+      "rarity": "mythic",
+      "theme": "Channel time magic, casting and flashing back noncreature spells.",
+      "rareCards": [
+        "Immortus, Master of Eternity",
+        "Time Warp",
+        "Think Twice",
+        "Timeline Inquiry",
+        "Multiversal Recruitment"
+      ],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 3,
+        "sorceries": 2,
+        "enchantments": 0,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "noncreature spells",
+        "card flow",
+        "flashback style play"
+      ],
+      "payoffs": [
+        "spell payoffs",
+        "long-game spell turns"
+      ],
+      "risks": [
+        "slow starts"
+      ],
+      "tags": [
+        "spells",
+        "flashback",
+        "blue",
+        "extra-turn"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "pym-particles",
+      "name": "Pym Particles",
+      "colors": [
+        "U"
+      ],
+      "rarity": "rare",
+      "theme": "Shrink the power of opposing threats.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "shrink",
+        "tempo",
+        "blue",
+        "control"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 1,
+        "enchantments": 2,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "power reduction",
+        "tempo spells",
+        "flying bodies"
+      ],
+      "payoffs": [
+        "threat control",
+        "combat soft-locks"
+      ],
+      "risks": [
+        "can lack closing speed"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "soaring",
+      "name": "Soaring",
+      "colors": [
+        "U"
+      ],
+      "rarity": "common",
+      "theme": "Take to the skies with a host of superpowered fliers.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "flyers",
+        "blue",
+        "tempo"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 3,
+        "sorceries": 0,
+        "enchantments": 0,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "flying creatures",
+        "tempo instants",
+        "air support"
+      ],
+      "payoffs": [
+        "evasive damage",
+        "tempo control"
+      ],
+      "risks": [
+        "can struggle against removal-heavy decks"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "tricksters",
+      "name": "Tricksters",
+      "colors": [
+        "U"
+      ],
+      "rarity": "rare",
+      "theme": "Clone your creatures and immerse your enemies in Loki's illusions.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "clone",
+        "illusion",
+        "blue",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 2,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "clone effects",
+        "creatures",
+        "trick spells"
+      ],
+      "payoffs": [
+        "copy value",
+        "illusion pressure"
+      ],
+      "risks": [
+        "can clone weak targets"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "armed",
+      "name": "Armed",
+      "colors": [
+        "B"
+      ],
+      "rarity": "rare",
+      "theme": "Suit up your minions with Equipment for a full loadout of bonuses.",
+      "rareCards": [
+        "Swordsman's Steel",
+        "Whiplash",
+        "Ronin, Swordsman"
+      ],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 0,
+        "enchantments": 0,
+        "artifacts": 4,
+        "lands": 8
+      },
+      "inputs": [
+        "equipment",
+        "removal",
+        "creatures"
+      ],
+      "payoffs": [
+        "equipped attackers",
+        "weapon density"
+      ],
+      "risks": [
+        "equipment with too few creatures"
+      ],
+      "tags": [
+        "equipment",
+        "black",
+        "combat"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "doom",
+      "name": "DOOM",
+      "colors": [
+        "B"
+      ],
+      "rarity": "mythic",
+      "theme": "Combine Doomsday with Doctor Doom to win the game in a single masterstroke.",
+      "rareCards": [
+        "Doomsday"
+      ],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 3,
+        "sorceries": 2,
+        "enchantments": 0,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "Dark Ritual",
+        "Doomsday",
+        "removal"
+      ],
+      "payoffs": [
+        "single-turn combo",
+        "power rares"
+      ],
+      "risks": [
+        "high setup risk"
+      ],
+      "tags": [
+        "combo",
+        "control",
+        "black",
+        "high-risk"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "buzz": {
+        "level": "high",
+        "note": "Doctor Doom, Unrivaled is one of the most talked-about cards of the set (Phyrexian Arena on a body).",
+        "source": "EDHREC / Draftsim editorial buzz (not match data)"
+      },
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "hydra",
+      "name": "HYDRA",
+      "colors": [
+        "B"
+      ],
+      "rarity": "common",
+      "theme": "Attack alone to infiltrate, and dispose of expendable minions.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "attack-alone",
+        "sacrifice",
+        "black",
+        "aggro"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "expendable minions",
+        "attack-alone pressure",
+        "sacrifice fuel"
+      ],
+      "payoffs": [
+        "infiltrate rewards",
+        "attrition pressure"
+      ],
+      "risks": [
+        "may pull between attacking alone and sacrificing"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "lethal",
+      "name": "Lethal",
+      "colors": [
+        "B"
+      ],
+      "rarity": "rare",
+      "theme": "Maximize Black Widow's deadly skill by granting deathtouch to your creatures.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "deathtouch",
+        "black",
+        "removal"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 3,
+        "sorceries": 0,
+        "enchantments": 1,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "deathtouch creatures",
+        "removal tricks",
+        "combat bodies"
+      ],
+      "payoffs": [
+        "profitable trades",
+        "combat control"
+      ],
+      "risks": [
+        "needs creatures to make deathtouch matter"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "masters-of-evil",
+      "name": "Masters of Evil",
+      "colors": [
+        "B"
+      ],
+      "rarity": "common",
+      "theme": "Casting each member of the Masters of Evil empowers the next.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "villains",
+        "chain-casting",
+        "black",
+        "midrange"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "villain creatures",
+        "curve pressure",
+        "removal"
+      ],
+      "payoffs": [
+        "chain-cast rewards",
+        "villain scaling"
+      ],
+      "risks": [
+        "can stumble if payoff order is wrong"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "mayhem",
+      "name": "Mayhem",
+      "colors": [
+        "B"
+      ],
+      "rarity": "rare",
+      "theme": "Discard cards to reap Mayhem rewards and cast spells from your graveyard.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "discard",
+        "graveyard",
+        "black",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 2,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 2,
+        "lands": 8
+      },
+      "inputs": [
+        "discard outlets",
+        "graveyard spells",
+        "artifacts"
+      ],
+      "payoffs": [
+        "graveyard recasting",
+        "Mayhem rewards"
+      ],
+      "risks": [
+        "can discard resources without enough payoff"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "returned",
+      "name": "Returned",
+      "colors": [
+        "B"
+      ],
+      "rarity": "common",
+      "theme": "Mill yourself and reanimate your creatures to live beyond the grave.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 0,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "self-mill",
+        "creatures dying",
+        "graveyard setup"
+      ],
+      "payoffs": [
+        "reanimation",
+        "recursion",
+        "attrition"
+      ],
+      "risks": [
+        "payoffs without enablers"
+      ],
+      "tags": [
+        "recursion",
+        "black",
+        "attrition"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "street-level-villains",
+      "name": "Street Level Villains",
+      "colors": [
+        "B"
+      ],
+      "rarity": "common",
+      "theme": "Sacrifice both your minions and Treasure to find ruthless victory.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "sacrifice",
+        "treasures",
+        "black",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "minions",
+        "treasure",
+        "cheap sacrifice fuel"
+      ],
+      "payoffs": [
+        "sacrifice rewards",
+        "attrition value"
+      ],
+      "risks": [
+        "can run out of fodder"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "thunderbolts",
+      "name": "Thunderbolts",
+      "colors": [
+        "B"
+      ],
+      "rarity": "rare",
+      "theme": "Reveal the full potential of the Thunderbolts as you gain life and connive.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 1,
+        "sorceries": 1,
+        "enchantments": 0,
+        "artifacts": 2,
+        "lands": 8
+      },
+      "inputs": [
+        "life gain",
+        "connive",
+        "artifacts"
+      ],
+      "payoffs": [
+        "card filtering",
+        "life-gain payoff"
+      ],
+      "risks": [
+        "needs enough triggers"
+      ],
+      "tags": [
+        "lifegain",
+        "connive",
+        "black",
+        "value"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "ultron",
+      "name": "Ultron",
+      "colors": [
+        "B"
+      ],
+      "rarity": "mythic",
+      "theme": "Artifacts in your graveyard add more troops to Ultron's Robot army.",
+      "rareCards": [],
+      "rareCount": 1,
+      "types": [
+        "Robot"
+      ],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 2,
+        "lands": 8
+      },
+      "inputs": [
+        "artifacts",
+        "graveyard artifacts",
+        "Robot bodies"
+      ],
+      "payoffs": [
+        "Robot army",
+        "artifact recursion pressure"
+      ],
+      "risks": [
+        "needs artifact graveyard density"
+      ],
+      "tags": [
+        "robots",
+        "artifacts",
+        "black",
+        "midrange"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "boosted",
+      "name": "Boosted",
+      "colors": [
+        "R"
+      ],
+      "rarity": "common",
+      "theme": "Power-up as the game progresses!",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 3,
+        "sorceries": 1,
+        "enchantments": 0,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "growing creatures",
+        "combat tricks"
+      ],
+      "payoffs": [
+        "scaling attackers",
+        "pressure"
+      ],
+      "risks": [
+        "needs board presence"
+      ],
+      "tags": [
+        "counters",
+        "red",
+        "aggro"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "fearless",
+      "name": "Fearless",
+      "colors": [
+        "R"
+      ],
+      "rarity": "rare",
+      "theme": "Have no fear as you damage yourself for great gain.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "self-damage",
+        "red",
+        "aggro"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 3,
+        "sorceries": 0,
+        "enchantments": 0,
+        "artifacts": 1,
+        "lands": 9
+      },
+      "inputs": [
+        "self damage",
+        "combat tricks",
+        "aggressive creatures"
+      ],
+      "payoffs": [
+        "damage-payoff pressure",
+        "fast attacks"
+      ],
+      "risks": [
+        "can lose races from self damage"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "heroes-for-hire",
+      "name": "Heroes for Hire",
+      "colors": [
+        "R"
+      ],
+      "rarity": "rare",
+      "theme": "Fight Villains and get paid. Earn Treasure to spend on mana and other rewards.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "treasures",
+        "red",
+        "midrange"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 2,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "treasure",
+        "combat creatures",
+        "mana bursts"
+      ],
+      "payoffs": [
+        "paid-off pressure",
+        "resource smoothing"
+      ],
+      "risks": [
+        "treasure payoffs can be uneven"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "runaways",
+      "name": "Runaways",
+      "colors": [
+        "R"
+      ],
+      "rarity": "mythic",
+      "theme": "Cast your spells from exile to live like a true Runaway.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "spells-from-exile",
+        "red",
+        "synergy"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 4,
+        "sorceries": 1,
+        "enchantments": 0,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "exile-cast effects",
+        "cheap spells",
+        "Runaway creatures"
+      ],
+      "payoffs": [
+        "cast-from-exile rewards",
+        "tempo pressure"
+      ],
+      "risks": [
+        "needs exile access to unlock payoffs"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "scarlet",
+      "name": "Scarlet",
+      "colors": [
+        "R"
+      ],
+      "rarity": "mythic",
+      "theme": "Cast a storm of spells in one turn with the Scarlet Witch and Vision in play.",
+      "rareCards": [
+        "The Vision and Scarlet Witch",
+        "Wanda's Vision",
+        "Grapeshot",
+        "Hex Magic"
+      ],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 2,
+        "sorceries": 2,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "cheap spells",
+        "burn",
+        "spell chain"
+      ],
+      "payoffs": [
+        "spell-count payoff",
+        "burst turn"
+      ],
+      "risks": [
+        "high stumble rate"
+      ],
+      "tags": [
+        "storm",
+        "spells",
+        "red",
+        "combo"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "speedy",
+      "name": "Speedy",
+      "colors": [
+        "R"
+      ],
+      "rarity": "common",
+      "theme": "Use haste to attack quickly and attack relentlessly.",
+      "rareCards": [],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 0,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "haste creatures",
+        "combat pressure"
+      ],
+      "payoffs": [
+        "fast attacks",
+        "tempo pressure"
+      ],
+      "risks": [
+        "runs out of cards"
+      ],
+      "tags": [
+        "haste",
+        "red",
+        "aggro"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "spider-verse",
+      "name": "Spider-Verse",
+      "colors": [
+        "R"
+      ],
+      "rarity": "rare",
+      "theme": "Unite the Spider-Verse! Discard cards to unleash their potential.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "spells",
+        "tempo",
+        "red",
+        "spider"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 2,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 0,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "discard outlets",
+        "Spider creatures",
+        "combat pressure"
+      ],
+      "payoffs": [
+        "discard rewards",
+        "Spider pressure"
+      ],
+      "risks": [
+        "can run low on cards"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "thor",
+      "name": "Thor",
+      "colors": [
+        "R"
+      ],
+      "rarity": "common",
+      "theme": "Burn your foes with direct damage using Thor's mighty arsenal.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 2,
+        "sorceries": 2,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "burn spells",
+        "direct damage",
+        "creatures"
+      ],
+      "payoffs": [
+        "reach",
+        "removal",
+        "pressure"
+      ],
+      "risks": [
+        "can run out of gas"
+      ],
+      "tags": [
+        "burn",
+        "red",
+        "removal"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "vehicles",
+      "name": "Vehicles",
+      "colors": [
+        "R"
+      ],
+      "rarity": "rare",
+      "theme": "Crew a fleet of Vehicles and you're on the road to victory.",
+      "rareCards": [
+        "The Thanos-Copter",
+        "S.H.I.E.L.D. Helicarrier",
+        "Sky Cycle",
+        "Captain America's Motorcycle",
+        "Big Wheel"
+      ],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 6,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 6,
+        "instants": 1,
+        "sorceries": 0,
+        "enchantments": 0,
+        "artifacts": 5,
+        "lands": 8
+      },
+      "inputs": [
+        "vehicles",
+        "artifact permanents",
+        "crew bodies"
+      ],
+      "payoffs": [
+        "artifact pressure",
+        "Vehicle attacks"
+      ],
+      "risks": [
+        "not enough crew bodies"
+      ],
+      "tags": [
+        "vehicles",
+        "artifacts",
+        "red"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "young-avengers",
+      "name": "Young Avengers",
+      "colors": [
+        "R"
+      ],
+      "rarity": "common",
+      "theme": "Assemble the Young Avengers and enable their abilities with noncreature spells.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "team",
+        "counters",
+        "red",
+        "aggro"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 4,
+        "sorceries": 0,
+        "enchantments": 0,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "Young Avengers",
+        "cheap instants",
+        "team tactics"
+      ],
+      "payoffs": [
+        "spell-enabled abilities",
+        "fast pressure"
+      ],
+      "risks": [
+        "can split between creatures and spells"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "animal",
+      "name": "Animal",
+      "colors": [
+        "G"
+      ],
+      "rarity": "common",
+      "theme": "Gain life to trigger the helpful abilities of your furry friends.",
+      "rareCards": [],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "life gain",
+        "creatures",
+        "combat tricks"
+      ],
+      "payoffs": [
+        "life-gain triggers",
+        "board stability"
+      ],
+      "risks": [
+        "less explosive closing power"
+      ],
+      "tags": [
+        "lifegain",
+        "green",
+        "creatures"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "great-lakes-avengers",
+      "name": "Great Lakes Avengers",
+      "colors": [
+        "G"
+      ],
+      "rarity": "rare",
+      "theme": "Unique icons like Flatman and Squirrel Girl dominate the battlefield!",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "go-wide",
+        "green",
+        "creatures"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "buzz": {
+        "level": "high",
+        "note": "The Unbeatable Squirrel Girl is called the strongest combo card in the set (doubles your Squirrels).",
+        "source": "EDHREC editorial buzz (not match data)"
+      },
+      "notes": "Arena packet counts imported.",
+      "rareCount": 2,
+      "counts": {
+        "creatures": 8,
+        "instants": 2,
+        "sorceries": 1,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "creatures",
+        "combat tricks",
+        "team bodies"
+      ],
+      "payoffs": [
+        "board pressure",
+        "creature value"
+      ],
+      "risks": [
+        "less focused than tighter synergy decks"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "incredible",
+      "name": "Incredible",
+      "colors": [
+        "G"
+      ],
+      "rarity": "rare",
+      "theme": "Get angry! Make your +1/+1 counters double turn over turn.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "counters",
+        "green",
+        "big-creatures"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "counter creatures",
+        "growth spells",
+        "large bodies"
+      ],
+      "payoffs": [
+        "counter doubling",
+        "large threat scaling"
+      ],
+      "risks": [
+        "can be slow against fast pressure"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "rampaging",
+      "name": "Rampaging",
+      "colors": [
+        "G"
+      ],
+      "rarity": "common",
+      "theme": "Trample your enemies with growing +1/+1 counters!",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "power-four",
+        "green",
+        "trample"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "large creatures",
+        "counters",
+        "trample support"
+      ],
+      "payoffs": [
+        "growing attackers",
+        "combat pressure"
+      ],
+      "risks": [
+        "can be stopped by early removal"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "savage-lands",
+      "name": "Savage Lands",
+      "colors": [
+        "G"
+      ],
+      "rarity": "mythic",
+      "theme": "Reign over the Savage Lands with Dinosaurs and other denizens.",
+      "rareCards": [],
+      "rareCount": 2,
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 8,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "large creatures",
+        "Dinosaur support",
+        "combat tricks"
+      ],
+      "payoffs": [
+        "big creature pressure",
+        "late game"
+      ],
+      "risks": [
+        "slow starts"
+      ],
+      "tags": [
+        "dinosaurs",
+        "green",
+        "ramp"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "tenacious",
+      "name": "Tenacious",
+      "colors": [
+        "G"
+      ],
+      "rarity": "rare",
+      "theme": "Mill away your library. The larger your graveyard, the stronger your spells become.",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 7,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "self-mill",
+        "graveyard size",
+        "creatures"
+      ],
+      "payoffs": [
+        "graveyard-size rewards",
+        "late-game scaling"
+      ],
+      "risks": [
+        "milling without payoff"
+      ],
+      "tags": [
+        "graveyard",
+        "green",
+        "self-mill"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ],
+      "notes": "Arena packet counts imported."
+    },
+    {
+      "id": "towering",
+      "name": "Towering",
+      "colors": [
+        "G"
+      ],
+      "rarity": "common",
+      "theme": "Creatures with power 4 or greater are even better with Giant-Man's aid.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "power-four",
+        "green",
+        "big-creatures"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 3,
+        "sorceries": 1,
+        "enchantments": 0,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "large creatures",
+        "pump spells",
+        "combat tricks"
+      ],
+      "payoffs": [
+        "power-four rewards",
+        "large attacks"
+      ],
+      "risks": [
+        "slow hands can fall behind"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "trained",
+      "name": "Trained",
+      "colors": [
+        "G"
+      ],
+      "rarity": "rare",
+      "theme": "Power-up your creatures and stack up +1/+1 counters.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "counters",
+        "green",
+        "combat"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 1,
+        "sorceries": 2,
+        "enchantments": 1,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "creatures",
+        "+1/+1 counters",
+        "growth spells"
+      ],
+      "payoffs": [
+        "counter stacking",
+        "efficient combat"
+      ],
+      "risks": [
+        "needs board presence early"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "uncanny",
+      "name": "Uncanny",
+      "colors": [
+        "G"
+      ],
+      "rarity": "rare",
+      "theme": "Unite the X-Men and other Mutants to survive—and thrive!",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 8,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "mutants",
+        "green",
+        "midrange"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 1,
+      "counts": {
+        "creatures": 8,
+        "instants": 0,
+        "sorceries": 2,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 8
+      },
+      "inputs": [
+        "Mutant creatures",
+        "team support",
+        "growth enchantments"
+      ],
+      "payoffs": [
+        "Mutant synergy",
+        "creature pressure"
+      ],
+      "risks": [
+        "tribal payoff can be thin"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "wild",
+      "name": "Wild",
+      "colors": [
+        "G"
+      ],
+      "rarity": "common",
+      "theme": "Play multiple lands every turn to maximize your wild allies.",
+      "rareCards": [],
+      "cards": 20,
+      "creatures": 7,
+      "removal": null,
+      "cardDraw": null,
+      "tags": [
+        "extra-land",
+        "green",
+        "ramp"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "notes": "Arena packet counts imported.",
+      "rareCount": 2,
+      "counts": {
+        "creatures": 7,
+        "instants": 0,
+        "sorceries": 2,
+        "enchantments": 2,
+        "artifacts": 0,
+        "lands": 9
+      },
+      "inputs": [
+        "extra mana plays",
+        "large creatures",
+        "growth enchantments"
+      ],
+      "payoffs": [
+        "resource acceleration",
+        "big board"
+      ],
+      "risks": [
+        "can flood without pressure"
+      ],
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card."
+      ]
+    },
+    {
+      "id": "fantastic",
+      "name": "Fantastic",
+      "colors": [
+        "W",
+        "U",
+        "B",
+        "R",
+        "G"
+      ],
+      "rarity": "mythic",
+      "theme": "Gather the members of the Fantastic Four and something special may happen!",
+      "rareCards": [],
+      "rareCount": 1,
+      "cards": 20,
+      "creatures": 6,
+      "removal": null,
+      "cardDraw": null,
+      "counts": {
+        "creatures": 6,
+        "instants": 3,
+        "sorceries": 2,
+        "enchantments": 0,
+        "artifacts": 1,
+        "lands": 8
+      },
+      "inputs": [
+        "Fantastic Four pieces",
+        "fixing",
+        "value spells"
+      ],
+      "payoffs": [
+        "special payoff",
+        "flexible threats"
+      ],
+      "risks": [
+        "mana and assembly risk"
+      ],
+      "tags": [
+        "five-color",
+        "family-team",
+        "value",
+        "fixing-risk"
+      ],
+      "sourceUrls": [
+        "https://mtgabuddy.com/en/jump-in-packet-list/jump-into-marvel-super-heroes"
+      ],
+      "sourceConfidence": "medium",
+      "sourceType": "arena-packet",
+      "verificationStatus": "arena-list-only",
+      "sourceWarnings": [
+        "Packet contents are based on MTGA Jump Into Marvel data unless physical mini packs are checked card-for-card. MTGABuddy lists a primary colour of green; this app keeps the five-colour Fantastic Four identity."
+      ],
+      "buzz": {
+        "level": "notable",
+        "note": "Reed Richards (quadruples card draw) is a highlighted value engine; highest-value mythic packet.",
+        "source": "Draftsim editorial buzz (not match data)"
+      },
+      "notes": "Arena packet counts imported (8 lands + 12 spells across 5 colours = fixing-heavy)."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd marvel-jump-pair-ranker && npm install && npm run build",
+  "outputDirectory": "marvel-jump-pair-ranker/dist",
+  "installCommand": "echo skip-root-install",
+  "framework": null
+}

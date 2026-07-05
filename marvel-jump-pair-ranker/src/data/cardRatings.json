@@ -1,0 +1,26 @@
+{
+  "_meta": {
+    "purpose": "Card-level quality ratings used to sharpen packet Power/Value scores. Public data (Untapped, 17Lands, Limited Grades) is Premier Draft data for Marvel Super Heroes (MSH) — it informs card QUALITY, but it is NOT Jump In pair win-rate data. Treat anything sourced here as MEDIUM confidence at best.",
+    "schema": {
+      "cardName": "string",
+      "manaValue": "number",
+      "type": "string (Creature | Instant | Sorcery | Artifact | Enchantment | Land | ...)",
+      "rarity": "common | uncommon | rare | mythic",
+      "roleTags": "string[] (e.g. removal, evasion, finisher, ramp, draw)",
+      "limitedRating": "number 0-5 (e.g. 17Lands/Limited Grades grade mapped to 0-5)",
+      "inHandWinRate": "number 0-1 (GIH WR)",
+      "playedWinRate": "number 0-1 (GP WR)",
+      "includedWinRate": "number 0-1 (deck WR when included)",
+      "totalGames": "number (sample size)",
+      "source": "string (e.g. untapped-premier-draft, 17lands, limited-grades)",
+      "notes": "string"
+    },
+    "sources": [
+      "https://mtga.untapped.gg/limited/draft/marvel-super-heroes/card-data",
+      "https://www.17lands.com/",
+      "https://scryfall.com/sets/msh"
+    ],
+    "importNote": "Seed empty on purpose — no public Jump-In-specific card stats. Use the Data Sources page importer to upload a CSV/JSON export (e.g. from Untapped or 17Lands). Rows are matched to packets by rareCards / card names."
+  },
+  "cards": []
+}

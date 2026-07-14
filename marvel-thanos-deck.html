@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mardu Thanos — Marvel Super Heroes Sealed</title>
+<style>
+:root{
+  --bg:#f3ead9; --paper:#fbf5e9; --ink:#34312c; --soft:#7a7263; --line:#ddccae;
+  --mustard:#d9a441; --teal:#4f7d74; --salmon:#df8a68; --plum:#7c5a73;
+  --W:#e7dcb8; --U:#7d9aa8; --B:#6c6353; --R:#b0413a; --G:#728f5b; --Cc:#c7bda6;
+  --shadow:0 1px 0 #cdbb9a, 0 6px 18px rgba(60,50,30,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:Futura,"Century Gothic","Avenir Next",Inter,system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:920px;margin:0 auto;padding:26px 20px 80px}
+header.top{text-align:center;border:3px double var(--mustard);background:var(--paper);
+  border-radius:10px;padding:18px 20px;box-shadow:var(--shadow)}
+header.top .kick{letter-spacing:.34em;text-transform:uppercase;font-size:11px;color:var(--salmon);font-weight:700}
+header.top h1{margin:6px 0 2px;font-size:26px}
+header.top .sub{color:var(--soft);font-size:13px}
+.stat{display:inline-block;margin-top:10px;font-size:12px;background:var(--teal);color:#fbf5e9;padding:3px 11px;border-radius:20px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:18px;box-shadow:var(--shadow)}
+h2{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--plum);margin:0 0 12px;border-bottom:1px dashed var(--line);padding-bottom:7px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.cols{grid-template-columns:1fr}}
+.grp h3{margin:0 0 6px;font-size:14px;display:flex;align-items:center;gap:7px}
+.pip{width:16px;height:16px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.18);font-size:9px;text-align:center;line-height:16px;font-weight:700}
+.pip.W{background:var(--W);color:#7a6f49}.pip.B{background:var(--B);color:#e9e2d2}.pip.R{background:var(--R);color:#fff0ec}.pip.M{background:linear-gradient(135deg,var(--R),var(--W));color:#4a2a26}
+ul.cl{list-style:none;margin:0 0 8px;padding:0}
+ul.cl li{display:flex;gap:8px;align-items:baseline;padding:4px 4px;border-bottom:1px solid #eee2c8;font-size:13px}
+.cn{flex:1;font-weight:600}.mc{color:var(--soft);font-family:ui-monospace,monospace;font-size:11px}
+.tag{font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:9px;font-weight:700;white-space:nowrap}
+.t-bomb{background:var(--R);color:#fff0ec}.t-rem{background:var(--plum);color:#f2e6ee}.t-fix{background:var(--teal);color:#eafff8}.t-cre{background:#e6d8b4;color:#6b5f3c}
+p{font-size:13.5px}p b{color:var(--ink)}
+.mana{display:flex;gap:14px;flex-wrap:wrap;font-size:13px}
+.mana .b{font-size:18px;font-weight:800}
+pre{background:#fffdf7;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:12px;white-space:pre-wrap;user-select:all}
+.note{background:#fffdf7;border-left:3px solid var(--teal);padding:9px 12px;border-radius:0 6px 6px 0;font-size:13px;margin:8px 0}
+footer{text-align:center;color:var(--soft);font-size:11.5px;margin-top:26px}
+a{color:var(--teal)}
+.btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.btn{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:2px solid var(--mustard);background:var(--mustard);color:#3a2d12;padding:7px 14px;border-radius:22px;text-decoration:none;display:inline-block}
+.btn.alt{background:var(--paper);color:var(--teal);border-color:var(--teal)}
+.mode-btn{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:2px solid var(--mustard);background:var(--mustard);color:#3a2d12;padding:7px 14px;border-radius:22px}
+body.kids .mode-btn{background:var(--teal);color:#fbf5e9}
+body:not(.kids) .mode-btn::before{content:"🧒 "}
+body.kids .mode-btn::before{content:"📖 "}
+.kidwrap{display:none;background:#fffdf7;border:2px dashed var(--salmon)}
+body.kids .kidwrap{display:block}
+body.kids section:not(.kidwrap){display:none}
+.kid-cta{display:inline-block;margin-top:10px;background:var(--teal);color:#fbf5e9;padding:9px 16px;border-radius:22px;text-decoration:none;font-weight:800}
+.kidwrap p{font-size:14.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="kick">Magic: The Gathering · Marvel Super Heroes · Sealed</div>
+  <h1>Mardu Thanos</h1>
+  <div class="sub">A three-color midrange bombs deck built around Thanos, the Mad Titan, and a Treasure base.</div>
+  <div class="stat">23 spells · 17 lands · 3 bombs · 4 removal (+1 conditional) · White-Black-Red</div>
+  <div class="btns">
+    <button class="mode-btn" id="mode-btn" onclick="toggleKid()">Kid mode</button>
+    <a class="btn alt" href="https://drwu-htmls.vercel.app/marvel-limited-deckbuilder">🛠 Open the deck builder</a>
+  </div>
+</header>
+
+<section class="kidwrap" id="kidPanel">
+  <h2>Kid mode: the Thanos team</h2>
+  <p><b>This is a team for a card game.</b> You and a friend play cards to win. Here is the easy version.</p>
+  <p>🟣 <b>Boss cards, we call them bombs:</b> Thanos is your strongest card. Get him out, keep him safe, and you usually win. Kingpin and Captain America are strong helpers.</p>
+  <p>🗡️ <b>"No thank you" cards, we call them removal:</b> Hour of Defeat and Repulsor Blast knock out the other player's monsters. You have four of them.</p>
+  <p>💰 <b>Coin makers:</b> Stark Industries Executive makes shiny Treasure coins that pay for any card, so your three colors work together.</p>
+  <p>🏝️ <b>Lands</b> are your energy. Play one every turn. You have 17, so you almost always have energy.</p>
+  <p><b>How you win:</b> stay alive, clear their monsters, play Thanos, guard him, and fly over them with Thor and Human Torch.</p>
+  <a class="kid-cta" href="https://drwu-htmls.vercel.app/marvel-limited-deckbuilder">🛠 Make your own deck here</a>
+</section>
+
+<section>
+  <h2>The deck, by color</h2>
+  <div class="cols">
+    <div>
+      <div class="grp"><h3><span class="pip M">G</span> Multicolor (5)</h3>
+      <ul class="cl">
+        <li><span class="cn">Thanos, the Mad Titan</span><span class="mc">{R}{W}{B}</span><span class="tag t-bomb">Bomb</span></li>
+        <li><span class="cn">The Kingpin of Crime</span><span class="mc">{1}{W}{B}</span><span class="tag t-bomb">Bomb</span></li>
+        <li><span class="cn">Thor Odinson</span><span class="mc">{3}{R}{W}</span><span class="tag t-cre">Flyer</span></li>
+        <li><span class="cn">Madame Hydra</span><span class="mc">{2}{B}{R}</span><span class="tag t-cre">Tokens</span></li>
+        <li><span class="cn">U.S.Agent, John Walker</span><span class="mc">{3}{W/B}</span><span class="tag t-cre">Body</span></li>
+      </ul></div>
+      <div class="grp"><h3><span class="pip R">R</span> Red (9)</h3>
+      <ul class="cl">
+        <li><span class="cn">Stark Industries Executive</span><span class="mc">{R} ×3</span><span class="tag t-fix">Fixing</span></li>
+        <li><span class="cn">Human Torch, Johnny Storm</span><span class="mc">{2}{R}</span><span class="tag t-cre">Flyer</span></li>
+        <li><span class="cn">Kree Sentinel</span><span class="mc">{4}{R}</span><span class="tag t-cre">Reach</span></li>
+        <li><span class="cn">Evil's Thrall</span><span class="mc">{2}{R}</span><span class="tag t-rem">Steal</span></li>
+        <li><span class="cn">Vision of Love</span><span class="mc">{1}{R}</span><span class="tag t-cre">Draw</span></li>
+        <li><span class="cn">Repulsor Blast</span><span class="mc">{3}{R}</span><span class="tag t-rem">Removal</span></li>
+        <li><span class="cn">HULK SMASH!</span><span class="mc">{1}{R}</span><span class="tag t-cre">Fight (cond.)</span></li>
+      </ul></div>
+    </div>
+    <div>
+      <div class="grp"><h3><span class="pip B">B</span> Black (7)</h3>
+      <ul class="cl">
+        <li><span class="cn">Hour of Defeat</span><span class="mc">{3}{B} ×3</span><span class="tag t-rem">Removal</span></li>
+        <li><span class="cn">Baron Strucker, HYDRA Overlord</span><span class="mc">{2}{B}</span><span class="tag t-cre">Engine</span></li>
+        <li><span class="cn">Arnim Zola, Bio-Fanatic</span><span class="mc">{2}{B}</span><span class="tag t-cre">Value</span></li>
+        <li><span class="cn">Madame Masque</span><span class="mc">{4}{B}</span><span class="tag t-cre">Connive</span></li>
+        <li><span class="cn">HYDRA Infiltration</span><span class="mc">{3}{B}</span><span class="tag t-rem">Discard</span></li>
+      </ul></div>
+      <div class="grp"><h3><span class="pip W">W</span> White (2)</h3>
+      <ul class="cl">
+        <li><span class="cn">Captain America, Super-Soldier</span><span class="mc">{1}{W}{W}</span><span class="tag t-bomb">Bomb</span></li>
+        <li><span class="cn">Hero in Training</span><span class="mc">{2}{W}</span><span class="tag t-cre">Draw</span></li>
+      </ul></div>
+      <div class="grp"><h3><span class="pip" style="background:#cdbb9a">L</span> Lands (17)</h3>
+      <ul class="cl">
+        <li><span class="cn">Swamp</span><span class="mc">×6</span></li>
+        <li><span class="cn">Mountain</span><span class="mc">×6</span></li>
+        <li><span class="cn">Plains</span><span class="mc">×4</span></li>
+        <li><span class="cn">Surveillance Room</span><span class="mc">any color</span></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Mana base</h2>
+  <div class="mana">
+    <div><span class="b">6</span> white pips</div>
+    <div><span class="b">10</span> black pips</div>
+    <div><span class="b">12</span> red pips</div>
+    <div><span class="b">1</span> true any-color fixer</div>
+  </div>
+  <p>Clean and honest: <b>every land makes a color you actually play.</b> <b>Surveillance Room</b> taps for any of your three colors, and the rest are basics — 6 Swamp, 6 Mountain, 4 Plains. Black, the removal base behind Hour of Defeat, rides on Swamps, Surveillance Room, and the three Executive Treasures. Red leans on the 6 Mountain plus Stark Industries Executive for the turn-one play, and white is a four-Plains splash that comfortably casts Captain America's double white.</p>
+  <div class="note"><b>No more dead duals:</b> the old base ran three tapped lands (Avengers Hangar, Birnin Zana Plaza, Stark Industries) that only made a color a basic already covers, and just a single Plains. Cutting them for four Plains plus the one any-color land removes the tapped-land clog and makes the {W}{W} on Captain America a real cast instead of a prayer. The three Stark Industries Executive Treasures still smooth the three-color load.</div>
+</section>
+
+<section>
+  <h2>Game plan</h2>
+  <p><b>Survive, fix, dominate.</b> Trade early with Hour of Defeat and HULK SMASH, ramp a Treasure off an Executive, land a bomb, and protect it. Thanos is a 4/4 deathtouch lifelink that trades up on turn three and sweeps the board late. Thor and Human Torch close from the air.</p>
+  <p><b>Mulligan</b> hands with one color of mana or no early play. With four Plains, a wild Surveillance Room, and three Executives, keep two-color sevens that can reach the splash.</p>
+</section>
+
+<section>
+  <h2>Sideboard notes</h2>
+  <p><b>Why no green splash:</b> the set's green bombs (Hercules, Prince of Power; Storm, Windrider; Hulk, Gamma Goliath; Moon Girl and Devil Dinosaur) tempt a fourth color, but even this fixing cannot support it.</p>
+  <p><b>Power swap held in reserve:</b> if a game goes long, Madame Masque and Evil's Thrall are the flex slots. The pool's grade-30 leftovers stay in the box.</p>
+</section>
+
+<section>
+  <h2>Copy to Arena / MTGO</h2>
+  <pre id="exp">1 Thanos, the Mad Titan
+1 The Kingpin of Crime
+1 Captain America, Super-Soldier
+1 Thor Odinson
+1 Human Torch, Johnny Storm
+1 Madame Hydra
+1 Arnim Zola, Bio-Fanatic
+1 Baron Strucker, HYDRA Overlord
+1 U.S.Agent, John Walker
+1 Madame Masque
+1 Kree Sentinel
+1 Hero in Training
+1 Evil's Thrall
+1 HYDRA Infiltration
+1 Vision of Love
+3 Stark Industries Executive
+3 Hour of Defeat
+1 Repulsor Blast
+1 HULK SMASH!
+6 Swamp
+6 Mountain
+4 Plains
+1 Surveillance Room</pre>
+</section>
+
+<footer>
+  Built with the <a href="https://drwu-htmls.vercel.app/marvel-limited-deckbuilder">Marvel Sealed Deck Builder</a>.
+  Card data and Limited grades from Scryfall, Draftsim, and CoolStuffInc. Marvel Super Heroes releases 2026-06-26.
+</footer>
+</div>
+<script>
+function toggleKid(){
+  document.body.classList.toggle('kids');
+  document.getElementById('mode-btn').textContent = document.body.classList.contains('kids') ? 'Grown-up mode' : 'Kid mode';
+  window.scrollTo(0,0);
+}
+</script>
+
+<!-- kid-mode product link (kid-shop-link); shows only in kid mode via existing .kid-only -->
+<a class="kid-only kid-shop-link" href="https://pagesofbrandon.gumroad.com" target="_blank" rel="noopener" title="Get this as a printable you can buy" style="position:fixed;right:18px;bottom:62px;z-index:99999;font:700 13px/1 Inter,system-ui,sans-serif;letter-spacing:.02em;padding:10px 15px;border-radius:999px;text-decoration:none;border:2px solid #2b2723;background:#F5CDB4;color:#2b2723;box-shadow:3px 3px 0 rgba(43,39,35,.35);">🛍️ Get the printable</a>
+</body>
+</html>
